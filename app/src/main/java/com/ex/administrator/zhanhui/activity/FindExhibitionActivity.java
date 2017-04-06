@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ImageView;
@@ -80,6 +79,11 @@ public class FindExhibitionActivity extends BaseActivity implements
                 stopLoading();//停止加载动画
                 searchExhibitBean = (SearchExhibitBean) msg.obj;
                 exDatas = searchExhibitBean.getData();
+            }
+
+            if (msg.what == HandlerConstant.REQUEST_FAIL) {
+                stopLoading();
+                ToastUtil.show(FindExhibitionActivity.this, "请求失败");
             }
 
 
@@ -170,7 +174,7 @@ public class FindExhibitionActivity extends BaseActivity implements
                     filterViewTopMargin = itemHeaderFilterView.getTop();
                 }
                 // 处理筛选是否吸附在顶部
-                if ((filterViewTopMargin <= 0 || firstVisibleItem > filterViewPosition ) && isShow) {
+                if ((filterViewTopMargin <= 0 || firstVisibleItem > filterViewPosition) && isShow) {
                     isStickyTop = true; // 吸附在顶部
                     mFilterView.setVisibility(View.VISIBLE);
                 } else {
@@ -222,11 +226,11 @@ public class FindExhibitionActivity extends BaseActivity implements
         mHeaderChannelView.setOnItemChannelClickListtener(new HeaderChannelView.OnItemChannelClickListtener() {
             @Override
             public void OnChannelClick(String title) {
-                if(title.equals("会议")){
-                    startActivity(new Intent(FindExhibitionActivity.this,DetailExActivity.class));
+                if (title.equals("会议")) {
+                    startActivity(new Intent(FindExhibitionActivity.this, DetailExActivity.class));
                 }
-                if(title.equals("博览会")){
-                    startActivity(new Intent(FindExhibitionActivity.this,DetailExpoActivity.class));
+                if (title.equals("博览会")) {
+                    startActivity(new Intent(FindExhibitionActivity.this, DetailExpoActivity.class));
                 }
             }
         });

@@ -106,7 +106,7 @@ public class UserModel {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                handler.sendEmptyMessage(HandlerConstant.LOGIN_FAIL);
+                handler.sendEmptyMessage(HandlerConstant.REQUEST_FAIL);
             }
 
             @Override
@@ -124,7 +124,7 @@ public class UserModel {
                         message.obj = userBean;
                         handler.sendMessage(message);
                     } else {
-                        handler.sendEmptyMessage(HandlerConstant.LOGIN_FAIL);
+                        handler.sendEmptyMessage(HandlerConstant.REQUEST_FAIL);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

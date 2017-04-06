@@ -8,7 +8,7 @@ public class HandlerConstant {
     //请求成功
     public static final String REQUEST_SUCCESS = "00";
     //请求失败
-    public static final int LOGIN_FAIL = 20012;
+    public static final int REQUEST_FAIL = 20012;
     //是否登录成功
     public static final int LOGIN_SUCCESS = 10000;
     //获取热点城市成功

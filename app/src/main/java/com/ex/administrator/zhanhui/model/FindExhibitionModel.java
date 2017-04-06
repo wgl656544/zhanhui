@@ -2,6 +2,7 @@ package com.ex.administrator.zhanhui.model;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;
@@ -89,6 +90,7 @@ public class FindExhibitionModel {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String s = response.body().string();
+                Log.d("lingyi", s);
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     String success = jsonObject.getString("successed");
@@ -99,6 +101,8 @@ public class FindExhibitionModel {
                         message.obj = searchExhibitBean;
                         message.what = HandlerConstant.SEARCH_EXHIBITION_SUCCESS;
                         handler.sendMessage(message);
+                    } else {
+                        handler.sendEmptyMessage(HandlerConstant.REQUEST_FAIL);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
