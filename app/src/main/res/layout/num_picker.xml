@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/num_pick_background"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/tv_minus"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="7dp">
+
+        <View
+            style="@style/div_line"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/black" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_show"
+        style="@style/textStyle"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:background="@drawable/num_pick_white_back"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+
+        android:paddingRight="5dp"
+        android:text="1"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/tv_plus"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="5dp">
+
+        <View
+            style="@style/div_line"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/black" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@color/color_666" />
+
+    </RelativeLayout>
+
+</LinearLayout>

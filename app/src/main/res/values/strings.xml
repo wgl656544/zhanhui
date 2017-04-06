@@ -1,0 +1,68 @@
+<resources>
+    <string name="smoothlistview_header_hint_normal">下拉刷新</string>
+    <string name="smoothlistview_header_hint_ready">松开刷新数据</string>
+    <string name="smoothlistview_header_hint_loading">正在加载...</string>
+    <string name="smoothlistview_header_last_time">上次更新时间：</string>
+    <string name="smoothlistview_footer_hint_normal">查看更多</string>
+    <string name="smoothlistview_footer_hint_ready">松开载入更多</string>
+
+
+    <string name="app_name">云展会</string>
+    <string name="home">首页</string>
+    <string name="exhibition">展会动态</string>
+    <string name="hainan">发现海南</string>
+    <string name="my">我的</string>
+    <string name="zhanhui">展会</string>
+    <string name="information">资讯</string>
+    <string name="ticket">门票</string>
+    <string name="groupbuy">团购</string>
+    <string name="find">发现</string>
+    <string name="business">招商</string>
+    <string name="haikou">海口</string>
+    <string name="sanya">三亚</string>
+    <string name="boao">博鳌</string>
+    <string name="scan">扫一扫</string>
+    <string name="personalCenter">我的个人中心</string>
+    <string name="myex">我的展会</string>
+    <string name="changgeLau">切换语言</string>
+    <string name="more">更多</string>
+    <string name="reserve">预定门票</string>
+
+    <string name="findexhibition">搜展会</string>
+    <string name="meeting">会议</string>
+    <string name="exposition">博览会</string>
+    <string name="competition">赛事</string>
+    <string name="other">其它</string>
+
+
+    <string name="exhibitionforum">展会场所</string>
+    <string name="exguest">展会嘉宾</string>
+    <string name="guest">嘉宾</string>
+    <string name="buyticket">展会购票</string>
+    <string name="exbusiness">展会商务</string>
+    <string name="exvote">展会投票</string>
+    <string name="exnews">展会新闻</string>
+    <string name="exhibitor">参展商</string>
+    <string name="exticket">展会门票</string>
+    <string name="activity">活动安排</string>
+    <string name="newslive">新闻直播间</string>
+
+    <string name="sub_forum">分论坛</string>
+    <string name="ticket_business">票务</string>
+    <string name="message_introduce">资讯介绍</string>
+
+
+    <string name="choiceness">精选</string>
+    <string name="hainan_travel">海南游</string>
+    <string name="enjoy_cate">享美食</string>
+    <string name="see_scenery">看风景</string>
+    <string name="relaxation">趣休闲</string>
+
+
+    <string name="my_order">我的订单</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="my_browse">我的浏览</string>
+
+    <string name="hint">未注册的手机号码验证后自动创建账户</string>
+
+</resources>

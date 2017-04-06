@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_home_fragment_busi_back"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/x40"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/x10"
+            android:src="@drawable/back" />
+
+        <LinearLayout
+            android:layout_width="@dimen/x460"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginStart="@dimen/x30"
+            android:layout_marginTop="@dimen/x10"
+            android:background="@drawable/sousuokuang_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <ImageView
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/x30"
+                android:src="@drawable/sousuo" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_weight="1"
+                android:background="@null" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.ex.administrator.zhanhui.SmoothListView.SmoothListView
+            android:id="@+id/sl_home_fragment_busi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+
+        <com.ex.administrator.zhanhui.view.homeFragmentBusiHeader.HomeFragmentBusiFilterView
+            android:id="@+id/fv_home_fragment_busi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+</LinearLayout>

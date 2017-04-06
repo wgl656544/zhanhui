@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ex.administrator.zhanhui">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    //定位包、导航包需要的额外权限（注：基础权限也需要）
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
+    <application
+        android:name=".application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.FindExhibitionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DetailExActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DetailExTicketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DetailExNewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DetailExHonorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.EmailLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HomeFragmentInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HomeFragmentTeamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HomeFragmentTicketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.HomeFragmentBusiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DetailExpoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PersonalInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MyInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ChangeNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zaaach.citypicker.CityPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CityPicker.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activity.ShipAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AddShipAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+        <activity
+            android:name=".zxing.activity.ResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+        <activity
+            android:name=".activity.AllOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DetailBuyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WriteOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PayOrderActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

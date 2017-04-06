@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"  android:drawable="@drawable/thumb_off" />
+    <item android:state_checked="true"  android:drawable="@drawable/thumb_on" />
+    <item                               android:drawable="@drawable/thumb_off" />
+
+</selector>
+<!--<Switch
+        android:id="@+id/trade_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:switchMinWidth="44dp"
+        android:textOff=""
+        android:textOn=""
+        android:thumb="@drawable/thumb"
+        android:thumbTextPadding="16dp"
+        android:track="@drawable/track"/>-->

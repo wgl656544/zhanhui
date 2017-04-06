@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10">
+
+        <ImageView
+            android:id="@+id/iv_detail_ex_blog"
+            android:layout_width="@dimen/x220"
+            android:layout_height="@dimen/x140"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_pic" />
+
+        <TextView
+            android:id="@+id/tv_detail_ex_blog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x10"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_toEndOf="@+id/iv_detail_ex_blog"
+            android:text="开幕式"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_detail_ex_blog_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_detail_ex_blog_title"
+            android:layout_marginStart="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:layout_toEndOf="@+id/iv_detail_ex_blog"
+            android:text="领导致辞、专家讲话"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_detail_ex_blog_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_detail_ex_blog_content"
+            android:layout_marginStart="@dimen/x10"
+            android:layout_marginTop="@dimen/x15"
+            android:layout_toEndOf="@+id/iv_detail_ex_blog"
+            android:text="20017.3.10"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

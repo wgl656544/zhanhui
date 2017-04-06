@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Switcher">
+
+        <attr name="leftTextSize" format="dimension"/>
+        <attr name="leftTextColor" format="color"/>
+        <attr name="leftText" format="string" />
+
+        <attr name="rightTextSize" format="dimension"/>
+        <attr name="rightTextColor" format="color"/>
+        <attr name="rightText" format="string"/>
+
+        <attr name="leftLayoutColor" format="reference|color"/>
+        <attr name="rightLayoutColor" format="reference|color"/>
+
+    </declare-styleable>
+    
+    <declare-styleable name="InfoItem">
+        <attr name="tvInfoStr" format="string"/>
+        <attr name="tvRightStr" format="string"/>
+        <attr name="tvBackground" format="color"/>
+        <attr name="leftDrawable" format="reference|color"/>
+        <attr name="rightStrColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="Topbar">
+        <attr name="title" format="string"/>
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="titleTextColor" format="color"/>
+
+        <attr name="leftTextViewColor" format="color"/>
+        <attr name="leftTextStr" format="string"/>
+
+        <attr name="rightTextViewColor" format="color"/>
+        <attr name="rightTextStr" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="CheckTextView">
+        <attr name="tvText" format="string"/>
+        <attr name="tvTextSize" format="dimension"/>
+        <attr name="tvTextColor" format="color"/>
+    </declare-styleable>
+
+    - <declare-styleable name="AVLoadingIndicatorView">
+    - <attr name="indicator">
+    <flag name="BallPulse" value="0" />
+    <flag name="BallGridPulse" value="1" />
+    <flag name="BallClipRotate" value="2" />
+    <flag name="BallClipRotatePulse" value="3" />
+    <flag name="SquareSpin" value="4" />
+    <flag name="BallClipRotateMultiple" value="5" />
+    <flag name="BallPulseRise" value="6" />
+    <flag name="BallRotate" value="7" />
+    <flag name="CubeTransition" value="8" />
+    <flag name="BallZigZag" value="9" />
+    <flag name="BallZigZagDeflect" value="10" />
+    <flag name="BallTrianglePath" value="11" />
+    <flag name="BallScale" value="12" />
+    <flag name="LineScale" value="13" />
+    <flag name="LineScaleParty" value="14" />
+    <flag name="BallScaleMultiple" value="15" />
+    <flag name="BallPulseSync" value="16" />
+    <flag name="BallBeat" value="17" />
+    <flag name="LineScalePulseOut" value="18" />
+    <flag name="LineScalePulseOutRapid" value="19" />
+    <flag name="BallScaleRipple" value="20" />
+    <flag name="BallScaleRippleMultiple" value="21" />
+    <flag name="BallSpinFadeLoader" value="22" />
+    <flag name="LineSpinFadeLoader" value="23" />
+    <flag name="TriangleSkewSpin" value="24" />
+    <flag name="Pacman" value="25" />
+    <flag name="BallGridBeat" value="26" />
+    <flag name="SemiCircleSpin" value="27" />
+</attr>
+    <attr format="color" name="indicator_color" />
+</declare-styleable>
+
+    <declare-styleable name="wheelview">
+        <attr name="gravity">
+            <enum name="center" value="17"/>
+            <enum name="left" value="3"/>
+            <enum name="right" value="5"/>
+        </attr>
+        <attr name="textColorOut" format="color"/>
+        <attr name="textColorCenter" format="color"/>
+        <attr name="dividerColor" format="color"/>
+    </declare-styleable>
+
+
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">zhanhui</string>
+    <string name="home">home</string>
+    <string name="exhibition">trends</string>
+    <string name="hainan">findHaiNan</string>
+    <string name="my">my</string>
+    <string name="zhanhui">exhibition</string>
+    <string name="information">information</string>
+    <string name="ticket">ticket</string>
+    <string name="groupbuy">groupBuy</string>
+    <string name="find">find</string>
+    <string name="business">business</string>
+    <string name="haikou">HaiKou</string>
+    <string name="sanya">SanYa</string>
+    <string name="boao">BoAo</string>
+    <string name="scan">scan</string>
+    <string name="personalCenter">personalCenter</string>
+    <string name="myex">myExhibition</string>
+    <string name="changgeLau">changeLanguage</string>
+    <string name="more">more</string>
+    <string name="reserve">reserve</string>
+
+    <string name="findexhibition">findexhibition</string>
+    <string name="meeting">meeting</string>
+    <string name="exposition">exposition</string>
+    <string name="competition">competition</string>
+    <string name="other">other</string>
+
+</resources>

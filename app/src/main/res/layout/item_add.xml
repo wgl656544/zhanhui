@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    android:padding="@dimen/x1">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_add_scan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/x20"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/x60"
+                android:src="@drawable/saoyisao" />
+
+            <TextView
+                android:layout_marginStart="@dimen/x20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/scan" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/x220"
+            android:layout_height="@dimen/x2"
+            android:layout_marginLeft="@dimen/x100"
+            android:background="#e0e0e0" />
+
+        <LinearLayout
+            android:id="@+id/ll_add_myex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/x20">
+
+            <ImageView
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/x60"
+                android:src="@drawable/wodezhanhui" />
+
+            <TextView
+                android:layout_marginStart="@dimen/x20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/myex" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/x220"
+            android:layout_height="@dimen/x2"
+            android:layout_marginLeft="@dimen/x100"
+            android:background="#e0e0e0" />
+
+        <LinearLayout
+            android:id="@+id/ll_add_personal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/x20">
+
+            <ImageView
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/x60"
+                android:src="@drawable/gernzhongxin" />
+
+            <TextView
+                android:layout_marginStart="@dimen/x20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/personalCenter" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/x220"
+            android:layout_height="@dimen/x2"
+            android:layout_marginLeft="@dimen/x100"
+            android:background="#e0e0e0" />
+
+        <LinearLayout
+            android:id="@+id/ll_add_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/x20">
+
+            <ImageView
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/x60"
+                android:src="@drawable/qiehuan" />
+
+            <TextView
+                android:layout_marginStart="@dimen/x20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/changgeLau" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
