@@ -13,11 +13,11 @@ import com.ex.administrator.zhanhui.SmoothListView.SmoothListView;
 import com.ex.administrator.zhanhui.adapter.SearchTeamAdapter;
 import com.ex.administrator.zhanhui.application.MyApplication;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
 import com.ex.administrator.zhanhui.entity.CommonBean;
 import com.ex.administrator.zhanhui.entity.InfoPlaceBean;
 import com.ex.administrator.zhanhui.entity.TypeBean;
-import com.ex.administrator.zhanhui.model.HomeChannelModel;
-import com.ex.administrator.zhanhui.model.TeamModel;
+import com.ex.administrator.zhanhui.model.GetDataModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
@@ -59,8 +59,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
     private View itemHeaderFilterView;
     private SearchTeamAdapter adapter;
 
-    private HomeChannelModel cityModel = new HomeChannelModel();
-    private TeamModel teamModel = new TeamModel();
+    private GetDataModel model = new GetDataModel();
     private String name = "name=pt-tg-";
     private InfoPlaceBean infoPlaceBean;
     private List<InfoPlaceBean.Data> placeDatas;
@@ -95,7 +94,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
                     teamType.add(new FilterEntity(teamTypeBean.getData().get(i).getName()));
                 }
             }
-            if (msg.what == HandlerConstant.SEARCH_TEAM_SUCCESS) {//搜索团购
+            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//搜索团购
                 stopLoading();//停止加载动画
                 searchTeamBean = (CommonBean) msg.obj;
                 searchTeamDatas = searchTeamBean.getData();
@@ -119,9 +118,9 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
         setContentView(R.layout.activity_home_fragment_team);
         x.view().inject(this);
         startLoading("正在加载中...");//开始加载动画
-        cityModel.getHaiNanAllCity(handler);//获取城市
-        teamModel.getTeamCategory(handler, name);//获取团购类型
-        teamModel.searchTeam(handler);//获取搜索门票
+        model.getHaiNanAllCity(handler);//获取城市
+        model.getType(handler, UrlConstant.HTTP_URL_TEAM_CATEGOTY, name);//获取团购类型
+        model.search(handler, UrlConstant.HTTP_URL_SEARCH_TEAM, "");//获取搜索门票
         initview();
         setListener();
     }

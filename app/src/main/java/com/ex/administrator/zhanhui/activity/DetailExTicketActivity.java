@@ -12,8 +12,9 @@ import android.widget.ListView;
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.adapter.detailex.TicketAdapter;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.DetailExCommonBean;
-import com.ex.administrator.zhanhui.model.DetailExModel;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
+import com.ex.administrator.zhanhui.entity.CommonBean;
+import com.ex.administrator.zhanhui.model.GetDataModel;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -30,14 +31,14 @@ public class DetailExTicketActivity extends AppCompatActivity implements View.On
     @ViewInject(R.id.lv_detail_ex_ticket)
     private ListView lvTicket;
 
-    private DetailExModel model = new DetailExModel();
+    private GetDataModel model = new GetDataModel();
     private TicketAdapter adapter;
-    private DetailExCommonBean detailExTicketBean;
+    private CommonBean detailExTicketBean;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == HandlerConstant.DETAIL_EX_TICKET_SUCCESS) {
-                detailExTicketBean = (DetailExCommonBean) msg.obj;
+            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {
+                detailExTicketBean = (CommonBean) msg.obj;
                 if (detailExTicketBean != null) {
                     showTicket(detailExTicketBean);
                 }
@@ -51,7 +52,7 @@ public class DetailExTicketActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_detail_ex_ticket);
         x.view().inject(this);
         setListeners();
-        model.getDetailExTicket(handler, 1);
+        model.search(handler, UrlConstant.HTTP_URL_DETAIL_EX_TICKET, "ecxhibId=1");
     }
 
     //设置监听器
@@ -69,8 +70,8 @@ public class DetailExTicketActivity extends AppCompatActivity implements View.On
     }
 
     //显示门票
-    private void showTicket(DetailExCommonBean bean) {
-        List<DetailExCommonBean.Data> datas;
+    private void showTicket(CommonBean bean) {
+        List<CommonBean.Data> datas;
         datas = bean.getData();
         adapter = new TicketAdapter(this, datas);
         lvTicket.setAdapter(adapter);

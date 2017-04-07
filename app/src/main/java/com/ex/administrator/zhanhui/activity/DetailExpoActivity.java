@@ -16,10 +16,10 @@ import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.adapter.DetailExRollPagerAdapter;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.DetailExAdvertBean;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
+import com.ex.administrator.zhanhui.entity.CommonListBean;
 import com.ex.administrator.zhanhui.entity.DetailExBean;
-import com.ex.administrator.zhanhui.entity.DetailExInfoBean;
-import com.ex.administrator.zhanhui.model.DetailExModel;
+import com.ex.administrator.zhanhui.model.GetDtaListModel;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -69,14 +69,14 @@ public class DetailExpoActivity extends AppCompatActivity implements View.OnClic
     @ViewInject(R.id.ll_detail_expo_team)
     private LinearLayout llTeam;//团购
 
-    private DetailExModel model = new DetailExModel();
+    private GetDtaListModel model = new GetDtaListModel();
     private DetailExBean detailExBean;//展会详细信息实体类
-    private DetailExAdvertBean detailExAdvertBean;//展会详细页面广告
-    private DetailExInfoBean detailExInfoBean;
-    private List<DetailExInfoBean.DataList> honorList;//嘉宾
-    private List<DetailExInfoBean.DataList> subList;//论坛
-    private List<DetailExInfoBean.DataList> ticketList;//票务
-    private List<DetailExInfoBean.DataList> blogList;//资讯
+    private CommonListBean detailExAdvertBean;//展会详细页面广告
+    private CommonListBean detailExInfoBean;
+    private List<CommonListBean.DataList> honorList;//嘉宾
+    private List<CommonListBean.DataList> subList;//论坛
+    private List<CommonListBean.DataList> ticketList;//票务
+    private List<CommonListBean.DataList> blogList;//资讯
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -89,7 +89,7 @@ public class DetailExpoActivity extends AppCompatActivity implements View.OnClic
             }
 
             if (msg.what == HandlerConstant.DETAIL_EX_ADVERT_SUCCESS) {//展会广告
-                detailExAdvertBean = (DetailExAdvertBean) msg.obj;
+                detailExAdvertBean = (CommonListBean) msg.obj;
                 //显示广告
                 if (detailExAdvertBean != null) {
                     showAdvert(detailExAdvertBean);
@@ -97,7 +97,7 @@ public class DetailExpoActivity extends AppCompatActivity implements View.OnClic
             }
 
             if (msg.what == HandlerConstant.DETAIL_EX_INFO_SUCCESS) {//展会资讯
-                detailExInfoBean = (DetailExInfoBean) msg.obj;
+                detailExInfoBean = (CommonListBean) msg.obj;
                 for (int i = 0; i < detailExInfoBean.getData().size(); i++) {
                     if (detailExInfoBean.getData().get(i).getName().equals("ex-home-honor")) {
                         honorList = detailExInfoBean.getData().get(i).getDataList();
@@ -121,8 +121,8 @@ public class DetailExpoActivity extends AppCompatActivity implements View.OnClic
         x.view().inject(this);
         setListeners();
         model.getDetailEx(handler, 1);
-        model.getDetailExAdvert(handler, 1);
-        model.getDetailExInfo(handler, 1);
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_ADVERT, "exhibId=1&name=ex-hy-home-top");
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_INFO, "exhibId=1");
     }
 
     //设置监听器
@@ -158,8 +158,8 @@ public class DetailExpoActivity extends AppCompatActivity implements View.OnClic
     }
 
     //显示轮播广告
-    private void showAdvert(DetailExAdvertBean bean) {
-        List<DetailExAdvertBean.DataList> data = new ArrayList<>();
+    private void showAdvert(CommonListBean bean) {
+        List<CommonListBean.DataList> data = new ArrayList<>();
         for (int i = 0; i < bean.getData().size(); i++) {
             if (bean.getData().get(i).getName().equals("ex-hy-home-top")) {
                 data = bean.getData().get(i).getDataList();

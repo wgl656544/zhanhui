@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.DetailExCommonBean;
+import com.ex.administrator.zhanhui.entity.CommonBean;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ import java.util.List;
 
 public class HonorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<DetailExCommonBean.Data> datas;
+    private List<CommonBean.Data> datas;
 
-    public HonorAdapter(Context context, List<DetailExCommonBean.Data> datas) {
+    public HonorAdapter(Context context, List<CommonBean.Data> datas) {
         this.context = context;
         this.datas = datas;
     }

@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.FindExhibitionActivity"
+            android:name=".activity.HomeFragmentFindEXActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DetailExActivity"

@@ -180,6 +180,7 @@ public class AddShipAddressActivity extends BaseActivity implements View.OnClick
         params.put("address.area", county.getAreaName());
     }
 
+    //显示地址信息
     private void showDefaultInfo(OneUserAddress oneUserAddress) {
         etName.setText(oneUserAddress.getData().getAddress().getContactUserName());
         etPhone.setText(oneUserAddress.getData().getAddress().getContactTel());

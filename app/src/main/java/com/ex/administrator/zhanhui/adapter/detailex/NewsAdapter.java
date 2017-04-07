@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.DetailExCommonBean;
+import com.ex.administrator.zhanhui.entity.CommonBean;
+import com.ex.administrator.zhanhui.entity.CommonListBean;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ import java.util.List;
 
 public class NewsAdapter extends BaseAdapter {
     private Context context;
-    private List<DetailExCommonBean.Data> datas;
+    private List<CommonBean.Data> datas;
     private LayoutInflater layoutInflater;
 
-    public NewsAdapter(Context context, List<DetailExCommonBean.Data> datas) {
+    public NewsAdapter(Context context, List<CommonBean.Data> datas) {
         this.context = context;
         this.datas = datas;
         layoutInflater = LayoutInflater.from(context);
@@ -35,7 +36,7 @@ public class NewsAdapter extends BaseAdapter {
     }
 
     @Override
-    public DetailExCommonBean.Data getItem(int position) {
+    public CommonBean.Data getItem(int position) {
         return datas.get(position);
     }
 
@@ -58,7 +59,7 @@ public class NewsAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        DetailExCommonBean.Data item = datas.get(position);
+        CommonBean.Data item = datas.get(position);
         Glide.with(context).load(item.getImageUrl()).fitCenter().into(holder.imageView);
         holder.tvName.setText(datas.get(position).getName());
         holder.tvTitle.setText(datas.get(position).getTitle());

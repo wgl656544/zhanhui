@@ -16,7 +16,7 @@ import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;
 import com.ex.administrator.zhanhui.entity.CommonBean;
 import com.ex.administrator.zhanhui.entity.TypeBean;
-import com.ex.administrator.zhanhui.model.HomeChannelModel;
+import com.ex.administrator.zhanhui.model.GetDataModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
@@ -36,7 +36,7 @@ import java.util.List;
  * Created by Administrator on 2017/2/20 0020.
  */
 
-public class FindExhibitionActivity extends BaseActivity implements
+public class HomeFragmentFindEXActivity extends BaseActivity implements
         SmoothListView.ISmoothListViewListener, View.OnClickListener {
     @ViewInject(R.id.lv_find_exhibition)
     private SmoothListView mSmoothListView;
@@ -56,7 +56,7 @@ public class FindExhibitionActivity extends BaseActivity implements
     private boolean isShow = false;//数据是否加载完毕
     private int filterViewTopMargin;//距离顶部的距离
     private View itemHeaderFilterView;
-    private HomeChannelModel model = new HomeChannelModel();//展会搜索业页面，业务对象
+    private GetDataModel model = new GetDataModel();//展会搜索业页面，业务对象
     private TypeBean exhibitionTypeBean;//展会类型对象实体类
     private List<FilterEntity> exType;//展会类型
     private CommonBean searchExhibitBean;//搜索展会成功实体类
@@ -69,7 +69,7 @@ public class FindExhibitionActivity extends BaseActivity implements
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == HandlerConstant.EXHIBITION_TYPE_SUCCESS) {//类型
+            if (msg.what == HandlerConstant.SEARCH_TYPE_SUCCESS) {//类型
                 exhibitionTypeBean = (TypeBean) msg.obj;
                 exType = new ArrayList<>();
                 for (int i = 0; i < exhibitionTypeBean.getData().size(); i++) {
@@ -84,7 +84,7 @@ public class FindExhibitionActivity extends BaseActivity implements
 
             if (msg.what == HandlerConstant.REQUEST_FAIL) {//请求成功，返回失败
                 stopLoading();
-                ToastUtil.show(FindExhibitionActivity.this, (String) msg.obj);
+                ToastUtil.show(HomeFragmentFindEXActivity.this, (String) msg.obj);
             }
 
 
@@ -194,32 +194,32 @@ public class FindExhibitionActivity extends BaseActivity implements
         mFilterView.setOnItemCityClickListener(new FilterView.OnItemCityClickListener() {
             @Override
             public void onItemCityClick(String city) {
-                FindExhibitionActivity.this.city = city;
-                ToastUtil.show(FindExhibitionActivity.this, city + near);
+                HomeFragmentFindEXActivity.this.city = city;
+                ToastUtil.show(HomeFragmentFindEXActivity.this, city + near);
             }
         });
         //设置类型监听方法
         mFilterView.setOnItemTypeClickListener(new FilterView.OnItemTypeClickListener() {
             @Override
             public void onItemTypeClick(String type) {
-                FindExhibitionActivity.this.type = type;
-                ToastUtil.show(FindExhibitionActivity.this, type);
+                HomeFragmentFindEXActivity.this.type = type;
+                ToastUtil.show(HomeFragmentFindEXActivity.this, type);
             }
         });
         //设置最近监听方法
         mFilterView.setOnItemNearClickListener(new FilterView.OnItemNearClickListener() {
             @Override
             public void onItemNearClick(int near) {
-                FindExhibitionActivity.this.near = near;
-                ToastUtil.show(FindExhibitionActivity.this, near + "");
+                HomeFragmentFindEXActivity.this.near = near;
+                ToastUtil.show(HomeFragmentFindEXActivity.this, near + "");
             }
         });
         //设置筛选监听方法
         mFilterView.setOnItemSiftClickListener(new FilterView.OnItemSiftClickListener() {
             @Override
             public void onItemSiftClick(int sift) {
-                FindExhibitionActivity.this.sift = sift;
-                ToastUtil.show(FindExhibitionActivity.this, sift + "");
+                HomeFragmentFindEXActivity.this.sift = sift;
+                ToastUtil.show(HomeFragmentFindEXActivity.this, sift + "");
             }
         });
 
@@ -228,10 +228,10 @@ public class FindExhibitionActivity extends BaseActivity implements
             @Override
             public void OnChannelClick(String title) {
                 if (title.equals("会议")) {
-                    startActivity(new Intent(FindExhibitionActivity.this, DetailExActivity.class));
+                    startActivity(new Intent(HomeFragmentFindEXActivity.this, DetailExActivity.class));
                 }
                 if (title.equals("博览会")) {
-                    startActivity(new Intent(FindExhibitionActivity.this, DetailExpoActivity.class));
+                    startActivity(new Intent(HomeFragmentFindEXActivity.this, DetailExpoActivity.class));
                 }
             }
         });
@@ -243,8 +243,8 @@ public class FindExhibitionActivity extends BaseActivity implements
      * 获取展会类型
      */
     private void getExhibitionType() {
-        String name = "name=ex-";
-        model.getExhibitionType(handler, name);
+        String param = "name=ex-";
+        model.getType(handler, UrlConstant.HTTP_URL_FIND_EXHIBITION_TYPE, param);
 
     }
 

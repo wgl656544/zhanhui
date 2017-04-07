@@ -17,7 +17,7 @@ import com.ex.administrator.zhanhui.constant.UrlConstant;
 import com.ex.administrator.zhanhui.entity.CommonBean;
 import com.ex.administrator.zhanhui.entity.InfoCategoryBean;
 import com.ex.administrator.zhanhui.entity.InfoPlaceBean;
-import com.ex.administrator.zhanhui.model.HomeChannelModel;
+import com.ex.administrator.zhanhui.model.GetDataModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
@@ -62,7 +62,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
     private List<FilterEntity> exType;//展会类型
     private SearchBlogAdapter adapter;
 
-    private HomeChannelModel model = new HomeChannelModel();//获取展会分类对象
+    private GetDataModel model = new GetDataModel();//获取展会分类对象
     private List<FilterEntity> categorys;//筛选视图分类数据
     private List<FilterEntity> places;//筛选视图地方数据
     private String name = "termName=news";//参数

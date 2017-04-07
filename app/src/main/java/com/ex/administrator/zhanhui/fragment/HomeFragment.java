@@ -33,7 +33,7 @@ import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.activity.FindExhibitionActivity;
+import com.ex.administrator.zhanhui.activity.HomeFragmentFindEXActivity;
 import com.ex.administrator.zhanhui.activity.HomeFragmentBusiActivity;
 import com.ex.administrator.zhanhui.activity.HomeFragmentInfoActivity;
 import com.ex.administrator.zhanhui.activity.HomeFragmentTeamActivity;
@@ -341,7 +341,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         switch (v.getId()) {
             //跳转到展会搜索
             case R.id.home_iv_exhibition:
-                startActivity(new Intent(getActivity(), FindExhibitionActivity.class));
+                startActivity(new Intent(getActivity(), HomeFragmentFindEXActivity.class));
                 break;
             //跳转资讯界面
             case R.id.home_iv_info:

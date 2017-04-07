@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.DetailExInfoBean;
+import com.ex.administrator.zhanhui.entity.CommonListBean;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ import java.util.List;
 
 public class DetailTicketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
-    private List<DetailExInfoBean.DataList> datas;
+    private List<CommonListBean.DataList> datas;
 
-    public DetailTicketAdapter(Context context, List<DetailExInfoBean.DataList> datas) {
+    public DetailTicketAdapter(Context context, List<CommonListBean.DataList> datas) {
         this.context = context;
         this.datas = datas;
     }

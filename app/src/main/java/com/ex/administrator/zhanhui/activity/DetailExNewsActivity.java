@@ -12,8 +12,9 @@ import android.widget.ListView;
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.adapter.detailex.NewsAdapter;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.DetailExCommonBean;
-import com.ex.administrator.zhanhui.model.DetailExModel;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
+import com.ex.administrator.zhanhui.entity.CommonBean;
+import com.ex.administrator.zhanhui.model.GetDataModel;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -30,12 +31,12 @@ public class DetailExNewsActivity extends AppCompatActivity implements View.OnCl
     @ViewInject(R.id.lv_detail_ex_news)
     private ListView lvNews;
 
-    private DetailExCommonBean detailExCommonBean;
+    private CommonBean detailExCommonBean;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == HandlerConstant.DETAIL_EX_NEWS_SUCCESS) {
-                detailExCommonBean = (DetailExCommonBean) msg.obj;
+            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {
+                detailExCommonBean = (CommonBean) msg.obj;
                 if (detailExCommonBean != null) {
                     showNews(detailExCommonBean);
                 }
@@ -49,8 +50,8 @@ public class DetailExNewsActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_detail_ex_news);
         x.view().inject(this);
         setListeners();
-        DetailExModel model = new DetailExModel();
-        model.getDetailExNews(handler, 1);
+        GetDataModel model = new GetDataModel();
+        model.search(handler, UrlConstant.HTTP_URL_DETAIL_EX_NEWS, "exhibId=1");
     }
 
     //设置监听器
@@ -59,8 +60,8 @@ public class DetailExNewsActivity extends AppCompatActivity implements View.OnCl
     }
 
     //显示新闻资讯
-    private void showNews(DetailExCommonBean bean) {
-        List<DetailExCommonBean.Data> datas = bean.getData();
+    private void showNews(CommonBean bean) {
+        List<CommonBean.Data> datas = bean.getData();
         lvNews.setAdapter(new NewsAdapter(this, datas));
     }
 

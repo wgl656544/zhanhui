@@ -10,9 +10,7 @@ import android.widget.ListView;
 
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.adapter.TeamChannelAdapter;
-import com.ex.administrator.zhanhui.entity.InfoCategoryBean;
 import com.ex.administrator.zhanhui.entity.TypeBean;
-import com.ex.administrator.zhanhui.model.HomeChannelModel;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -28,11 +26,7 @@ public class HeaderHomeFragmentTeamChannelView {
     private RecyclerView mRecyclerView;
 
     private TeamChannelAdapter adapter;
-    private HomeChannelModel model = new HomeChannelModel();
     private Context context;
-    private String name = "termName=news";
-    private InfoCategoryBean infoCategoryBean;
-    private List<InfoCategoryBean.Data> datas;
 
     public HeaderHomeFragmentTeamChannelView(Activity context) {
         this.context = context;

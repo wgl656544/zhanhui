@@ -27,9 +27,9 @@ import okhttp3.Response;
  * Created by Administrator on 2017/4/7 0007.
  */
 
-public class HomeChannelModel {
+public class GetDataModel {
     /**
-     * 搜索展会
+     * 搜索
      */
     public void search(final Handler handler, String detailUrl, String param) {
         //url
@@ -72,11 +72,11 @@ public class HomeChannelModel {
     }
 
     /**
-     * 获取展会类型
+     * 获取类型
      */
-    public void getExhibitionType(final Handler handler, String name) {
+    public void getType(final Handler handler, String detailUrl, String param) {
         //url
-        String url = UrlConstant.HTTP_URL_IP + UrlConstant.HTTP_URL_FIND_EXHIBITION_TYPE + name;
+        String url = UrlConstant.HTTP_URL_IP + detailUrl + param;
         //okHttpClient对象
         OkHttpClient okHttpClient = OKHttpSingle.getInstance().getOkHttpClient();
         //Request对象
@@ -100,7 +100,7 @@ public class HomeChannelModel {
                         TypeBean exhibitionTypeBean = gson.fromJson(s, TypeBean.class);
                         Message message = new Message();
                         message.obj = exhibitionTypeBean;
-                        message.what = HandlerConstant.EXHIBITION_TYPE_SUCCESS;
+                        message.what = HandlerConstant.SEARCH_TYPE_SUCCESS;
                         handler.sendMessage(message);
                     }
                 } catch (JSONException e) {
@@ -110,6 +110,7 @@ public class HomeChannelModel {
             }
         });
     }
+
 
     /**
      * 资讯分类
@@ -188,47 +189,6 @@ public class HomeChannelModel {
             }
         });
     }
-
-    /**
-     * 查询门票类型
-     */
-    public void getTicketType(final Handler handler, String name) {
-        //url
-        String url = UrlConstant.HTTP_URL_IP + UrlConstant.HTTP_URL_TICKET_TYPE + name;
-        //okHttpClient对象
-        OkHttpClient okHttpClient = OKHttpSingle.getInstance().getOkHttpClient();
-        //Request对象
-        Request request = new Request.Builder().url(url).build();
-        //Call对象
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String s = response.body().string();
-                try {
-                    JSONObject jsonObject = new JSONObject(s);
-                    String success = jsonObject.getString("successed");
-                    if (success.equals(HandlerConstant.REQUEST_SUCCESS)) {
-                        Gson gson = new Gson();
-                        TypeBean ticketTypeBean = gson.fromJson(s, TypeBean.class);
-                        Message message = new Message();
-                        message.obj = ticketTypeBean;
-                        message.what = HandlerConstant.TICKET_TYPE_SUCCESS;
-                        handler.sendMessage(message);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-    }
-
 
 
 }

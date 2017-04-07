@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.DetailExCommonBean;
+import com.ex.administrator.zhanhui.entity.CommonBean;
 
 import java.util.List;
 
@@ -20,10 +20,10 @@ import java.util.List;
 
 public class TicketAdapter extends BaseAdapter {
     private Context context;
-    private List<DetailExCommonBean.Data> datas;
+    private List<CommonBean.Data> datas;
     private LayoutInflater layoutInflater;
 
-    public TicketAdapter(Context context, List<DetailExCommonBean.Data> datas) {
+    public TicketAdapter(Context context, List<CommonBean.Data> datas) {
         this.context = context;
         this.datas = datas;
         layoutInflater = LayoutInflater.from(context);
@@ -35,7 +35,7 @@ public class TicketAdapter extends BaseAdapter {
     }
 
     @Override
-    public DetailExCommonBean.Data getItem(int position) {
+    public CommonBean.Data getItem(int position) {
         return datas.get(position);
     }
 
@@ -58,7 +58,7 @@ public class TicketAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        DetailExCommonBean.Data item = datas.get(position);
+        CommonBean.Data item = datas.get(position);
         Glide.with(context).load(item.getImageUrl()).into(holder.imageView);
         holder.tvTitle.setText(datas.get(position).getTitle());
         holder.tvPrice.setText("注册门票：" + datas.get(position).getPrice() + "/人");

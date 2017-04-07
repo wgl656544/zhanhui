@@ -13,8 +13,9 @@ import android.widget.ImageView;
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.adapter.detailex.HonorAdapter;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.DetailExCommonBean;
-import com.ex.administrator.zhanhui.model.DetailExModel;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
+import com.ex.administrator.zhanhui.entity.CommonBean;
+import com.ex.administrator.zhanhui.model.GetDataModel;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -31,20 +32,18 @@ public class DetailExHonorActivity extends AppCompatActivity implements View.OnC
     @ViewInject(R.id.rl_detail_ex_honor)
     private RecyclerView rlHonor;
 
-    private DetailExCommonBean detailExCommonBean;
-    private HonorAdapter adapter;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == HandlerConstant.DETAIL_EX_HONOR_SUCCESS) {
-                detailExCommonBean = (DetailExCommonBean) msg.obj;
+            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {
+                CommonBean detailExCommonBean = (CommonBean) msg.obj;
                 if (detailExCommonBean != null) {
                     shoeHonor(detailExCommonBean);
                 }
             }
         }
     };
-    private DetailExModel model = new DetailExModel();
+    private GetDataModel model = new GetDataModel();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class DetailExHonorActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_detail_ex_honor);
         x.view().inject(this);
         seListeners();
-        model.getDetailExHonor(handler, 1);
+        model.search(handler, UrlConstant.HTTP_URL_DETAIL_EX_HONOR, "exhibId=1");
     }
 
     //设置监听器
@@ -62,10 +61,10 @@ public class DetailExHonorActivity extends AppCompatActivity implements View.OnC
 
 
     //显示嘉宾
-    private void shoeHonor(DetailExCommonBean bean) {
-        List<DetailExCommonBean.Data> datas;
+    private void shoeHonor(CommonBean bean) {
+        List<CommonBean.Data> datas;
         datas = bean.getData();
-        adapter = new HonorAdapter(this, datas);
+        HonorAdapter adapter = new HonorAdapter(this, datas);
         rlHonor.setLayoutManager(new GridLayoutManager(this, 2));
         rlHonor.setAdapter(adapter);
     }

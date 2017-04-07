@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.ex.administrator.zhanhui.entity.DetailExAdvertBean;
+import com.ex.administrator.zhanhui.entity.CommonListBean;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 
@@ -16,10 +16,10 @@ import java.util.List;
  */
 
 public class DetailExRollPagerAdapter extends LoopPagerAdapter {
-    private List<DetailExAdvertBean.DataList> topData;
+    private List<CommonListBean.DataList> topData;
 
 
-    public DetailExRollPagerAdapter(RollPagerView viewPager, List<DetailExAdvertBean.DataList> topData) {
+    public DetailExRollPagerAdapter(RollPagerView viewPager, List<CommonListBean.DataList> topData) {
         super(viewPager);
         this.topData = topData;
     }

@@ -3,59 +3,23 @@ package com.ex.administrator.zhanhui.entity;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/3/17 0017.
+ * Created by Administrator on 2017/4/7 0007.
  */
 
-public class DetailExCommonBean {
-    private int totalPages;
-    private int totalElements;
+public class CommonListBean {
     private String successed;
     private String code;
     private String message;
     private List<Data> data;
 
-    public DetailExCommonBean() {
+    public CommonListBean() {
     }
 
-    public DetailExCommonBean(int totalPages, int totalElements, String successed, String code, String message, List<Data> data) {
-        this.totalPages = totalPages;
-        this.totalElements = totalElements;
+    public CommonListBean(String successed, String code, String message, List<Data> data) {
         this.successed = successed;
         this.code = code;
         this.message = message;
         this.data = data;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
-
-    public List<Data> getData() {
-        return data;
-    }
-
-    public void setData(List<Data> data) {
-        this.data = data;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getSuccessed() {
@@ -66,16 +30,70 @@ public class DetailExCommonBean {
         this.successed = successed;
     }
 
-    public int getTotalElements() {
-        return totalElements;
+    public String getCode() {
+        return code;
     }
 
-    public void setTotalElements(int totalElements) {
-        this.totalElements = totalElements;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    //data
-    public class Data {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<Data> getData() {
+        return data;
+    }
+
+    public void setData(List<Data> data) {
+        this.data = data;
+    }
+
+    public class Data{
+        private String name;
+        private String layoutType;
+        private List<DataList> dataList;
+
+        public Data() {
+        }
+
+        public Data(String name, String layoutType, List<DataList> dataList) {
+            this.name = name;
+            this.layoutType = layoutType;
+            this.dataList = dataList;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getLayoutType() {
+            return layoutType;
+        }
+
+        public void setLayoutType(String layoutType) {
+            this.layoutType = layoutType;
+        }
+
+        public List<DataList> getDataList() {
+            return dataList;
+        }
+
+        public void setDataList(List<DataList> dataList) {
+            this.dataList = dataList;
+        }
+    }
+
+    public class DataList{
         private String name;
         private String description;
         private String entityName;
@@ -89,12 +107,12 @@ public class DetailExCommonBean {
         private String city;
         private String price;
         private String oldPrice;
-        private int hotStatus;
+        private String hotStatus;
 
-        public Data() {
+        public DataList() {
         }
 
-        public Data(String name, String description, String entityName, String imageUrl, int entityId, String linkUrl, String startDate, String endDate, String title, String type, String city, String price, String oldPrice, int hotStatus) {
+        public DataList(String name, String description, String entityName, String imageUrl, int entityId, String linkUrl, String startDate, String endDate, String title, String type, String city, String price, String oldPrice, String hotStatus) {
             this.name = name;
             this.description = description;
             this.entityName = entityName;
@@ -215,11 +233,11 @@ public class DetailExCommonBean {
             this.oldPrice = oldPrice;
         }
 
-        public int getHotStatus() {
+        public String getHotStatus() {
             return hotStatus;
         }
 
-        public void setHotStatus(int hotStatus) {
+        public void setHotStatus(String hotStatus) {
             this.hotStatus = hotStatus;
         }
     }

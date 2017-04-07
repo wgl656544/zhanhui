@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.DetailExInfoBean;
+import com.ex.administrator.zhanhui.entity.CommonListBean;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ import java.util.List;
 
 public class DetailBusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<DetailExInfoBean.DataList> datas;
+    private List<CommonListBean.DataList> datas;
 
-    public DetailBusAdapter(List<DetailExInfoBean.DataList> datas, Context context) {
+    public DetailBusAdapter(List<CommonListBean.DataList> datas, Context context) {
         this.datas = datas;
         this.context = context;
     }

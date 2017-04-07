@@ -15,7 +15,7 @@ import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;
 import com.ex.administrator.zhanhui.entity.CommonBean;
 import com.ex.administrator.zhanhui.entity.TypeBean;
-import com.ex.administrator.zhanhui.model.HomeChannelModel;
+import com.ex.administrator.zhanhui.model.GetDataModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
@@ -58,7 +58,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
     private View itemHeaderFilterView;
 
     private String name = "name=pt-tk";
-    private HomeChannelModel ticketModel = new HomeChannelModel();
+    private GetDataModel ticketModel = new GetDataModel();
     private SearchTicketAdapter adapter;
     private TypeBean ticketTypeBean;//门票类型
     private List<FilterEntity> ticketTypeDatas;//门票类型字符串
@@ -100,9 +100,9 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
         try {
             startLoading("正在加载中...");//开始加载动画
             //获取门票类型
-            ticketModel.getTicketType(handler, name);
+            ticketModel.getType(handler, UrlConstant.HTTP_URL_TICKET_TYPE, name);
             //搜索门票
-            ticketModel.search(handler, UrlConstant.HTTP_URL_SEARCH_TICKET,"");
+            ticketModel.search(handler, UrlConstant.HTTP_URL_SEARCH_TICKET, "");
 
         } catch (Exception e) {
             e.printStackTrace();
