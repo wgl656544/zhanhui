@@ -20,6 +20,7 @@ import com.ex.administrator.zhanhui.entity.UserBean;
 import com.ex.administrator.zhanhui.model.UserModel;
 import com.ex.administrator.zhanhui.util.SPUtils;
 import com.ex.administrator.zhanhui.util.ToastUtil;
+import com.google.gson.Gson;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -55,7 +56,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             if (msg.what == HandlerConstant.LOGIN_SUCCESS) {
                 stopLoading();//停止加载动画
                 UserBean userBean = (UserBean) msg.obj;
-                SPUtils.put(LoginActivity.this, "userId", userBean.getData().getId() + "");
+                SPUtils.put(LoginActivity.this, "userId", userBean.getData().getId() + "");//保存id
+                String userinfo = new Gson().toJson(userBean);
+                SPUtils.put(LoginActivity.this, "userinfo" + userBean.getData().getId(), userinfo);//保存信息
                 MyApplication.isLogin = true;
                 MyApplication.userId = userBean.getData().getId() + "";
                 finish();

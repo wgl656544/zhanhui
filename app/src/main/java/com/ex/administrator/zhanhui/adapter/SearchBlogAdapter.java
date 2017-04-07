@@ -37,6 +37,11 @@ public class SearchBlogAdapter extends BaseAdapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
+    @Override
     public CommonBean.Data getItem(int position) {
         return datas.get(position);
     }
@@ -70,7 +75,7 @@ public class SearchBlogAdapter extends BaseAdapter {
         Glide.with(context).load(bean.getImageUrl()).into(viewHolder.imageView);
         viewHolder.tvName.setText(bean.getName());
         viewHolder.tvDate.setText(bean.getStartDate());
-        viewHolder.tvNum.setText(bean.getCity());
+        viewHolder.tvNum.setText(bean.getEntityName());
         return convertView;
     }
 

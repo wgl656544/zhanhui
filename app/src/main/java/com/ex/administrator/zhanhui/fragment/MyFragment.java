@@ -17,9 +17,8 @@ import com.ex.administrator.zhanhui.activity.AllOrderActivity;
 import com.ex.administrator.zhanhui.activity.LoginActivity;
 import com.ex.administrator.zhanhui.activity.PayOrderActivity;
 import com.ex.administrator.zhanhui.activity.PersonalInfoActivity;
-import com.ex.administrator.zhanhui.activity.WriteOrderActivity;
 import com.ex.administrator.zhanhui.application.MyApplication;
-import com.ex.administrator.zhanhui.entity.UserUpDateBean;
+import com.ex.administrator.zhanhui.entity.UserBean;
 import com.ex.administrator.zhanhui.util.SPUtils;
 import com.google.gson.Gson;
 
@@ -76,7 +75,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (MyApplication.isLogin) {
             String userinfo = (String) SPUtils.get(getActivity(), "userinfo" + MyApplication.userId, "");
             if (!userinfo.equals("")) {
-                UserUpDateBean bean = new Gson().fromJson(userinfo, UserUpDateBean.class);
+                UserBean bean = new Gson().fromJson(userinfo, UserBean.class);
                 Glide.with(getActivity()).load(bean.getData().getHeaderImgUrl()).dontAnimate().into(ivTouxiang);
                 tvName.setText(bean.getData().getNickName());
             }

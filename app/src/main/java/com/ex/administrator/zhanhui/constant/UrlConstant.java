@@ -54,6 +54,8 @@ public class UrlConstant {
     public static final String HTTP_URL_FILE_UPLOAD = "/common//fileUpload";
     //修改用户资料
     public static final String HTTP_URL_USER_UPDATE = "/user/update";
+    //查询用户资料
+    public static final String HTTP_URL_FIND_USERINFO = "/user/findById";
     //查询用户收货地址
     public static final String HTTP_URL_FIND_USER_ADDRESS = "/userAddress/findByUserId";
     //保存或修改用户收货地址
@@ -62,7 +64,6 @@ public class UrlConstant {
     public static final String HTTP_URL_DELETE_USER_ADDRESS = "/userAddress/del";
     //查询单个用户地址
     public static final String HTTP_URL_FIND_ONE_USER_ADDRESS = "/userAddress/findById";
-
 
 
 }

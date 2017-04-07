@@ -121,8 +121,8 @@ public class DetailExpoActivity extends AppCompatActivity implements View.OnClic
         x.view().inject(this);
         setListeners();
         model.getDetailEx(handler, 1);
-        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_ADVERT, "exhibId=1&name=ex-hy-home-top");
-        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_INFO, "exhibId=1");
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_ADVERT, "exhibId=1&name=ex-hy-home-top",HandlerConstant.DETAIL_EX_ADVERT_SUCCESS);
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_INFO, "exhibId=1",HandlerConstant.DETAIL_EX_INFO_SUCCESS);
     }
 
     //设置监听器

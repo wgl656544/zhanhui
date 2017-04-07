@@ -673,7 +673,4 @@ public class DetailExBean {
         }
     }
 
-    //Busitype
-
-
 }

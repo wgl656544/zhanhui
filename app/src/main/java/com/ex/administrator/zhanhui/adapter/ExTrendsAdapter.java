@@ -96,6 +96,7 @@ public class ExTrendsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -152,14 +153,14 @@ public class ExTrendsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    class ChannelViewHolder extends RecyclerView.ViewHolder {
+    private class ChannelViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout llExTrendsZh;
         private LinearLayout llExTrendsInfo;
         private LinearLayout llExTrendsTicket;
         private LinearLayout llExTrendsGb;
 
-        public ChannelViewHolder(View itemView) {
+        ChannelViewHolder(View itemView) {
             super(itemView);
             llExTrendsZh = (LinearLayout) itemView.findViewById(R.id.ll_ex_trends_channel_zh);
             llExTrendsInfo = (LinearLayout) itemView.findViewById(R.id.ll_ex_trends_channel_info);
@@ -168,13 +169,13 @@ public class ExTrendsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    class ButtonViewHolder extends RecyclerView.ViewHolder {
+    private class ButtonViewHolder extends RecyclerView.ViewHolder {
         private Button btnExTrendsZh;
         private Button btnExTrendsInfo;
         private Button btnExTrendsTicket;
         private Button btnExTrendsGroupBuy;
 
-        public ButtonViewHolder(View itemView) {
+        ButtonViewHolder(View itemView) {
             super(itemView);
             btnExTrendsZh = (Button) itemView.findViewById(R.id.btn_ex_trends_zh);
             btnExTrendsInfo = (Button) itemView.findViewById(R.id.btn_ex_trends_info);

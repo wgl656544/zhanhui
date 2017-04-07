@@ -10,17 +10,19 @@ public class HandlerConstant {
     //请求失败
     public static final int REQUEST_FAIL = 20012;
     //是否登录成功
-    public static final int LOGIN_SUCCESS = 1000;
+    public static final int LOGIN_SUCCESS = 10000;
     //搜索成功
-    public static final int SEARCH_SUCCESS = 3000;
+    public static final int SEARCH_SUCCESS = 30000;
     //搜索类型成功
-    public static final int SEARCH_TYPE_SUCCESS = 3001;
+    public static final int SEARCH_TYPE_SUCCESS = 30001;
     //获取热点城市成功
     public static final int HOT_CITY_SUCCESS = 1;
     //获取首页广告成功
     public static final int HOME_PAGE_SUCCESS = 10;
     //获取首页业务成功
     public static final int HOME_BUSI_SUCCESS = 100;
+    //获取展会类型成功
+    public static final int EXHIBITION_TYPE_SUCCESS = 200;
     //资讯分类
     public static final int INFO_CATEGORY_SUCCESS = 300;
     //海南所有县市

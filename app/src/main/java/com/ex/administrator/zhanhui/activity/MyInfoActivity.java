@@ -21,10 +21,11 @@ import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.application.MyApplication;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.entity.UserPhotoBean;
-import com.ex.administrator.zhanhui.entity.UserUpDateBean;
+import com.ex.administrator.zhanhui.entity.UserBean;
 import com.ex.administrator.zhanhui.model.UserModel;
 import com.ex.administrator.zhanhui.util.FileUtil;
 import com.ex.administrator.zhanhui.util.SPUtils;
+import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.example.mylibrary.common.ActionSheetDialog;
 import com.google.gson.Gson;
 import com.zaaach.citypicker.CityPickerActivity;
@@ -79,7 +80,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private String birthDay;
     private String userId = MyApplication.userId;
     private UserModel model = new UserModel();
-    private UserUpDateBean userUpDateBean;
+    private UserBean userBean;
     private Intent intent;
     private Handler handler = new Handler() {
         @Override
@@ -91,9 +92,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             }
             if (msg.what == HandlerConstant.USER_UPDATE_SUCCESS) {//更新用户资料
                 stopLoading();//停止加载动画
-                userUpDateBean = (UserUpDateBean) msg.obj;
-                userUpDate(userUpDateBean);
-                String userinfo = new Gson().toJson(userUpDateBean);
+                userBean = (UserBean) msg.obj;
+                userUpDate(userBean);
+                String userinfo = new Gson().toJson(userBean);
                 SPUtils.put(MyInfoActivity.this, "userinfo" + userId, userinfo);
             }
         }
@@ -276,13 +277,15 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private void showUserInfo() {
         String userinfo = (String) SPUtils.get(this, "userinfo" + userId, "");
         if (!userinfo.equals("")) {
-            userUpDateBean = new Gson().fromJson(userinfo, UserUpDateBean.class);
-            userUpDate(userUpDateBean);
+            userBean = new Gson().fromJson(userinfo, UserBean.class);
+            userUpDate(userBean);
+        } else {
+            ToastUtil.show(this, "发送请求");
         }
     }
 
     //更新用户资料
-    private void userUpDate(UserUpDateBean bean) {
+    private void userUpDate(UserBean bean) {
         if (bean != null) {
             if (!bean.getData().getNickName().equals("")) {
                 tvMyName.setText(bean.getData().getNickName());//昵称

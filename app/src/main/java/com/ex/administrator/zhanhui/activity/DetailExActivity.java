@@ -84,7 +84,7 @@ public class DetailExActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
 
-            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//展会广告
+            if (msg.what == HandlerConstant.DETAIL_EX_ADVERT_SUCCESS) {//展会广告
                 detailExAdvertBean = (CommonListBean) msg.obj;
                 //显示广告
                 if (detailExAdvertBean != null) {
@@ -92,7 +92,7 @@ public class DetailExActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
 
-            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//展会资讯
+            if (msg.what == HandlerConstant.DETAIL_EX_INFO_SUCCESS) {//展会资讯
                 detailExInfoBean = (CommonListBean) msg.obj;
                 for (int i = 0; i < detailExInfoBean.getData().size(); i++) {
                     if (detailExInfoBean.getData().get(i).getName().equals("ex-home-honor")) {
@@ -117,8 +117,8 @@ public class DetailExActivity extends AppCompatActivity implements View.OnClickL
         x.view().inject(this);
         setListeners();
         model.getDetailEx(handler, 1);
-        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_ADVERT, "exhibId=1&name=ex-hy-home-top");
-        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_INFO, "exhibId=1");
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_ADVERT, "exhibId=1&name=ex-hy-home-top", HandlerConstant.DETAIL_EX_ADVERT_SUCCESS);
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_INFO, "exhibId=1", HandlerConstant.DETAIL_EX_INFO_SUCCESS);
     }
 
     //设置监听器

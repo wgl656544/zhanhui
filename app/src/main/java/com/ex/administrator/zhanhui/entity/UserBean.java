@@ -3,7 +3,7 @@ package com.ex.administrator.zhanhui.entity;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/3/3 0003.
+ * Created by Administrator on 2017/3/24 0024.
  */
 
 public class UserBean {
@@ -57,7 +57,6 @@ public class UserBean {
         this.data = data;
     }
 
-    //data
     public class Data {
         private int id;
 
@@ -74,6 +73,8 @@ public class UserBean {
         private boolean activated;
 
         private String activationKey;
+
+        private String birthday;
 
         private String resetPasswordKey;
 
@@ -98,7 +99,7 @@ public class UserBean {
         public Data() {
         }
 
-        public Data(int id, String username, String password, String nickName, String email, String mobile, boolean activated, String activationKey, String resetPasswordKey, String salt, String referralsMobile, String headerImgUrl, String sex, String city, List<Roles> roles, String createdDate, String selChecked, String createdDateStr) {
+        public Data(int id, String username, String password, String nickName, String email, String mobile, boolean activated, String activationKey, String birthday, String resetPasswordKey, String salt, String referralsMobile, String headerImgUrl, String sex, String city, List<Roles> roles, String createdDate, String selChecked, String createdDateStr) {
             this.id = id;
             this.username = username;
             this.password = password;
@@ -107,6 +108,7 @@ public class UserBean {
             this.mobile = mobile;
             this.activated = activated;
             this.activationKey = activationKey;
+            this.birthday = birthday;
             this.resetPasswordKey = resetPasswordKey;
             this.salt = salt;
             this.referralsMobile = referralsMobile;
@@ -181,6 +183,14 @@ public class UserBean {
 
         public void setActivationKey(String activationKey) {
             this.activationKey = activationKey;
+        }
+
+        public String getBirthday() {
+            return birthday;
+        }
+
+        public void setBirthday(String birthday) {
+            this.birthday = birthday;
         }
 
         public String getResetPasswordKey() {
@@ -264,8 +274,7 @@ public class UserBean {
         }
     }
 
-    //roles
-    public class Roles {
+    class Roles {
         private int id;
 
         private String name;
@@ -277,11 +286,11 @@ public class UserBean {
         public Roles() {
         }
 
-        public Roles(int id, String name, String authority, String nameCn) {
+        public Roles(int id, String name, String nameCn, String authority) {
             this.id = id;
             this.name = name;
-            this.authority = authority;
             this.nameCn = nameCn;
+            this.authority = authority;
         }
 
         public int getId() {

@@ -8,9 +8,8 @@ import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;
 import com.ex.administrator.zhanhui.entity.OneUserAddress;
 import com.ex.administrator.zhanhui.entity.ShipAddressBean;
-import com.ex.administrator.zhanhui.entity.UserBean;
 import com.ex.administrator.zhanhui.entity.UserPhotoBean;
-import com.ex.administrator.zhanhui.entity.UserUpDateBean;
+import com.ex.administrator.zhanhui.entity.UserBean;
 import com.ex.administrator.zhanhui.util.OKHttpSingle;
 import com.google.gson.Gson;
 
@@ -199,7 +198,7 @@ public class UserModel {
                     String success = jsonObject.getString("successed");
                     if (success.equals(HandlerConstant.REQUEST_SUCCESS)) {
                         Gson gson = new Gson();
-                        UserUpDateBean userPhotoBean = gson.fromJson(s, UserUpDateBean.class);
+                        UserBean userPhotoBean = gson.fromJson(s, UserBean.class);
                         Message message = new Message();
                         message.obj = userPhotoBean;
                         message.what = HandlerConstant.USER_UPDATE_SUCCESS;
