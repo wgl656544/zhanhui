@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.SearchExhibitBean;
+import com.ex.administrator.zhanhui.entity.CommonBean;
 
 import java.util.List;
 
@@ -22,10 +22,10 @@ import java.util.List;
 
 public class SearchExhibitAdapter extends BaseAdapter {
     private Context context;
-    private List<SearchExhibitBean.Data> datas;
+    private List<CommonBean.Data> datas;
     private LayoutInflater layoutInflater;
 
-    public SearchExhibitAdapter(Context context, List<SearchExhibitBean.Data> datas) {
+    public SearchExhibitAdapter(Context context, List<CommonBean.Data> datas) {
         this.context = context;
         this.datas = datas;
         layoutInflater = LayoutInflater.from(context);
@@ -37,7 +37,7 @@ public class SearchExhibitAdapter extends BaseAdapter {
     }
 
     @Override
-    public SearchExhibitBean.Data getItem(int position) {
+    public CommonBean.Data getItem(int position) {
         return datas.get(position);
     }
 
@@ -62,7 +62,7 @@ public class SearchExhibitAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        SearchExhibitBean.Data bean = datas.get(position);
+        CommonBean.Data bean = datas.get(position);
 
         if (TextUtils.isEmpty(bean.getImageUrl())) {
             viewHolder.llItem.setVisibility(View.INVISIBLE);

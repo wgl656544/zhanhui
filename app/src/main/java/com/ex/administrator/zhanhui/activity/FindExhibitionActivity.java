@@ -13,9 +13,10 @@ import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.SmoothListView.SmoothListView;
 import com.ex.administrator.zhanhui.adapter.SearchExhibitAdapter;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.ExhibitionTypeBean;
-import com.ex.administrator.zhanhui.entity.SearchExhibitBean;
-import com.ex.administrator.zhanhui.model.FindExhibitionModel;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
+import com.ex.administrator.zhanhui.entity.CommonBean;
+import com.ex.administrator.zhanhui.entity.TypeBean;
+import com.ex.administrator.zhanhui.model.HomeChannelModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
@@ -55,11 +56,11 @@ public class FindExhibitionActivity extends BaseActivity implements
     private boolean isShow = false;//数据是否加载完毕
     private int filterViewTopMargin;//距离顶部的距离
     private View itemHeaderFilterView;
-    private FindExhibitionModel findExhibitionModel;//展会搜索业页面，业务对象
-    private ExhibitionTypeBean exhibitionTypeBean;//展会类型对象实体类
+    private HomeChannelModel model = new HomeChannelModel();//展会搜索业页面，业务对象
+    private TypeBean exhibitionTypeBean;//展会类型对象实体类
     private List<FilterEntity> exType;//展会类型
-    private SearchExhibitBean searchExhibitBean;//搜索展会成功实体类
-    private List<SearchExhibitBean.Data> exDatas;//具体展会实体类
+    private CommonBean searchExhibitBean;//搜索展会成功实体类
+    private List<CommonBean.Data> exDatas;//具体展会实体类
     private SearchExhibitAdapter adapter;
     private String city = "";
     private String type = "博览会";
@@ -69,21 +70,21 @@ public class FindExhibitionActivity extends BaseActivity implements
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == HandlerConstant.EXHIBITION_TYPE_SUCCESS) {//类型
-                exhibitionTypeBean = (ExhibitionTypeBean) msg.obj;
+                exhibitionTypeBean = (TypeBean) msg.obj;
                 exType = new ArrayList<>();
                 for (int i = 0; i < exhibitionTypeBean.getData().size(); i++) {
                     exType.add(new FilterEntity(exhibitionTypeBean.getData().get(i).getName()));
                 }
             }
-            if (msg.what == HandlerConstant.SEARCH_EXHIBITION_SUCCESS) {//搜索展会
+            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//搜索展会
                 stopLoading();//停止加载动画
-                searchExhibitBean = (SearchExhibitBean) msg.obj;
+                searchExhibitBean = (CommonBean) msg.obj;
                 exDatas = searchExhibitBean.getData();
             }
 
-            if (msg.what == HandlerConstant.REQUEST_FAIL) {
+            if (msg.what == HandlerConstant.REQUEST_FAIL) {//请求成功，返回失败
                 stopLoading();
-                ToastUtil.show(FindExhibitionActivity.this, "请求失败");
+                ToastUtil.show(FindExhibitionActivity.this, (String) msg.obj);
             }
 
 
@@ -91,7 +92,7 @@ public class FindExhibitionActivity extends BaseActivity implements
                 //如果返回的数据小于5个,则添加几个空数据
                 if (exDatas.size() < 5) {
                     for (int i = 0; i < 5; i++) {
-                        SearchExhibitBean.Data data = searchExhibitBean.new Data();
+                        CommonBean.Data data = searchExhibitBean.new Data();
                         exDatas.add(data);
                     }
                 }
@@ -243,17 +244,17 @@ public class FindExhibitionActivity extends BaseActivity implements
      */
     private void getExhibitionType() {
         String name = "name=ex-";
-        findExhibitionModel = new FindExhibitionModel();
-        findExhibitionModel.getExhibitionType(handler, name);
+        model.getExhibitionType(handler, name);
+
     }
 
     /**
      * 搜索展会
      */
     private void getExhibition() {
-        String name = "&city=" + city + "&Type=" + type + "&starTtime=" + near + "&attendcount=" + sift;
+        String param = "&city=" + city + "&Type=" + type + "&starTtime=" + near + "&attendcount=" + sift;
         startLoading("正在加载中...");//开始加载动画
-        findExhibitionModel.searchExhibition(handler, name);
+        model.search(handler, UrlConstant.HTTP_URL_SEARCH_EXHIBITION, param);
     }
 
     /**
@@ -277,7 +278,7 @@ public class FindExhibitionActivity extends BaseActivity implements
     /**
      * 展示展会
      */
-    private void showExhibitions(List<SearchExhibitBean.Data> datas) {
+    private void showExhibitions(List<CommonBean.Data> datas) {
         mSmoothListView.setRefreshEnable(true);
         mSmoothListView.setLoadMoreEnable(false);
         mSmoothListView.setSmoothListViewListener(this);

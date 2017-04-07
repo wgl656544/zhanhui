@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.TeamTypeBean;
+import com.ex.administrator.zhanhui.entity.TypeBean;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ import java.util.List;
 
 public class TeamChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<TeamTypeBean.Data> datas;
+    private List<TypeBean.Data> datas;
 
-    public TeamChannelAdapter(Context context, List<TeamTypeBean.Data> datas) {
+    public TeamChannelAdapter(Context context, List<TypeBean.Data> datas) {
         this.context = context;
         this.datas = datas;
     }

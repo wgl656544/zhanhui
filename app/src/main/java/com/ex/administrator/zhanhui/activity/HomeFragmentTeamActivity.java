@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ImageView;
@@ -14,10 +13,10 @@ import com.ex.administrator.zhanhui.SmoothListView.SmoothListView;
 import com.ex.administrator.zhanhui.adapter.SearchTeamAdapter;
 import com.ex.administrator.zhanhui.application.MyApplication;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
+import com.ex.administrator.zhanhui.entity.CommonBean;
 import com.ex.administrator.zhanhui.entity.InfoPlaceBean;
-import com.ex.administrator.zhanhui.entity.SearchTeamBean;
-import com.ex.administrator.zhanhui.entity.TeamTypeBean;
-import com.ex.administrator.zhanhui.model.InfoCategoryModel;
+import com.ex.administrator.zhanhui.entity.TypeBean;
+import com.ex.administrator.zhanhui.model.HomeChannelModel;
 import com.ex.administrator.zhanhui.model.TeamModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
@@ -60,18 +59,18 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
     private View itemHeaderFilterView;
     private SearchTeamAdapter adapter;
 
-    private InfoCategoryModel cityModel = new InfoCategoryModel();
+    private HomeChannelModel cityModel = new HomeChannelModel();
     private TeamModel teamModel = new TeamModel();
     private String name = "name=pt-tg-";
     private InfoPlaceBean infoPlaceBean;
     private List<InfoPlaceBean.Data> placeDatas;
     private List<InfoPlaceBean.SubData> placeSubDatas;
     private List<FilterEntity> places;//所有城市数据
-    private TeamTypeBean teamTypeBean;//团购类型
-    private List<TeamTypeBean.Data> teamTypeDatas;
+    private TypeBean teamTypeBean;//团购类型
+    private List<TypeBean.Data> teamTypeDatas;
     private List<FilterEntity> teamType;//团购类型
-    private SearchTeamBean searchTeamBean;//搜索团购bean
-    private List<SearchTeamBean.Data> searchTeamDatas;
+    private CommonBean searchTeamBean;//搜索团购bean
+    private List<CommonBean.Data> searchTeamDatas;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -89,7 +88,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
                 }
             }
             if (msg.what == HandlerConstant.TEAM_TYPE_SUCCESS) {//团购类型
-                teamTypeBean = (TeamTypeBean) msg.obj;
+                teamTypeBean = (TypeBean) msg.obj;
                 teamTypeDatas = teamTypeBean.getData();
                 teamType = new ArrayList<>();
                 for (int i = 0; i < teamTypeBean.getData().size(); i++) {
@@ -98,10 +97,10 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
             }
             if (msg.what == HandlerConstant.SEARCH_TEAM_SUCCESS) {//搜索团购
                 stopLoading();//停止加载动画
-                searchTeamBean = (SearchTeamBean) msg.obj;
+                searchTeamBean = (CommonBean) msg.obj;
                 searchTeamDatas = searchTeamBean.getData();
-                if (searchTeamDatas.size() < 5) {
-                    for (int i = 0; i < 5; i++) {
+                if (searchTeamDatas.size() < 8) {
+                    for (int i = 0; i < 8; i++) {
                         searchTeamDatas.add(searchTeamBean.new Data());
                     }
                 }
@@ -234,7 +233,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
     /**
      * 展示展会
      */
-    private void showExhibitions(List<SearchTeamBean.Data> datas) {
+    private void showExhibitions(List<CommonBean.Data> datas) {
         mSmoothListView.setRefreshEnable(true);
         mSmoothListView.setLoadMoreEnable(false);
         mSmoothListView.setSmoothListViewListener(this);

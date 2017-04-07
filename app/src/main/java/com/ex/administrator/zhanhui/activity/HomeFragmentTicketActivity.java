@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.RelativeLayout;
@@ -13,9 +12,10 @@ import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.SmoothListView.SmoothListView;
 import com.ex.administrator.zhanhui.adapter.SearchTicketAdapter;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.SearchTicketBean;
-import com.ex.administrator.zhanhui.entity.TicketTpeBean;
-import com.ex.administrator.zhanhui.model.TicketModel;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
+import com.ex.administrator.zhanhui.entity.CommonBean;
+import com.ex.administrator.zhanhui.entity.TypeBean;
+import com.ex.administrator.zhanhui.model.HomeChannelModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
@@ -58,26 +58,26 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
     private View itemHeaderFilterView;
 
     private String name = "name=pt-tk";
-    private TicketModel ticketModel = new TicketModel();
+    private HomeChannelModel ticketModel = new HomeChannelModel();
     private SearchTicketAdapter adapter;
-    private TicketTpeBean ticketTpeBean;//门票类型
+    private TypeBean ticketTypeBean;//门票类型
     private List<FilterEntity> ticketTypeDatas;//门票类型字符串
-    private SearchTicketBean searchTicketBean;//门票搜搜实体类
-    private List<SearchTicketBean.Data> searchTicketDatas;
+    private CommonBean searchTicketBean;//门票搜搜实体类
+    private List<CommonBean.Data> searchTicketDatas;
 
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == HandlerConstant.TICKET_TYPE_SUCCESS) {//门票类型
-                ticketTpeBean = (TicketTpeBean) msg.obj;
+                ticketTypeBean = (TypeBean) msg.obj;
                 ticketTypeDatas = new ArrayList<>();
-                for (int i = 0; i < ticketTpeBean.getData().size(); i++) {
-                    ticketTypeDatas.add(new FilterEntity(ticketTpeBean.getData().get(i).getName()));
+                for (int i = 0; i < ticketTypeBean.getData().size(); i++) {
+                    ticketTypeDatas.add(new FilterEntity(ticketTypeBean.getData().get(i).getName()));
                 }
             }
-            if (msg.what == HandlerConstant.SEARCH_TICKET_SUCCESS) {//搜索门票
+            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//搜索门票
                 stopLoading();//停止加载动画
-                searchTicketBean = (SearchTicketBean) msg.obj;
+                searchTicketBean = (CommonBean) msg.obj;
                 searchTicketDatas = searchTicketBean.getData();
                 if (searchTicketDatas.size() < 8) {//数据不满一屏幕
                     for (int i = 0; i < 8; i++) {
@@ -102,7 +102,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
             //获取门票类型
             ticketModel.getTicketType(handler, name);
             //搜索门票
-            ticketModel.searchTicket(handler);
+            ticketModel.search(handler, UrlConstant.HTTP_URL_SEARCH_TICKET,"");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,7 +231,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
     /**
      * 展示展会
      */
-    private void showExhibitions(List<SearchTicketBean.Data> datas) {
+    private void showExhibitions(List<CommonBean.Data> datas) {
         mSmoothListView.setRefreshEnable(true);
         mSmoothListView.setLoadMoreEnable(false);
         mSmoothListView.setSmoothListViewListener(this);

@@ -60,6 +60,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 MyApplication.userId = userBean.getData().getId() + "";
                 finish();
             }
+
+            if (msg.what == 100) {
+                stopLoading();
+            }
             if (msg.what == HandlerConstant.REQUEST_FAIL) {
                 stopLoading();
                 ToastUtil.show(LoginActivity.this, "登录失败");

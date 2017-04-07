@@ -5,9 +5,10 @@ import android.os.Message;
 
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;
-import com.ex.administrator.zhanhui.entity.InfoBlogBean;
+import com.ex.administrator.zhanhui.entity.CommonBean;
 import com.ex.administrator.zhanhui.entity.InfoCategoryBean;
 import com.ex.administrator.zhanhui.entity.InfoPlaceBean;
+import com.ex.administrator.zhanhui.entity.TypeBean;
 import com.ex.administrator.zhanhui.util.OKHttpSingle;
 import com.google.gson.Gson;
 
@@ -23,10 +24,93 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by Administrator on 2017/3/8 0008.
+ * Created by Administrator on 2017/4/7 0007.
  */
 
-public class InfoCategoryModel {
+public class HomeChannelModel {
+    /**
+     * 搜索展会
+     */
+    public void search(final Handler handler, String detailUrl, String param) {
+        //url
+        String url = UrlConstant.HTTP_URL_IP + detailUrl + param;
+        //okHttpClient对象
+        OkHttpClient okHttpClient = OKHttpSingle.getInstance().getOkHttpClient();
+        //Request对象
+        Request request = new Request.Builder().url(url).build();
+        //Call对象
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String s = response.body().string();
+                Message message = new Message();
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    String success = jsonObject.getString("successed");
+                    if (success.equals(HandlerConstant.REQUEST_SUCCESS)) {
+                        Gson gson = new Gson();
+                        message.obj = gson.fromJson(s, CommonBean.class);
+                        message.what = HandlerConstant.SEARCH_SUCCESS;
+                        handler.sendMessage(message);
+                    } else {
+                        message.obj = jsonObject.getString("message");
+                        message.what = HandlerConstant.REQUEST_FAIL;
+                        handler.sendMessage(message);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    /**
+     * 获取展会类型
+     */
+    public void getExhibitionType(final Handler handler, String name) {
+        //url
+        String url = UrlConstant.HTTP_URL_IP + UrlConstant.HTTP_URL_FIND_EXHIBITION_TYPE + name;
+        //okHttpClient对象
+        OkHttpClient okHttpClient = OKHttpSingle.getInstance().getOkHttpClient();
+        //Request对象
+        Request request = new Request.Builder().url(url).build();
+        //Call对象
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String s = response.body().string();
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    String success = jsonObject.getString("successed");
+                    if (success.equals(HandlerConstant.REQUEST_SUCCESS)) {
+                        Gson gson = new Gson();
+                        TypeBean exhibitionTypeBean = gson.fromJson(s, TypeBean.class);
+                        Message message = new Message();
+                        message.obj = exhibitionTypeBean;
+                        message.what = HandlerConstant.EXHIBITION_TYPE_SUCCESS;
+                        handler.sendMessage(message);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
     /**
      * 资讯分类
      */
@@ -105,13 +189,12 @@ public class InfoCategoryModel {
         });
     }
 
-
     /**
-     * 查询资讯
+     * 查询门票类型
      */
-    public void searchBlog(final Handler handler) {
+    public void getTicketType(final Handler handler, String name) {
         //url
-        String url = UrlConstant.HTTP_URL_IP + UrlConstant.HTTP_URL_INFO_SEARCH_BLOG;
+        String url = UrlConstant.HTTP_URL_IP + UrlConstant.HTTP_URL_TICKET_TYPE + name;
         //okHttpClient对象
         OkHttpClient okHttpClient = OKHttpSingle.getInstance().getOkHttpClient();
         //Request对象
@@ -132,18 +215,20 @@ public class InfoCategoryModel {
                     String success = jsonObject.getString("successed");
                     if (success.equals(HandlerConstant.REQUEST_SUCCESS)) {
                         Gson gson = new Gson();
-                        InfoBlogBean infoBlogBean = gson.fromJson(s, InfoBlogBean.class);
+                        TypeBean ticketTypeBean = gson.fromJson(s, TypeBean.class);
                         Message message = new Message();
-                        message.obj = infoBlogBean;
-                        message.what = HandlerConstant.INFO_SEARCH_BLOG_SUCCESS;
+                        message.obj = ticketTypeBean;
+                        message.what = HandlerConstant.TICKET_TYPE_SUCCESS;
                         handler.sendMessage(message);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         });
     }
+
 
 
 }

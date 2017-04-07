@@ -5,8 +5,8 @@ import android.os.Message;
 
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;
-import com.ex.administrator.zhanhui.entity.SearchTeamBean;
-import com.ex.administrator.zhanhui.entity.TeamTypeBean;
+import com.ex.administrator.zhanhui.entity.CommonBean;
+import com.ex.administrator.zhanhui.entity.TypeBean;
 import com.ex.administrator.zhanhui.util.OKHttpSingle;
 import com.google.gson.Gson;
 
@@ -52,7 +52,7 @@ public class TeamModel {
                     String success = jsonObject.getString("successed");
                     if (success.equals(HandlerConstant.REQUEST_SUCCESS)) {
                         Gson gson = new Gson();
-                        TeamTypeBean teamTypeBean = gson.fromJson(s, TeamTypeBean.class);
+                        TypeBean teamTypeBean = gson.fromJson(s, TypeBean.class);
                         Message message = new Message();
                         message.obj = teamTypeBean;
                         message.what = HandlerConstant.TEAM_TYPE_SUCCESS;
@@ -92,7 +92,7 @@ public class TeamModel {
                     String success = jsonObject.getString("successed");
                     if (success.equals(HandlerConstant.REQUEST_SUCCESS)) {
                         Gson gson = new Gson();
-                        SearchTeamBean searchTeamBean = gson.fromJson(s, SearchTeamBean.class);
+                        CommonBean searchTeamBean = gson.fromJson(s, CommonBean.class);
                         Message message = new Message();
                         message.obj = searchTeamBean;
                         message.what = HandlerConstant.SEARCH_TEAM_SUCCESS;

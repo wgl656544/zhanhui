@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ImageView;
@@ -14,10 +13,11 @@ import com.ex.administrator.zhanhui.SmoothListView.SmoothListView;
 import com.ex.administrator.zhanhui.adapter.SearchBlogAdapter;
 import com.ex.administrator.zhanhui.application.MyApplication;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.InfoBlogBean;
+import com.ex.administrator.zhanhui.constant.UrlConstant;
+import com.ex.administrator.zhanhui.entity.CommonBean;
 import com.ex.administrator.zhanhui.entity.InfoCategoryBean;
 import com.ex.administrator.zhanhui.entity.InfoPlaceBean;
-import com.ex.administrator.zhanhui.model.InfoCategoryModel;
+import com.ex.administrator.zhanhui.model.HomeChannelModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
@@ -62,7 +62,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
     private List<FilterEntity> exType;//展会类型
     private SearchBlogAdapter adapter;
 
-    private InfoCategoryModel model = new InfoCategoryModel();//获取展会分类对象
+    private HomeChannelModel model = new HomeChannelModel();//获取展会分类对象
     private List<FilterEntity> categorys;//筛选视图分类数据
     private List<FilterEntity> places;//筛选视图地方数据
     private String name = "termName=news";//参数
@@ -71,8 +71,8 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
     private InfoPlaceBean infoPlaceBean;//海南所有县市实体类
     private List<InfoPlaceBean.Data> placeDatas;
     private List<InfoPlaceBean.SubData> placeSubDatas;
-    private InfoBlogBean infoBlogBean;//查询资讯实体类
-    private List<InfoBlogBean.Data> blogDatas;
+    private CommonBean infoBlogBean;//查询资讯实体类
+    private List<CommonBean.Data> blogDatas;
     private String type;
     private String place;
     private int date;
@@ -101,14 +101,14 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
                     }
                 }
             }
-            if (msg.what == HandlerConstant.INFO_SEARCH_BLOG_SUCCESS) {//查询资讯
+            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//查询资讯
                 stopLoading();//停止加载动画
-                infoBlogBean = (InfoBlogBean) msg.obj;
+                infoBlogBean = (CommonBean) msg.obj;
                 blogDatas = infoBlogBean.getData();
                 if (blogDatas != null) {
                     if (blogDatas.size() < 5) {
                         for (int i = 0; i < 5; i++) {
-                            InfoBlogBean.Data data = infoBlogBean.new Data();
+                            CommonBean.Data data = infoBlogBean.new Data();
                             blogDatas.add(data);
                         }
                     }
@@ -128,7 +128,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
         startLoading("正在加载中...");//开始加载动画
         model.getInfoCategory(handler, name);//发送请求获取资讯分类数据
         model.getHaiNanAllCity(handler);//获取海南所有县市
-        model.searchBlog(handler);//查询资讯
+        model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, "");//查询资讯
         initview();
         setListener();
     }
@@ -245,7 +245,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
     /**
      * 展示展会
      */
-    private void showExhibitions(List<InfoBlogBean.Data> datas) {
+    private void showExhibitions(List<CommonBean.Data> datas) {
         if (datas != null) {
             mSmoothListView.setRefreshEnable(true);
             mSmoothListView.setLoadMoreEnable(false);

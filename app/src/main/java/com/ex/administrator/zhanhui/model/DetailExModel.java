@@ -2,6 +2,7 @@ package com.ex.administrator.zhanhui.model;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;

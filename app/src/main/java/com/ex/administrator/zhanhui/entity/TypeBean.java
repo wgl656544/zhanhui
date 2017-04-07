@@ -3,10 +3,10 @@ package com.ex.administrator.zhanhui.entity;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/3/9 0009.
+ * Created by Administrator on 2017/4/7 0007.
  */
 
-public class TicketTpeBean {
+public class TypeBean {
     private String successed;
 
     private String code;
@@ -15,10 +15,10 @@ public class TicketTpeBean {
 
     private List<Data> data;
 
-    public TicketTpeBean() {
+    public TypeBean() {
     }
 
-    public TicketTpeBean(String successed, String code, String message, List<Data> data) {
+    public TypeBean(String successed, String code, String message, List<Data> data) {
         this.successed = successed;
         this.code = code;
         this.message = message;
@@ -57,7 +57,7 @@ public class TicketTpeBean {
         this.data = data;
     }
 
-    public class Data {
+    public class Data{
         private int id;
 
         private String name;
@@ -96,44 +96,12 @@ public class TicketTpeBean {
             this.id = id;
         }
 
-        public String getLevelName() {
-            return levelName;
+        public String getName() {
+            return name;
         }
 
-        public void setLevelName(String levelName) {
-            this.levelName = levelName;
-        }
-
-        public boolean isSelChecked() {
-            return selChecked;
-        }
-
-        public void setSelChecked(boolean selChecked) {
-            this.selChecked = selChecked;
-        }
-
-        public int getParentId() {
-            return parentId;
-        }
-
-        public void setParentId(int parentId) {
-            this.parentId = parentId;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-
-        public void setLevel(int level) {
-            this.level = level;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public void setCode(String code) {
-            this.code = code;
+        public void setName(String name) {
+            this.name = name;
         }
 
         public String getImageUrl() {
@@ -144,12 +112,44 @@ public class TicketTpeBean {
             this.imageUrl = imageUrl;
         }
 
-        public String getName() {
-            return name;
+        public String getCode() {
+            return code;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        public void setLevel(int level) {
+            this.level = level;
+        }
+
+        public int getParentId() {
+            return parentId;
+        }
+
+        public void setParentId(int parentId) {
+            this.parentId = parentId;
+        }
+
+        public boolean isSelChecked() {
+            return selChecked;
+        }
+
+        public void setSelChecked(boolean selChecked) {
+            this.selChecked = selChecked;
+        }
+
+        public String getLevelName() {
+            return levelName;
+        }
+
+        public void setLevelName(String levelName) {
+            this.levelName = levelName;
         }
     }
 

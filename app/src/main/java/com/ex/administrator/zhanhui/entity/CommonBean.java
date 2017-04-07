@@ -3,10 +3,10 @@ package com.ex.administrator.zhanhui.entity;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/3/10 0010.
+ * Created by Administrator on 2017/4/6 0006.
  */
 
-public class SearchTeamBean {
+public class CommonBean {
     private int totalPages;
 
     private int totalElements;
@@ -19,10 +19,10 @@ public class SearchTeamBean {
 
     private List<Data> data;
 
-    public SearchTeamBean() {
+    public CommonBean() {
     }
 
-    public SearchTeamBean(int totalPages, int totalElements, String successed, String code, String message, List<Data> data) {
+    public CommonBean(int totalPages, int totalElements, String successed, String code, String message, List<Data> data) {
         this.totalPages = totalPages;
         this.totalElements = totalElements;
         this.successed = successed;
@@ -39,28 +39,12 @@ public class SearchTeamBean {
         this.totalPages = totalPages;
     }
 
-    public List<Data> getData() {
-        return data;
+    public int getTotalElements() {
+        return totalElements;
     }
 
-    public void setData(List<Data> data) {
-        this.data = data;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setTotalElements(int totalElements) {
+        this.totalElements = totalElements;
     }
 
     public String getSuccessed() {
@@ -71,15 +55,35 @@ public class SearchTeamBean {
         this.successed = successed;
     }
 
-    public int getTotalElements() {
-        return totalElements;
+    public String getCode() {
+        return code;
     }
 
-    public void setTotalElements(int totalElements) {
-        this.totalElements = totalElements;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<Data> getData() {
+        return data;
+    }
+
+    public void setData(List<Data> data) {
+        this.data = data;
     }
 
     public class Data {
+        private boolean isNoData = false;
+
+        private int height;
+
         private String name;
 
         private String description;
@@ -96,18 +100,22 @@ public class SearchTeamBean {
 
         private String endDate;
 
+        private String title;
+
+        private String type;
+
         private String city;
 
-        private int price;
+        private String price;
 
-        private int oldPrice;
+        private String oldPrice;
 
-        private int hotStatus;
+        private String hotStatus;
 
         public Data() {
         }
 
-        public Data(String name, String description, String entityName, String imageUrl, int entityId, String linkUrl, String startDate, String endDate, String city, int price, int oldPrice, int hotStatus) {
+        public Data(String name, String description, String entityName, String imageUrl, int entityId, String linkUrl, String startDate, String endDate, String title, String type, String city, String price, String oldPrice, String hotStatus) {
             this.name = name;
             this.description = description;
             this.entityName = entityName;
@@ -116,10 +124,28 @@ public class SearchTeamBean {
             this.linkUrl = linkUrl;
             this.startDate = startDate;
             this.endDate = endDate;
+            this.title = title;
+            this.type = type;
             this.city = city;
             this.price = price;
             this.oldPrice = oldPrice;
             this.hotStatus = hotStatus;
+        }
+
+        public boolean isNoData() {
+            return isNoData;
+        }
+
+        public void setNoData(boolean noData) {
+            isNoData = noData;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+
+        public void setHeight(int height) {
+            this.height = height;
         }
 
         public String getName() {
@@ -162,20 +188,20 @@ public class SearchTeamBean {
             this.entityId = entityId;
         }
 
-        public String getStartDate() {
-            return startDate;
-        }
-
-        public void setStartDate(String startDate) {
-            this.startDate = startDate;
-        }
-
         public String getLinkUrl() {
             return linkUrl;
         }
 
         public void setLinkUrl(String linkUrl) {
             this.linkUrl = linkUrl;
+        }
+
+        public String getStartDate() {
+            return startDate;
+        }
+
+        public void setStartDate(String startDate) {
+            this.startDate = startDate;
         }
 
         public String getEndDate() {
@@ -186,6 +212,22 @@ public class SearchTeamBean {
             this.endDate = endDate;
         }
 
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
         public String getCity() {
             return city;
         }
@@ -194,27 +236,27 @@ public class SearchTeamBean {
             this.city = city;
         }
 
-        public int getPrice() {
+        public String getPrice() {
             return price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(String price) {
             this.price = price;
         }
 
-        public int getOldPrice() {
+        public String getOldPrice() {
             return oldPrice;
         }
 
-        public void setOldPrice(int oldPrice) {
+        public void setOldPrice(String oldPrice) {
             this.oldPrice = oldPrice;
         }
 
-        public int getHotStatus() {
+        public String getHotStatus() {
             return hotStatus;
         }
 
-        public void setHotStatus(int hotStatus) {
+        public void setHotStatus(String hotStatus) {
             this.hotStatus = hotStatus;
         }
     }

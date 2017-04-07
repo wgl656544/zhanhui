@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.entity.InfoBlogBean;
+import com.ex.administrator.zhanhui.entity.CommonBean;
 
 import java.util.List;
 
@@ -22,10 +22,10 @@ import java.util.List;
 
 public class SearchBlogAdapter extends BaseAdapter {
     private Context context;
-    private List<InfoBlogBean.Data> datas;
+    private List<CommonBean.Data> datas;
     private LayoutInflater layoutInflater;
 
-    public SearchBlogAdapter(Context context, List<InfoBlogBean.Data> datas) {
+    public SearchBlogAdapter(Context context, List<CommonBean.Data> datas) {
         this.context = context;
         this.datas = datas;
         layoutInflater = LayoutInflater.from(context);
@@ -37,7 +37,7 @@ public class SearchBlogAdapter extends BaseAdapter {
     }
 
     @Override
-    public InfoBlogBean.Data getItem(int position) {
+    public CommonBean.Data getItem(int position) {
         return datas.get(position);
     }
 
@@ -61,7 +61,7 @@ public class SearchBlogAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        InfoBlogBean.Data bean = datas.get(position);
+        CommonBean.Data bean = datas.get(position);
         if (TextUtils.isEmpty(bean.getImageUrl())) {
             viewHolder.llItem.setVisibility(View.INVISIBLE);
             return convertView;
