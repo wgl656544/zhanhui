@@ -67,7 +67,7 @@ public class SearchBlogAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         CommonBean.Data bean = datas.get(position);
-        if (TextUtils.isEmpty(bean.getImageUrl())) {
+        if (TextUtils.isEmpty(bean.getName())) {
             viewHolder.llItem.setVisibility(View.INVISIBLE);
             return convertView;
         }

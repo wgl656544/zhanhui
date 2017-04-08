@@ -2,6 +2,7 @@ package com.ex.administrator.zhanhui.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,7 @@ public class SearchExhibitAdapter extends BaseAdapter {
 
         CommonBean.Data bean = datas.get(position);
 
-        if (TextUtils.isEmpty(bean.getImageUrl())) {
+        if (TextUtils.isEmpty(bean.getName())) {
             viewHolder.llItem.setVisibility(View.INVISIBLE);
             return convertView;
         }

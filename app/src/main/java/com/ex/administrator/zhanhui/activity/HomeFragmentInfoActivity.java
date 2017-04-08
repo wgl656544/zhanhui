@@ -38,7 +38,7 @@ import java.util.List;
  */
 
 public class HomeFragmentInfoActivity extends BaseActivity implements
-        SmoothListView.ISmoothListViewListener, View.OnClickListener {
+        SmoothListView.ISmoothListViewListener, View.OnClickListener, AbsListView.OnScrollListener {
     @ViewInject(R.id.sl_home_fagment_infomation)
     private SmoothListView mSmoothListView;
 
@@ -76,6 +76,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
     private String type;
     private String place;
     private int date;
+    private boolean isRefreshing = false;
 
     private Handler handler = new Handler() {
         @Override
@@ -87,6 +88,8 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
                 for (int i = 0; i < datas.size(); i++) {//获取分类名称
                     categorys.add(new FilterEntity(datas.get(i).getBlogTerm().getName()));
                 }
+                mHeaderChannelView.showChannel(datas);
+                setDatas();
             }
             if (msg.what == HandlerConstant.INFO_HAINAN_ALL_CITY_SUCCESS) {//海南所有城市
                 infoPlaceBean = (InfoPlaceBean) msg.obj;
@@ -103,20 +106,25 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
             }
             if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//查询资讯
                 stopLoading();//停止加载动画
+                mSmoothListView.stopRefresh();
+                isRefreshing = false;
                 infoBlogBean = (CommonBean) msg.obj;
-                blogDatas = infoBlogBean.getData();
                 if (blogDatas != null) {
-                    if (blogDatas.size() < 5) {
-                        for (int i = 0; i < 5; i++) {
-                            CommonBean.Data data = infoBlogBean.new Data();
-                            blogDatas.add(data);
+                    isRefreshing = false;
+                    adapter.notifyDataSetChanged();
+                } else {
+                    if (infoBlogBean.getData() != null) {
+                        blogDatas = infoBlogBean.getData();
+                        if (blogDatas.size() < 5) {
+                            for (int i = 0; i < 5; i++) {
+                                CommonBean.Data data = infoBlogBean.new Data();
+                                blogDatas.add(data);
+                            }
                         }
                     }
+                    showExhibitions(blogDatas);
                 }
             }
-            mHeaderChannelView.showChannel(datas);
-            setDatas();
-            showExhibitions(blogDatas);
         }
     };
 
@@ -200,6 +208,9 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
                 }
             }
         });
+        //listview滑动监听器
+        mSmoothListView.setOnScrollListener(this);
+
         //分类监听器
         mFilterView.setOnItemCategoryClickListener(new HomeFragmrntInfoFilterView.OnItemCategoryClickListener() {
             @Override
@@ -263,13 +274,9 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
      */
     @Override
     public void onRefresh() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSmoothListView.stopRefresh();
-                mSmoothListView.setRefreshTime("刚刚");
-            }
-        }, 2000);
+        model.getInfoCategory(handler, name);//发送请求获取资讯分类数据
+        model.getHaiNanAllCity(handler);//获取海南所有县市
+        model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, "");//查询资讯
     }
 
     /**
@@ -294,5 +301,25 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
                 finish();
                 break;
         }
+    }
+
+    //listview滑动监听
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if ((scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) &&
+                view.getLastVisiblePosition() == (view.getCount() - 1)
+                && !isRefreshing) {
+            //处理逻辑
+            isRefreshing = true;
+            model.getInfoCategory(handler, name);//发送请求获取资讯分类数据
+            model.getHaiNanAllCity(handler);//获取海南所有县市
+            model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, "");//查询资讯
+            ToastUtil.show(this, "刷新了");
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
     }
 }
