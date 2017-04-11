@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.SmoothListView.SmoothListView;
 import com.ex.administrator.zhanhui.adapter.SearchBlogAdapter;
-import com.ex.administrator.zhanhui.application.MyApplication;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
 import com.ex.administrator.zhanhui.constant.UrlConstant;
 import com.ex.administrator.zhanhui.entity.CommonBean;
@@ -24,7 +23,7 @@ import com.ex.administrator.zhanhui.view.ModelUtil;
 import com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.HeaderHomeFragmentInfoAdvertView;
 import com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.HeaderHomeFragmentInfoChannelView;
 import com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.HeaderHomeFragmentInfoFilterView;
-import com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.HomeFragmrntInfoFilterView;
+import com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.HomeFragmentInfoFilterView;
 import com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.InfoFilterData;
 
 import org.xutils.view.annotation.ViewInject;
@@ -38,12 +37,12 @@ import java.util.List;
  */
 
 public class HomeFragmentInfoActivity extends BaseActivity implements
-        SmoothListView.ISmoothListViewListener, View.OnClickListener, AbsListView.OnScrollListener {
+        SmoothListView.ISmoothListViewListener, View.OnClickListener {
     @ViewInject(R.id.sl_home_fagment_infomation)
     private SmoothListView mSmoothListView;
 
     @ViewInject(R.id.fv_home_fragment_info)
-    private HomeFragmrntInfoFilterView mFilterView;
+    private HomeFragmentInfoFilterView mFilterView;
 
     @ViewInject(R.id.iv_home_fragment_info_back)
     private ImageView ivBack;
@@ -65,7 +64,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
     private GetDataModel model = new GetDataModel();//获取展会分类对象
     private List<FilterEntity> categorys;//筛选视图分类数据
     private List<FilterEntity> places;//筛选视图地方数据
-    private String name = "termName=news";//参数
+    private String name = "termName=news";//分类数据参数
     private InfoCategoryBean infoCategoryBean;//资讯实体类
     private List<InfoCategoryBean.Data> datas;//资讯页面频道实体类
     private InfoPlaceBean infoPlaceBean;//海南所有县市实体类
@@ -73,70 +72,28 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
     private List<InfoPlaceBean.SubData> placeSubDatas;
     private CommonBean infoBlogBean;//查询资讯实体类
     private List<CommonBean.Data> blogDatas;
-    private String type;
-    private String place;
-    private int date;
+    //筛选条件
+    private int page = 1;
+    private int itemPerPage = 20;
+    private String categoryCode;
+    private String city;
+    private int startTime;
+    private String param;
     private boolean isRefreshing = false;
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == HandlerConstant.INFO_CATEGORY_SUCCESS) {//资讯分类
-                infoCategoryBean = (InfoCategoryBean) msg.obj;
-                datas = infoCategoryBean.getData();
-                categorys = new ArrayList<>();
-                for (int i = 0; i < datas.size(); i++) {//获取分类名称
-                    categorys.add(new FilterEntity(datas.get(i).getBlogTerm().getName()));
-                }
-                mHeaderChannelView.showChannel(datas);
-                setDatas();
-            }
-            if (msg.what == HandlerConstant.INFO_HAINAN_ALL_CITY_SUCCESS) {//海南所有城市
-                infoPlaceBean = (InfoPlaceBean) msg.obj;
-                placeDatas = infoPlaceBean.getData();
-                places = new ArrayList<>();
-                for (int i = 0; i < placeDatas.size(); i++) {
-                    if (placeDatas.get(i).getName().equals("海南")) {
-                        placeSubDatas = placeDatas.get(i).getSubData();
-                        for (int j = 0; j < placeSubDatas.size(); j++) {
-                            places.add(new FilterEntity(placeSubDatas.get(j).getName()));
-                        }
-                    }
-                }
-            }
-            if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//查询资讯
-                stopLoading();//停止加载动画
-                mSmoothListView.stopRefresh();
-                isRefreshing = false;
-                infoBlogBean = (CommonBean) msg.obj;
-                if (blogDatas != null) {
-                    isRefreshing = false;
-                    adapter.notifyDataSetChanged();
-                } else {
-                    if (infoBlogBean.getData() != null) {
-                        blogDatas = infoBlogBean.getData();
-                        if (blogDatas.size() < 5) {
-                            for (int i = 0; i < 5; i++) {
-                                CommonBean.Data data = infoBlogBean.new Data();
-                                blogDatas.add(data);
-                            }
-                        }
-                    }
-                    showExhibitions(blogDatas);
-                }
-            }
-        }
-    };
+    private MyHandler handler = new MyHandler();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_fragment_infomation);
         x.view().inject(this);
+        param = "?page=" + page + "&itemPerPage=" + itemPerPage;
+
         startLoading("正在加载中...");//开始加载动画
         model.getInfoCategory(handler, name);//发送请求获取资讯分类数据
         model.getHaiNanAllCity(handler);//获取海南所有县市
-        model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, "");//查询资讯
+        model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, param);//查询资讯
         initview();
         setListener();
     }
@@ -173,7 +130,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
             }
         });
 //        真正的筛选视图监听器
-        mFilterView.setOnFilterClickListener(new HomeFragmrntInfoFilterView.OnFilterClickListener() {
+        mFilterView.setOnFilterClickListener(new HomeFragmentInfoFilterView.OnFilterClickListener() {
             @Override
             public void onFilterClick(int position) {
                 mFilterView.show(position);
@@ -183,6 +140,14 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
         mSmoothListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if ((scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) &&
+                        view.getLastVisiblePosition() == (view.getCount() - 1)
+                        && !isRefreshing) {
+                    //处理逻辑
+                    isRefreshing = true;
+                    page++;
+                    model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, param);//查询资讯
+                }
             }
 
             @Override
@@ -209,30 +174,27 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
             }
         });
         //listview滑动监听器
-        mSmoothListView.setOnScrollListener(this);
+//        mSmoothListView.setOnScrollListener(this);
 
         //分类监听器
-        mFilterView.setOnItemCategoryClickListener(new HomeFragmrntInfoFilterView.OnItemCategoryClickListener() {
+        mFilterView.setOnItemCategoryClickListener(new HomeFragmentInfoFilterView.OnItemCategoryClickListener() {
             @Override
             public void onItemCategoryClick(String type) {
-                HomeFragmentInfoActivity.this.type = type;
-                ToastUtil.show(MyApplication.getmMyApplication().getApplicationContext(), type);
+                categoryCode = type;
             }
         });
         //设置地方监听器
-        mFilterView.setOnItemPlaceClickListener(new HomeFragmrntInfoFilterView.OnItemPlaceClickListener() {
+        mFilterView.setOnItemPlaceClickListener(new HomeFragmentInfoFilterView.OnItemPlaceClickListener() {
             @Override
             public void onItemPlaceClick(String city) {
-                HomeFragmentInfoActivity.this.place = city;
-                ToastUtil.show(MyApplication.getmMyApplication().getApplicationContext(), city);
+                HomeFragmentInfoActivity.this.city = city;
             }
         });
         //设置时间监听器
-        mFilterView.setOnItemDateClickListener(new HomeFragmrntInfoFilterView.OnItemDateClickListener() {
+        mFilterView.setOnItemDateClickListener(new HomeFragmentInfoFilterView.OnItemDateClickListener() {
             @Override
             public void onItemDateClick(int date) {
-                HomeFragmentInfoActivity.this.date = date;
-                ToastUtil.show(MyApplication.getmMyApplication().getApplicationContext(), date + "");
+                HomeFragmentInfoActivity.this.startTime = date;
             }
         });
     }
@@ -274,9 +236,7 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
      */
     @Override
     public void onRefresh() {
-        model.getInfoCategory(handler, name);//发送请求获取资讯分类数据
-        model.getHaiNanAllCity(handler);//获取海南所有县市
-        model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, "");//查询资讯
+        model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, param);//查询资讯
     }
 
     /**
@@ -303,23 +263,67 @@ public class HomeFragmentInfoActivity extends BaseActivity implements
         }
     }
 
-    //listview滑动监听
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if ((scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) &&
-                view.getLastVisiblePosition() == (view.getCount() - 1)
-                && !isRefreshing) {
-            //处理逻辑
-            isRefreshing = true;
-            model.getInfoCategory(handler, name);//发送请求获取资讯分类数据
-            model.getHaiNanAllCity(handler);//获取海南所有县市
-            model.search(handler, UrlConstant.HTTP_URL_INFO_SEARCH_BLOG, "");//查询资讯
-            ToastUtil.show(this, "刷新了");
+    //消息队列
+    private class MyHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case HandlerConstant.INFO_CATEGORY_SUCCESS://资讯分类
+                    if (msg.what == HandlerConstant.INFO_CATEGORY_SUCCESS) {//资讯分类
+                        infoCategoryBean = (InfoCategoryBean) msg.obj;
+                        datas = infoCategoryBean.getData();
+                        categorys = new ArrayList<>();
+                        for (int i = 0; i < datas.size(); i++) {//获取分类名称
+                            categorys.add(new FilterEntity(datas.get(i).getBlogTerm().getName()));
+                        }
+                        mHeaderChannelView.showChannel(datas);
+                    }
+                    setDatas();
+                    break;
+                case HandlerConstant.INFO_HAINAN_ALL_CITY_SUCCESS://海南所有城市
+                    if (msg.what == HandlerConstant.INFO_HAINAN_ALL_CITY_SUCCESS) {//海南所有城市
+                        infoPlaceBean = (InfoPlaceBean) msg.obj;
+                        placeDatas = infoPlaceBean.getData();
+                        places = new ArrayList<>();
+                        for (int i = 0; i < placeDatas.size(); i++) {
+                            if (placeDatas.get(i).getName().equals("海南")) {
+                                placeSubDatas = placeDatas.get(i).getSubData();
+                                for (int j = 0; j < placeSubDatas.size(); j++) {
+                                    places.add(new FilterEntity(placeSubDatas.get(j).getName()));
+                                }
+                            }
+                        }
+                    }
+                    setDatas();
+                    break;
+                case HandlerConstant.SEARCH_SUCCESS://查询资讯
+                    if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//查询资讯
+                        stopLoading();//停止加载动画
+                        mSmoothListView.stopRefresh();
+                        infoBlogBean = (CommonBean) msg.obj;
+                        if (blogDatas != null) {
+                            if (isRefreshing) {
+                                isRefreshing = false;
+                                ToastUtil.show(HomeFragmentInfoActivity.this, "加载了更多");
+                                adapter.notifyDataSetChanged();
+                            } else {
+                                ToastUtil.show(HomeFragmentInfoActivity.this, "点击了筛选");
+                            }
+                        } else {
+                            if (infoBlogBean.getData() != null) {
+                                blogDatas = infoBlogBean.getData();
+                                if (blogDatas.size() < 5) {
+                                    for (int i = 0; i < 5; i++) {
+                                        CommonBean.Data data = infoBlogBean.new Data();
+                                        blogDatas.add(data);
+                                    }
+                                }
+                            }
+                            showExhibitions(blogDatas);
+                        }
+                    }
+                    break;
+            }
         }
-    }
-
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
     }
 }

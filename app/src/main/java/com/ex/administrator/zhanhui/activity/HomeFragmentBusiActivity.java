@@ -61,7 +61,7 @@ public class HomeFragmentBusiActivity extends BaseActivity implements
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == HandlerConstant.TICKET_TYPE_SUCCESS) {//门票类型
+            if (msg.what == HandlerConstant.SEARCH_TYPE_SUCCESS) {//门票类型
                 TypeBean ticketTypeBean = (TypeBean) msg.obj;
                 ticketTypeDatas = new ArrayList<>();
                 for (int i = 0; i < ticketTypeBean.getData().size(); i++) {
@@ -144,6 +144,7 @@ public class HomeFragmentBusiActivity extends BaseActivity implements
         mSmoothListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
+
             }
 
             @Override

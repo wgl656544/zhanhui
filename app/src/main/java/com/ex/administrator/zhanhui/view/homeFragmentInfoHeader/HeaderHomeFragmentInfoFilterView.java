@@ -16,10 +16,10 @@ import org.xutils.x;
 /**
  * Created by sunfusheng on 16/4/20.
  */
-public class HeaderHomeFragmentInfoFilterView implements HomeFragmrntInfoFilterView.OnFilterClickListener {
+public class HeaderHomeFragmentInfoFilterView implements HomeFragmentInfoFilterView.OnFilterClickListener {
 
     @ViewInject(R.id.fv_home_fragment_info_filter)
-    HomeFragmrntInfoFilterView fvFilter;
+    HomeFragmentInfoFilterView fvFilter;
 
     private static TextView tvCategoryTitle;
     private static TextView tvPlaceTitle;

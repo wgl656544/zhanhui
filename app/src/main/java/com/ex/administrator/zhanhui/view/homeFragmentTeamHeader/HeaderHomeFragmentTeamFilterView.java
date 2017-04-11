@@ -8,7 +8,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.HomeFragmrntInfoFilterView;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;

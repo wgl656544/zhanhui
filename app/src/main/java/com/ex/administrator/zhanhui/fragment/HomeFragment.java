@@ -11,7 +11,6 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -29,12 +28,13 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.activity.HomeFragmentFindEXActivity;
 import com.ex.administrator.zhanhui.activity.HomeFragmentBusiActivity;
+import com.ex.administrator.zhanhui.activity.HomeFragmentFindEXActivity;
 import com.ex.administrator.zhanhui.activity.HomeFragmentInfoActivity;
 import com.ex.administrator.zhanhui.activity.HomeFragmentTeamActivity;
 import com.ex.administrator.zhanhui.activity.HomeFragmentTicketActivity;
@@ -63,11 +63,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.header.StoreHouseHeader;
+
 /**
  * Created by Administrator on 2017/2/16 0016.
  */
 
-public class HomeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, PtrHandler {
     @ViewInject(R.id.rollpagerview)
     RollPagerView mRollPagerView;//轮播广告
     @ViewInject(R.id.viewFlipper)
@@ -84,8 +89,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     private Spinner mSpinner;//城市选项
     @ViewInject(R.id.iv_home_fragment_mid)
     private ImageView midImageview;//首页中部广告
-    @ViewInject(R.id.swipe_home_fragment)
-    private SwipeRefreshLayout swipeHomeFragment;//下拉刷新
+
+    @ViewInject(R.id.ptr_home_fragment)
+    private PtrFrameLayout ptrHomeFragment;//下拉刷新
 
     @ViewInject(R.id.home_iv_exhibition)
     private ImageView ivExhibition;//搜展会
@@ -145,9 +151,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                 homePageBeanBusi = (HomePageBean) msg.obj;
                 //对业务模块进行分类
                 sortHomeBusi(homePageBeanBusi);
-                //停止加载动画
-                stopLoading();
             }
+            ptrHomeFragment.refreshComplete();
         }
     };
 
@@ -167,8 +172,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     }
 
     private void initView() {
-        swipeHomeFragment.setColorSchemeResources(R.color.color_bule_2, R.color.colorOrange);
-        swipeHomeFragment.setOnRefreshListener(this);
+        final StoreHouseHeader header = new StoreHouseHeader(getActivity());
+        header.initWithString("ruichuang", 35);
+        header.setTextColor(R.color.colorOrange);
+        ptrHomeFragment.setHeaderView(header);
+        ptrHomeFragment.addPtrUIHandler(header);
+//        swipeHomeFragment.setColorSchemeResources(R.color.color_bule_2, R.color.colorOrange);
+//        swipeHomeFragment.setOnRefreshListener(this);
     }
 
     //显示热点城市
@@ -287,7 +297,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
             //获取首页业务
             homePageModel.getHomePageBusi(handler);
-            startLoading();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -298,6 +307,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
      * 设置监听器
      */
     private void setListeners() {
+        //下拉刷新
+        ptrHomeFragment.setPtrHandler(this);
         //轮播图点击事件
         mRollPagerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -401,38 +412,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
     }
 
-    //下拉刷新
-    @Override
-    public void onRefresh() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeHomeFragment.setRefreshing(false);
-                ToastUtil.show(getActivity(), "刷新成功");
-            }
-        }, 2000);
-    }
-
-    //开始加载动画
-    private void startLoading() {
-        swipeHomeFragment.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeHomeFragment.setRefreshing(true);
-//                onRefresh();
-            }
-        });
-    }
-
-    //关闭加载动画
-    private void stopLoading() {
-        swipeHomeFragment.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeHomeFragment.setRefreshing(false);
-            }
-        });
-    }
 
     /**
      * 显示右上角更多
@@ -506,5 +485,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
             mViewFlipper.addView(flipperView);
         }
 
+    }
+
+    @Override
+    public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+        return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+    }
+
+    @Override
+    public void onRefreshBegin(PtrFrameLayout frame) {
+//        frame.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                ptrHomeFragment.refreshComplete();
+//                Toast.makeText(getActivity(), "刷新了", Toast.LENGTH_SHORT).show();
+//            }
+//        }, 2000);
+        homePageModel.getHomePageBusi(handler);
     }
 }

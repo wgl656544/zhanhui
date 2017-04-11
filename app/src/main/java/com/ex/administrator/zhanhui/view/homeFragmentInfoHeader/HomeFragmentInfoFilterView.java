@@ -29,7 +29,7 @@ import org.xutils.x;
 /**
  * Created by sunfusheng on 17/3/8.
  */
-public class HomeFragmrntInfoFilterView extends LinearLayout implements View.OnClickListener {
+public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnClickListener {
     @ViewInject(R.id.tv_home_fragment_category_title)
     private TextView tvCategoryTitle;//分类
     @ViewInject(R.id.iv_home_fragment_category_arrow)
@@ -92,12 +92,12 @@ public class HomeFragmrntInfoFilterView extends LinearLayout implements View.OnC
 
 //    private HeaderFilterView headerFilterView = new HeaderFilterView();
 
-    public HomeFragmrntInfoFilterView(Context context, AttributeSet attrs) {
+    public HomeFragmentInfoFilterView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public HomeFragmrntInfoFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeFragmentInfoFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }

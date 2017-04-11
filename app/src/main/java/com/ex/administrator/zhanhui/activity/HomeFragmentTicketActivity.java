@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.SmoothListView.SmoothListView;
@@ -30,21 +33,30 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.header.StoreHouseHeader;
+
 /**
  * Created by Administrator on 2017/2/20 0020.
  */
 
 public class HomeFragmentTicketActivity extends BaseActivity implements
-        SmoothListView.ISmoothListViewListener, View.OnClickListener, HeaderHomeFragmentTicketChannelView.OnClickListener {
+        SmoothListView.ISmoothListViewListener, View.OnClickListener,
+        HeaderHomeFragmentTicketChannelView.OnClickListener, PtrHandler {
 
     @ViewInject(R.id.sl_home_fagment_ticket)
-    private SmoothListView mSmoothListView;
+    private ListView mSmoothListView;
 
     @ViewInject(R.id.fv_home_fragment_ticket)
     private HomeFragmentTicketFilterView mFilterView;
 
     @ViewInject(R.id.rl_home_fragment_ticket_back)
     private RelativeLayout rlBack;
+
+    @ViewInject(R.id.ptr_ticket)
+    private PtrFrameLayout ptrTicket;
 
     private HeaderHomeFragmentTicketFilterView mHeaderFilterView;
     private HeaderHomeFragmentTicketChannelView mHeaderChannelView;
@@ -68,11 +80,12 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == HandlerConstant.TICKET_TYPE_SUCCESS) {//门票类型
+            if (msg.what == HandlerConstant.SEARCH_TYPE_SUCCESS) {//门票类型
                 ticketTypeBean = (TypeBean) msg.obj;
                 ticketTypeDatas = new ArrayList<>();
                 for (int i = 0; i < ticketTypeBean.getData().size(); i++) {
                     ticketTypeDatas.add(new FilterEntity(ticketTypeBean.getData().get(i).getName()));
+                    Log.d("lingyi", ticketTypeBean.getData().get(i).getName());
                 }
             }
             if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//搜索门票
@@ -123,12 +136,18 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
         mHeaderFilterView = new HeaderHomeFragmentTicketFilterView(this);
         mHeaderFilterView.getView(mSmoothListView);
 
+        final StoreHouseHeader header = new StoreHouseHeader(this);
+        header.initWithString("ruichuang",35);
+        header.setTextColor(R.color.color_bule_2);
+        ptrTicket.setHeaderView(header);
+        ptrTicket.addPtrUIHandler(header);
     }
 
     /**
      * 设置监听器
      */
     private void setListener() {
+        ptrTicket.setPtrHandler(this);
         //返回
         rlBack.setOnClickListener(this);
         //筛选头布局监听器
@@ -232,9 +251,9 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
      * 展示展会
      */
     private void showExhibitions(List<CommonBean.Data> datas) {
-        mSmoothListView.setRefreshEnable(true);
-        mSmoothListView.setLoadMoreEnable(false);
-        mSmoothListView.setSmoothListViewListener(this);
+//        mSmoothListView.setRefreshEnable(true);
+//        mSmoothListView.setLoadMoreEnable(false);
+//        mSmoothListView.setSmoothListViewListener(this);
         adapter = new SearchTicketAdapter(this, datas);
         mSmoothListView.setAdapter(adapter);
         isShow = true;
@@ -250,8 +269,8 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mSmoothListView.stopRefresh();
-                mSmoothListView.setRefreshTime("刚刚");
+//                mSmoothListView.stopRefresh();
+//                mSmoothListView.setRefreshTime("刚刚");
             }
         }, 2000);
     }
@@ -264,7 +283,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mSmoothListView.stopLoadMore();
+//                mSmoothListView.stopLoadMore();
             }
         }, 2000);
     }
@@ -285,5 +304,21 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
     public void onClick(int position) {
         ToastUtil.show(this, "你点击了第" + position + "个");
 
+    }
+
+    @Override
+    public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+        return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+    }
+
+    @Override
+    public void onRefreshBegin(PtrFrameLayout frame) {
+        frame.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ptrTicket.refreshComplete();
+                Toast.makeText(HomeFragmentTicketActivity.this, "刷新了", Toast.LENGTH_SHORT).show();
+            }
+        }, 1000);
     }
 }

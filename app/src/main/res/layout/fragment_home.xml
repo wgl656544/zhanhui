@@ -70,10 +70,11 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_home_fragment"
+    <in.srain.cube.views.ptr.PtrFrameLayout
+        android:id="@+id/ptr_home_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -258,11 +259,11 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:padding="@dimen/x10"
                         android:layout_width="@dimen/x120"
                         android:layout_height="@dimen/x120"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/x15"
+                        android:padding="@dimen/x10"
                         android:src="@drawable/ex_tr" />
 
                     <View
@@ -457,7 +458,7 @@
 
             </LinearLayout>
         </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </in.srain.cube.views.ptr.PtrFrameLayout>
 
 
 </LinearLayout>

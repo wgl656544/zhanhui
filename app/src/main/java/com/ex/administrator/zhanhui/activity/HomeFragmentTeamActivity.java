@@ -86,7 +86,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
                     }
                 }
             }
-            if (msg.what == HandlerConstant.TEAM_TYPE_SUCCESS) {//团购类型
+            if (msg.what == HandlerConstant.SEARCH_TYPE_SUCCESS) {//团购类型
                 teamTypeBean = (TypeBean) msg.obj;
                 teamTypeDatas = teamTypeBean.getData();
                 teamType = new ArrayList<>();
