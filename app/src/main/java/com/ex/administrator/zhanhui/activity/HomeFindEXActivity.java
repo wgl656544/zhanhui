@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.ex.administrator.zhanhui.R;
@@ -36,7 +37,7 @@ import java.util.List;
  * Created by Administrator on 2017/2/20 0020.
  */
 
-public class HomeFragmentFindEXActivity extends BaseActivity implements
+public class HomeFindEXActivity extends BaseActivity implements
         SmoothListView.ISmoothListViewListener, View.OnClickListener {
     @ViewInject(R.id.lv_find_exhibition)
     private SmoothListView mSmoothListView;
@@ -84,14 +85,14 @@ public class HomeFragmentFindEXActivity extends BaseActivity implements
 
             if (msg.what == HandlerConstant.REQUEST_FAIL) {//请求成功，返回失败
                 stopLoading();
-                ToastUtil.show(HomeFragmentFindEXActivity.this, (String) msg.obj);
+                ToastUtil.show(HomeFindEXActivity.this, (String) msg.obj);
             }
 
 
             if (exDatas != null) {
                 //如果返回的数据小于5个,则添加几个空数据
-                if (exDatas.size() < 5) {
-                    for (int i = 0; i < 5; i++) {
+                if (exDatas.size() < 6) {
+                    for (int i = 0; i < 6; i++) {
                         CommonBean.Data data = searchExhibitBean.new Data();
                         exDatas.add(data);
                     }
@@ -160,6 +161,13 @@ public class HomeFragmentFindEXActivity extends BaseActivity implements
                 mFilterView.show(position);
             }
         });
+        //listview Item 监听器
+        mSmoothListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ToastUtil.show(HomeFindEXActivity.this, position - 4 + "");
+            }
+        });
         //listview监听器
         mSmoothListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -194,32 +202,32 @@ public class HomeFragmentFindEXActivity extends BaseActivity implements
         mFilterView.setOnItemCityClickListener(new FilterView.OnItemCityClickListener() {
             @Override
             public void onItemCityClick(String city) {
-                HomeFragmentFindEXActivity.this.city = city;
-                ToastUtil.show(HomeFragmentFindEXActivity.this, city + near);
+                HomeFindEXActivity.this.city = city;
+                ToastUtil.show(HomeFindEXActivity.this, city + near);
             }
         });
         //设置类型监听方法
         mFilterView.setOnItemTypeClickListener(new FilterView.OnItemTypeClickListener() {
             @Override
             public void onItemTypeClick(String type) {
-                HomeFragmentFindEXActivity.this.type = type;
-                ToastUtil.show(HomeFragmentFindEXActivity.this, type);
+                HomeFindEXActivity.this.type = type;
+                ToastUtil.show(HomeFindEXActivity.this, type);
             }
         });
         //设置最近监听方法
         mFilterView.setOnItemNearClickListener(new FilterView.OnItemNearClickListener() {
             @Override
             public void onItemNearClick(int near) {
-                HomeFragmentFindEXActivity.this.near = near;
-                ToastUtil.show(HomeFragmentFindEXActivity.this, near + "");
+                HomeFindEXActivity.this.near = near;
+                ToastUtil.show(HomeFindEXActivity.this, near + "");
             }
         });
         //设置筛选监听方法
         mFilterView.setOnItemSiftClickListener(new FilterView.OnItemSiftClickListener() {
             @Override
             public void onItemSiftClick(int sift) {
-                HomeFragmentFindEXActivity.this.sift = sift;
-                ToastUtil.show(HomeFragmentFindEXActivity.this, sift + "");
+                HomeFindEXActivity.this.sift = sift;
+                ToastUtil.show(HomeFindEXActivity.this, sift + "");
             }
         });
 
@@ -228,10 +236,10 @@ public class HomeFragmentFindEXActivity extends BaseActivity implements
             @Override
             public void OnChannelClick(String title) {
                 if (title.equals("会议")) {
-                    startActivity(new Intent(HomeFragmentFindEXActivity.this, DetailExActivity.class));
+                    startActivity(new Intent(HomeFindEXActivity.this, DetailExActivity.class));
                 }
                 if (title.equals("博览会")) {
-                    startActivity(new Intent(HomeFragmentFindEXActivity.this, DetailExpoActivity.class));
+                    startActivity(new Intent(HomeFindEXActivity.this, DetailExpoActivity.class));
                 }
             }
         });
@@ -279,8 +287,8 @@ public class HomeFragmentFindEXActivity extends BaseActivity implements
      * 展示展会
      */
     private void showExhibitions(List<CommonBean.Data> datas) {
-        mSmoothListView.setRefreshEnable(true);
-        mSmoothListView.setLoadMoreEnable(false);
+        mSmoothListView.setRefreshEnable(false);
+        mSmoothListView.setLoadMoreEnable(true);
         mSmoothListView.setSmoothListViewListener(this);
         adapter = new SearchExhibitAdapter(this, datas);
         mSmoothListView.setAdapter(adapter);

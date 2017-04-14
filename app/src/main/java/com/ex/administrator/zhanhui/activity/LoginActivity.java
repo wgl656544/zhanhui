@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private UserModel userModel;//业务对象
     private String mobile;//手机号码
     private boolean result = true;//60s倒数是否开始
-    private int time = 30;//倒数开始
+    private int time = 3;//倒数开始
     static LoginActivity login;
 
     private Handler handler = new Handler() {

@@ -295,19 +295,20 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x20"
-                    android:background="#e0e0e0" />
+                    android:background="@color/colorDivision" />
 
                 <LinearLayout
+                    android:padding="@dimen/x10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x20"
                     android:orientation="horizontal"
-                    android:paddingTop="@dimen/x22">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x35"
-                        android:layout_marginRight="@dimen/x11"
+                        android:layout_marginEnd="@dimen/x11"
                         android:text="@string/zhanhui"
                         android:textColor="#000000"
                         android:textSize="20sp" />
@@ -318,6 +319,7 @@
                         android:layout_marginLeft="@dimen/x11"
                         android:layout_marginRight="@dimen/x11"
                         android:text="@string/haikou"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <TextView
@@ -326,6 +328,7 @@
                         android:layout_marginLeft="@dimen/x11"
                         android:layout_marginRight="@dimen/x11"
                         android:text="@string/sanya"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <TextView
@@ -334,6 +337,7 @@
                         android:layout_marginLeft="@dimen/x11"
                         android:layout_marginRight="@dimen/x11"
                         android:text="@string/boao"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -342,13 +346,18 @@
                     android:id="@+id/rl_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x35"
-                    android:layout_marginRight="@dimen/x35" />
+                    android:layout_marginEnd="@dimen/x15"
+                    android:layout_marginStart="@dimen/x15" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x20"
+                    android:background="@color/colorDivision" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x35">
+                    android:layout_marginStart="@dimen/x25">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -366,7 +375,7 @@
                             android:id="@+id/imageviewMore"
                             android:layout_width="@dimen/x60"
                             android:layout_height="@dimen/x60"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/gengduo" />
 
@@ -377,7 +386,7 @@
                             android:layout_toLeftOf="@id/imageviewMore"
                             android:text="@string/more"
                             android:textColor="#000000"
-                            android:textSize="20sp" />
+                            android:textSize="16sp" />
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -387,13 +396,13 @@
                     android:id="@+id/rl_menpiao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x35"
-                    android:layout_marginRight="@dimen/x35" />
+                    android:layout_marginEnd="@dimen/x15"
+                    android:layout_marginStart="@dimen/x15" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x20"
-                    android:background="#e0e0e0" />
+                    android:background="@color/colorDivision" />
 
                 <ImageView
                     android:id="@+id/iv_home_fragment_mid"
@@ -405,12 +414,12 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/x20"
-                    android:background="#e0e0e0" />
+                    android:background="@color/colorDivision" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x35">
+                    android:layout_marginStart="@dimen/x30">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -442,7 +451,7 @@
                             android:layout_toLeftOf="@id/imageviewMore1"
                             android:text="@string/more"
                             android:textColor="#000000"
-                            android:textSize="20sp" />
+                            android:textSize="16sp" />
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -452,8 +461,8 @@
                     android:id="@+id/rl_tuangou"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x35"
-                    android:layout_marginRight="@dimen/x35" />
+                    android:layout_marginEnd="@dimen/x15"
+                    android:layout_marginStart="@dimen/x15" />
 
 
             </LinearLayout>

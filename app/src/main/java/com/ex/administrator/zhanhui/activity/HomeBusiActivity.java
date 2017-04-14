@@ -18,10 +18,10 @@ import com.ex.administrator.zhanhui.entity.TypeBean;
 import com.ex.administrator.zhanhui.model.GetDataModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.view.ModelUtil;
-import com.ex.administrator.zhanhui.view.homeFragmentBusiHeader.BusiFilterData;
-import com.ex.administrator.zhanhui.view.homeFragmentBusiHeader.HeaderHomeFragmentBusiChannelView;
-import com.ex.administrator.zhanhui.view.homeFragmentBusiHeader.HeaderHomeFragmentBusiFilterView;
-import com.ex.administrator.zhanhui.view.homeFragmentBusiHeader.HomeFragmentBusiFilterView;
+import com.ex.administrator.zhanhui.view.homeBusiHeader.BusiFilterData;
+import com.ex.administrator.zhanhui.view.homeBusiHeader.HeaderHomeBusiChannelView;
+import com.ex.administrator.zhanhui.view.homeBusiHeader.HeaderHomeBusiFilterView;
+import com.ex.administrator.zhanhui.view.homeBusiHeader.HomeBusiFilterView;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -33,18 +33,18 @@ import java.util.List;
  * Created by Administrator on 2017/2/20 0020.
  */
 
-public class HomeFragmentBusiActivity extends BaseActivity implements
+public class HomeBusiActivity extends BaseActivity implements
         SmoothListView.ISmoothListViewListener, View.OnClickListener {
     @ViewInject(R.id.sl_home_fragment_busi)
     private SmoothListView mSmoothListView;
 
     @ViewInject(R.id.fv_home_fragment_busi)
-    private HomeFragmentBusiFilterView mFilterView;
+    private HomeBusiFilterView mFilterView;
 
     @ViewInject(R.id.iv_home_fragment_busi_back)
     private ImageView ivBack;
 
-    private HeaderHomeFragmentBusiFilterView mHeaderFilterView;//筛选头布局
+    private HeaderHomeBusiFilterView mHeaderFilterView;//筛选头布局
     private int filterPosition;//点击第几个筛选
     private int filterViewPosition = 2;//筛选视图的位置
     private boolean isStickyTop = false;//是否吸附在顶部
@@ -110,10 +110,10 @@ public class HomeFragmentBusiActivity extends BaseActivity implements
      */
     private void initview() {
         //添加频道头布局
-        HeaderHomeFragmentBusiChannelView mHeaderChannelView = new HeaderHomeFragmentBusiChannelView(this);
+        HeaderHomeBusiChannelView mHeaderChannelView = new HeaderHomeBusiChannelView(this);
         mHeaderChannelView.getView(mSmoothListView);
         //添加筛选头布局
-        mHeaderFilterView = new HeaderHomeFragmentBusiFilterView(this);
+        mHeaderFilterView = new HeaderHomeBusiFilterView(this);
         mHeaderFilterView.getView(mSmoothListView);
 
     }
@@ -125,7 +125,7 @@ public class HomeFragmentBusiActivity extends BaseActivity implements
         //返回
         ivBack.setOnClickListener(this);
         //筛选头布局监听器
-        mHeaderFilterView.setOnFilterClickListener(new HeaderHomeFragmentBusiFilterView.OnFilterClickListener() {
+        mHeaderFilterView.setOnFilterClickListener(new HeaderHomeBusiFilterView.OnFilterClickListener() {
             @Override
             public void onFilterClick(int position) {
                 filterPosition = position;
@@ -134,7 +134,7 @@ public class HomeFragmentBusiActivity extends BaseActivity implements
             }
         });
         //真正的筛选视图监听器
-        mFilterView.setOnFilterClickListener(new HomeFragmentBusiFilterView.OnFilterClickListener() {
+        mFilterView.setOnFilterClickListener(new HomeBusiFilterView.OnFilterClickListener() {
             @Override
             public void onFilterClick(int position) {
                 mFilterView.show(position);
@@ -171,28 +171,28 @@ public class HomeFragmentBusiActivity extends BaseActivity implements
             }
         });
         //设置城市监听器
-        mFilterView.setOnItemCityClickListener(new HomeFragmentBusiFilterView.OnItemCityClickListener() {
+        mFilterView.setOnItemCityClickListener(new HomeBusiFilterView.OnItemCityClickListener() {
             @Override
             public void onItemCityClick(String city) {
 
             }
         });
         //设置最近监听器
-        mFilterView.setOnItemNearClickListener(new HomeFragmentBusiFilterView.OnItemNearClickListener() {
+        mFilterView.setOnItemNearClickListener(new HomeBusiFilterView.OnItemNearClickListener() {
             @Override
             public void onItemNearClick(int near) {
 
             }
         });
         //设置类型监听器
-        mFilterView.setOnItemTypeClickListener(new HomeFragmentBusiFilterView.OnItemTypeClickListener() {
+        mFilterView.setOnItemTypeClickListener(new HomeBusiFilterView.OnItemTypeClickListener() {
             @Override
             public void onItemTypeClick(String type) {
 
             }
         });
         //设置筛选监听器
-        mFilterView.setOnItemSiftClickListener(new HomeFragmentBusiFilterView.OnItemSiftClickListener() {
+        mFilterView.setOnItemSiftClickListener(new HomeBusiFilterView.OnItemSiftClickListener() {
             @Override
             public void onItemSiftClick(int price) {
 

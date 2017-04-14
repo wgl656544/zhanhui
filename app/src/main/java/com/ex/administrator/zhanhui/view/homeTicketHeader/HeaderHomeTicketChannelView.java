@@ -1,4 +1,4 @@
-package com.ex.administrator.zhanhui.view.homeFragmentTicketHeader;
+package com.ex.administrator.zhanhui.view.homeTicketHeader;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +16,7 @@ import org.xutils.x;
 /**
  * Created by sunfusheng on 16/4/20.
  */
-public class HeaderHomeFragmentTicketChannelView implements View.OnClickListener {
+public class HeaderHomeTicketChannelView implements View.OnClickListener {
     @ViewInject(R.id.ll_home_fragment_ticket_1)
     private LinearLayout llTicket1;
     @ViewInject(R.id.ll_home_fragment_ticket_2)
@@ -24,7 +24,7 @@ public class HeaderHomeFragmentTicketChannelView implements View.OnClickListener
 
     private Context context;
 
-    public HeaderHomeFragmentTicketChannelView(Activity context) {
+    public HeaderHomeTicketChannelView(Activity context) {
         this.context = context;
     }
 

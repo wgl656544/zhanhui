@@ -70,6 +70,7 @@
                 android:visibility="gone" />
 
             <Button
+                android:textColor="@color/black"
                 android:id="@+id/btn_login_acquire_code"
                 android:layout_width="@dimen/x180"
                 android:layout_height="@dimen/y50"

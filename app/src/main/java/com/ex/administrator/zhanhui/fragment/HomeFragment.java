@@ -28,16 +28,15 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.activity.HomeFragmentBusiActivity;
-import com.ex.administrator.zhanhui.activity.HomeFragmentFindEXActivity;
-import com.ex.administrator.zhanhui.activity.HomeFragmentInfoActivity;
-import com.ex.administrator.zhanhui.activity.HomeFragmentTeamActivity;
-import com.ex.administrator.zhanhui.activity.HomeFragmentTicketActivity;
+import com.ex.administrator.zhanhui.activity.HomeBusiActivity;
+import com.ex.administrator.zhanhui.activity.HomeFindEXActivity;
+import com.ex.administrator.zhanhui.activity.HomeInfoActivity;
+import com.ex.administrator.zhanhui.activity.HomeTeamActivity;
+import com.ex.administrator.zhanhui.activity.HomeTicketActivity;
 import com.ex.administrator.zhanhui.activity.MainActivity;
 import com.ex.administrator.zhanhui.adapter.HomeAddressAdapter;
 import com.ex.administrator.zhanhui.adapter.HomeRollPagerAdapter;
@@ -129,6 +128,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
     private HomeTicketAdapter homeTicketAdapter;//首页门票业务适配器
     private static final int ZXING_SCAN_SUCCES = 1006;
 
+    private String[] strs = {"如约而至，博鳌健康论坛召开！", "大咖降临，习大大亲临会场！", "史上最高，中科院院士集结！"};
+
 
     MainActivity activity;
     private Handler handler = new Handler() {
@@ -151,8 +152,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
                 homePageBeanBusi = (HomePageBean) msg.obj;
                 //对业务模块进行分类
                 sortHomeBusi(homePageBeanBusi);
+                ptrHomeFragment.refreshComplete();
             }
-            ptrHomeFragment.refreshComplete();
         }
     };
 
@@ -177,8 +178,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
         header.setTextColor(R.color.colorOrange);
         ptrHomeFragment.setHeaderView(header);
         ptrHomeFragment.addPtrUIHandler(header);
-//        swipeHomeFragment.setColorSchemeResources(R.color.color_bule_2, R.color.colorOrange);
-//        swipeHomeFragment.setOnRefreshListener(this);
     }
 
     //显示热点城市
@@ -187,8 +186,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
         for (int i = 0; i < hotCityBean.getData().size(); i++) {
             mData.add(hotCityBean.getData().get(i).getName());
         }
-        SpinnerAdapter mSpinnerAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, mData);
-        mSpinner.setAdapter(mSpinnerAdapter);
+        if (mData != null) {
+            SpinnerAdapter mSpinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, mData);
+            mSpinner.setAdapter(mSpinnerAdapter);
+        }
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -227,13 +228,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
      * 显示首页顶部与中部广告
      */
     private void showAdvertisement(List<HomePageBean.DataList> topData) {
-        //顶部广告
-        //设置轮播动画的速度(切换的速度)
-        mRollPagerView.setAnimationDurtion(500);
-        //设置指示器的颜色
-        mRollPagerView.setHintView(new ColorPointHintView(getActivity(), Color.WHITE, Color.GRAY));
-        HomeRollPagerAdapter adapter = new HomeRollPagerAdapter(mRollPagerView, topData);
-        mRollPagerView.setAdapter(adapter);
+        if (mRollPagerView != null) {
+            //顶部广告
+            //设置轮播动画的速度(切换的速度)
+            mRollPagerView.setAnimationDurtion(500);
+            //设置指示器的颜色
+            mRollPagerView.setHintView(new ColorPointHintView(getActivity(), Color.WHITE, Color.GRAY));
+            HomeRollPagerAdapter adapter = new HomeRollPagerAdapter(mRollPagerView, topData);
+            mRollPagerView.setAdapter(adapter);
+        }
 
         //中部广告
         Glide.with(getActivity()).load(midDataList.get(0).getImageUrl()).into(midImageview);
@@ -352,19 +355,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
         switch (v.getId()) {
             //跳转到展会搜索
             case R.id.home_iv_exhibition:
-                startActivity(new Intent(getActivity(), HomeFragmentFindEXActivity.class));
+                startActivity(new Intent(getActivity(), HomeFindEXActivity.class));
                 break;
             //跳转资讯界面
             case R.id.home_iv_info:
-                startActivity(new Intent(getActivity(), HomeFragmentInfoActivity.class));
+                startActivity(new Intent(getActivity(), HomeInfoActivity.class));
                 break;
             //跳转团购界面
             case R.id.home_iv_team:
-                startActivity(new Intent(getActivity(), HomeFragmentTeamActivity.class));
+                startActivity(new Intent(getActivity(), HomeTeamActivity.class));
                 break;
             //跳转门票界面
             case R.id.home_iv_ticket:
-                startActivity(new Intent(getActivity(), HomeFragmentTicketActivity.class));
+                startActivity(new Intent(getActivity(), HomeTicketActivity.class));
                 break;
             //跳转到发现海南
             case R.id.home_iv_find:
@@ -373,7 +376,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
                 break;
             //跳转到招商界面
             case R.id.home_iv_busi:
-                startActivity(new Intent(getActivity(), HomeFragmentBusiActivity.class));
+                startActivity(new Intent(getActivity(), HomeBusiActivity.class));
                 break;
             //弹出更多的选项
             case R.id.rl_main_add:
@@ -467,12 +470,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
      * 显示上下滚动广告
      */
     private void showViewFlipper() {
-        for (int i = 0; i < 3; i++) {
+        for (String str : strs) {
             //加载布局
             View flipperView = View.inflate(getActivity(), R.layout.item_home_fragment_advert, null);
             //文字控件
             TextView tvFilpperView = (TextView) flipperView.findViewById(R.id.tv_filpperView);
-            tvFilpperView.setText("测试" + i + "");
+            tvFilpperView.setText(str);
             //图片控件
 //            ImageView ivFilpperView = (ImageView) flipperView.findViewById(R.id.iv_filpperView);
             //设置监听器
@@ -482,6 +485,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
                     ToastUtil.show(getActivity(), mViewFlipper.getDisplayedChild() + "");
                 }
             });
+            //添加view
             mViewFlipper.addView(flipperView);
         }
 
@@ -492,15 +496,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener, PtrH
         return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
     }
 
+    //下拉刷新
     @Override
     public void onRefreshBegin(PtrFrameLayout frame) {
-//        frame.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                ptrHomeFragment.refreshComplete();
-//                Toast.makeText(getActivity(), "刷新了", Toast.LENGTH_SHORT).show();
-//            }
-//        }, 2000);
+        //重新发送请求
         homePageModel.getHomePageBusi(handler);
     }
 }

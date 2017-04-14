@@ -1,4 +1,4 @@
-package com.ex.administrator.zhanhui.view.homeFragmentTicketHeader;
+package com.ex.administrator.zhanhui.view.homeTicketHeader;
 
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 

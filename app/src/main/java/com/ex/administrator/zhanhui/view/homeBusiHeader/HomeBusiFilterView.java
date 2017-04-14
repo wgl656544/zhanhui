@@ -1,4 +1,4 @@
-package com.ex.administrator.zhanhui.view.homeFragmentInfoHeader;
+package com.ex.administrator.zhanhui.view.homeBusiHeader;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -20,38 +20,37 @@ import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.adapter.filter.FilterOneAdapter;
 import com.ex.administrator.zhanhui.adapter.filter.FilterRightAdapter;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
-import com.ex.administrator.zhanhui.model.filter.FilterTwoEntity;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 
 /**
- * Created by sunfusheng on 17/3/8.
+ * Created by sunfusheng on 16/4/20.
  */
-public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnClickListener {
-    @ViewInject(R.id.tv_home_fragment_category_title)
-    private TextView tvCategoryTitle;//分类
-    @ViewInject(R.id.iv_home_fragment_category_arrow)
-    private ImageView ivCategoryArrow;
-
-    @ViewInject(R.id.tv_home_fragment_info_place_title)
-    private TextView tvPlaceTitle;//地方
-    @ViewInject(R.id.iv_home_fragment_info_place_arrow)
-    private ImageView ivPlaceArrow;
-
-    @ViewInject(R.id.tv_home_fragment_info_date_title)
-    private TextView tvDateTitle;//时间
-    @ViewInject(R.id.iv_home_fragment_info_date_arrow)
-    private ImageView ivDateArrow;
-
-    @ViewInject(R.id.ll_home_fragment_info_category)
-    private LinearLayout llCategory;//分类
-    @ViewInject(R.id.ll_home_fragment_info_place)
-    private LinearLayout llPlace;//地方
-    @ViewInject(R.id.ll_home_fragment_info_date)
-    private LinearLayout llDate;//时间
-
+public class HomeBusiFilterView extends LinearLayout implements View.OnClickListener {
+    @ViewInject(R.id.tv_city_title)
+    private TextView tvCityTitle;
+    @ViewInject(R.id.iv_city_arrow)
+    private ImageView ivCityArrow;
+    @ViewInject(R.id.tv_near_title)
+    private TextView tvNearTitle;
+    @ViewInject(R.id.iv_near_arrow)
+    private ImageView ivNearArrow;
+    @ViewInject(R.id.tv_type_title)
+    private TextView tvTypeTitle;
+    @ViewInject(R.id.iv_type_arrow)
+    private ImageView ivTypeArrow;
+    @ViewInject(R.id.tv_sift_title)
+    private TextView tvSiftTitle;
+    @ViewInject(R.id.iv_sift_arrow)
+    private ImageView ivSiftArrow;
+    @ViewInject(R.id.ll_city)
+    private LinearLayout llCity;
+    @ViewInject(R.id.ll_near)
+    private LinearLayout llNear;
+    @ViewInject(R.id.ll_type)
+    private LinearLayout llType;
     @ViewInject(R.id.lv_left)
     private ListView lvLeft;
     @ViewInject(R.id.lv_right)
@@ -60,6 +59,8 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     private LinearLayout llHeadLayout;
     @ViewInject(R.id.ll_content_list_view)
     private LinearLayout llContentListView;
+    @ViewInject(R.id.ll_sift)
+    private LinearLayout llSift;
     @ViewInject(R.id.view_mask_bg)
     private View viewMaskBg;
 
@@ -69,42 +70,40 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     private int filterPosition = -1;
     private int lastFilterPosition = -1;
     public static final int POSITION_CATEGORY = 0; // 分类的位置
-    public static final int POSITION_SORT = 1; // 地方的位置
-    public static final int POSITION_FILTER = 2; // 时间的位置
+    public static final int POSITION_SORT = 1; // 排序的位置
+    public static final int POSITION_FILTER = 2; // 筛选的位置
+    public static final int POSITION_OTHER = 3; // 其他的位置
 
     private boolean isShowing = false;
     private int panelHeight;
-    private InfoFilterData filterData;
+    private BusiFilterData filterData;
 
-    private FilterRightAdapter categoryAdapter;
-    private FilterOneAdapter placeAdapter;
-    private FilterOneAdapter dateAdapter;
+    private FilterRightAdapter cityAdapter;
+    private FilterOneAdapter nearAdapter;
+    private FilterOneAdapter typeAdapter;
+    private FilterOneAdapter siftAdapter;
 
 
-    private FilterTwoEntity leftSelectedCategoryEntity; // 被选择的分类项左侧数据
-    private FilterEntity rightSelectedCategoryEntity; // 被选择的分类项右侧数据
-    private FilterEntity selectedSortEntity; // 被选择的排序项
-    private FilterEntity selectedFilterEntity; // 被选择的筛选项
-
-    private FilterEntity selectedCategoryEntity; // 分类被选择的筛选项
-    private FilterEntity selectedPlaceEntity; // 地方被选择的筛选项
-    private FilterEntity selectedDateEntity; // 时间被选择的筛选项
+    private FilterEntity selectedCityEntity; // 城市被选择的筛选项
+    private FilterEntity selectedNearEntity; // 最近被选择的筛选项
+    private FilterEntity selectedTypeEntity; // 类型被选择的筛选项
+    private FilterEntity selectedSiftEntity; // 筛选被选择的筛选项
 
 //    private HeaderFilterView headerFilterView = new HeaderFilterView();
 
-    public HomeFragmentInfoFilterView(Context context, AttributeSet attrs) {
+    public HomeBusiFilterView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public HomeFragmentInfoFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeBusiFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     private void init(Context context) {
         this.mContext = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.home_fragment_info_filter, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.view_filter_layout, this);
         x.view().inject(this, view);
 
         initView();
@@ -117,9 +116,10 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     }
 
     private void initListener() {
-        llCategory.setOnClickListener(this);
-        llPlace.setOnClickListener(this);
-        llDate.setOnClickListener(this);
+        llCity.setOnClickListener(this);
+        llNear.setOnClickListener(this);
+        llType.setOnClickListener(this);
+        llSift.setOnClickListener(this);
         viewMaskBg.setOnClickListener(this);
         llContentListView.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -132,20 +132,26 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_home_fragment_info_category:
+            case R.id.ll_city:
                 filterPosition = 0;
                 if (onFilterClickListener != null) {
                     onFilterClickListener.onFilterClick(filterPosition);
                 }
                 break;
-            case R.id.ll_home_fragment_info_place:
+            case R.id.ll_near:
                 filterPosition = 1;
                 if (onFilterClickListener != null) {
                     onFilterClickListener.onFilterClick(filterPosition);
                 }
                 break;
-            case R.id.ll_home_fragment_info_date:
+            case R.id.ll_type:
                 filterPosition = 2;
+                if (onFilterClickListener != null) {
+                    onFilterClickListener.onFilterClick(filterPosition);
+                }
+                break;
+            case R.id.ll_sift:
+                filterPosition = 3;
                 if (onFilterClickListener != null) {
                     onFilterClickListener.onFilterClick(filterPosition);
                 }
@@ -159,16 +165,16 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     // 复位筛选的显示状态
     public void resetFilterStatus() {
 //        tvCityTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
-        ivCategoryArrow.setImageResource(R.mipmap.home_down_arrow);
+        ivCityArrow.setImageResource(R.mipmap.home_down_arrow);
 
 //        tvNearTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
-        ivPlaceArrow.setImageResource(R.mipmap.home_down_arrow);
+        ivNearArrow.setImageResource(R.mipmap.home_down_arrow);
 
 //        tvTypeTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
-        ivDateArrow.setImageResource(R.mipmap.home_down_arrow);
+        ivTypeArrow.setImageResource(R.mipmap.home_down_arrow);
 
 //        tvSiftTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
-//        ivSiftArrow.setImageResource(R.mipmap.home_down_arrow);
+        ivSiftArrow.setImageResource(R.mipmap.home_down_arrow);
     }
 
     // 复位所有的状态
@@ -177,86 +183,126 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
         hide();
     }
 
-    // 设置分类数据
+    // 设置城市数据
     private void setCityAdapter() {
         lvRight.setVisibility(VISIBLE);
-
-        categoryAdapter = new FilterRightAdapter(mContext, filterData.getCategory());
-        lvRight.setAdapter(categoryAdapter);
-        categoryAdapter.setSelectedEntity(selectedCategoryEntity);
+        cityAdapter = new FilterRightAdapter(mContext, filterData.getCity());
+        lvRight.setAdapter(cityAdapter);
+        cityAdapter.setSelectedEntity(selectedCityEntity);
         lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedCategoryEntity = filterData.getCategory().get(position);
-                String type = filterData.getCategory().get(position).getKey();
-                if (onItemCategoryClickListener != null) {
-                    onItemCategoryClickListener.onItemCategoryClick(type);
+                selectedCityEntity = filterData.getCity().get(position);
+                String city = filterData.getCity().get(position).getKey();
+                if (onItemCityClickListener != null) {
+                    onItemCityClickListener.onItemCityClick(city);
                 }
-                tvCategoryTitle.setText(filterData.getCategory().get(position).getKey());
+                tvCityTitle.setText(filterData.getCity().get(position).getKey());
                 //修改假视图文本
-                HeaderHomeFragmentInfoFilterView.setTitle(0, filterData.getCategory().get(position).getKey());
+                HeaderHomeBusiFilterView.setTitle(0, filterData.getCity().get(position).getKey());
                 hide();
             }
         });
     }
 
-    // 设置地方数据
+    // 设置最近数据
     private void setNearAdapter() {
         lvLeft.setVisibility(GONE);
         lvRight.setVisibility(VISIBLE);
 
-        placeAdapter = new FilterOneAdapter(mContext, filterData.getPlace());
-        lvRight.setAdapter(placeAdapter);
-        placeAdapter.setSelectedEntity(selectedPlaceEntity);
+        nearAdapter = new FilterOneAdapter(mContext, filterData.getNear());
+        lvRight.setAdapter(nearAdapter);
+        nearAdapter.setSelectedEntity(selectedNearEntity);
         lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedPlaceEntity = filterData.getPlace().get(position);
-                String city = filterData.getPlace().get(position).getKey();
-                if (onItemPlaceClickListener != null) {
-                    onItemPlaceClickListener.onItemPlaceClick(city);
+                selectedNearEntity = filterData.getNear().get(position);
+                int near = 0;
+                if (onItemNearClickListener != null) {
+                    switch (position) {
+                        case 0:
+                            near = 1;
+                            break;
+                        case 1:
+                            near = 3;
+                            break;
+                        case 2:
+                            near = 6;
+                            break;
+                        case 3:
+                            near = 12;
+                            break;
+                    }
+                    onItemNearClickListener.onItemNearClick(near);
                 }
-                tvPlaceTitle.setText(filterData.getPlace().get(position).getKey());
+                tvNearTitle.setText(filterData.getNear().get(position).getKey());
                 //修改假视图文本
-                HeaderHomeFragmentInfoFilterView.setTitle(1, filterData.getPlace().get(position).getKey());
+                HeaderHomeBusiFilterView.setTitle(1, filterData.getNear().get(position).getKey());
                 hide();
             }
         });
     }
 
-    // 设置时间数据
+    // 设置类型数据
     private void setTypeAdapter() {
         lvLeft.setVisibility(GONE);
         lvRight.setVisibility(VISIBLE);
 
-        dateAdapter = new FilterOneAdapter(mContext, filterData.getDate());
-        lvRight.setAdapter(dateAdapter);
-        dateAdapter.setSelectedEntity(selectedDateEntity);
+        typeAdapter = new FilterOneAdapter(mContext, filterData.getType());
+        lvRight.setAdapter(typeAdapter);
+        typeAdapter.setSelectedEntity(selectedTypeEntity);
         lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedDateEntity = filterData.getDate().get(position);
-                int date = 0;
-                if (onItemDateClickListener != null) {
+                selectedTypeEntity = filterData.getType().get(position);
+                String type = filterData.getType().get(position).getKey();
+                if (onItemTypeClickListener != null) {
+                    onItemTypeClickListener.onItemTypeClick(type);
+                }
+                tvTypeTitle.setText(filterData.getType().get(position).getKey());
+                //修改假视图文本
+                HeaderHomeBusiFilterView.setTitle(2, filterData.getType().get(position).getKey());
+                hide();
+            }
+        });
+    }
+
+    // 设置筛选数据
+    private void setSiftAdapter() {
+        lvLeft.setVisibility(GONE);
+        lvRight.setVisibility(VISIBLE);
+
+        siftAdapter = new FilterOneAdapter(mContext, filterData.getSift());
+        lvRight.setAdapter(siftAdapter);
+        siftAdapter.setSelectedEntity(selectedSiftEntity);
+        lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedSiftEntity = filterData.getSift().get(position);
+                int price = 0;
+                if (onItemSiftClickListener != null) {
                     switch (position) {
                         case 0:
-                            date = 1;
+                            price = 200;
                             break;
                         case 1:
-                            date = 3;
+                            price = 500;
                             break;
                         case 2:
-                            date = 6;
+                            price = 1000;
                             break;
                         case 3:
-                            date = 12;
+                            price = 5000;
+                            break;
+                        case 4:
+                            price = 5001;
                             break;
                     }
-                    onItemDateClickListener.onItemDateClick(date);
+                    onItemSiftClickListener.onItemSiftClick(price);
                 }
-                tvDateTitle.setText(filterData.getDate().get(position).getKey());
+                tvSiftTitle.setText(filterData.getSift().get(position).getKey());
                 //修改假视图文本
-                HeaderHomeFragmentInfoFilterView.setTitle(2, filterData.getDate().get(position).getKey());
+                HeaderHomeBusiFilterView.setTitle(3, filterData.getSift().get(position).getKey());
                 hide();
             }
         });
@@ -274,18 +320,23 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
         switch (position) {
             case POSITION_CATEGORY:
 //                tvCityTitle.setTextColor(mActivity.getResources().getColor(R.color.colorPrimary));
-                ivCategoryArrow.setImageResource(R.mipmap.home_down_arrow_red);
+                ivCityArrow.setImageResource(R.mipmap.home_down_arrow_red);
                 setCityAdapter();
                 break;
             case POSITION_SORT:
 //                tvNearTitle.setTextColor(mActivity.getResources().getColor(R.color.colorPrimary));
-                ivPlaceArrow.setImageResource(R.mipmap.home_down_arrow_red);
+                ivNearArrow.setImageResource(R.mipmap.home_down_arrow_red);
                 setNearAdapter();
                 break;
             case POSITION_FILTER:
 //                tvTypeTitle.setTextColor(mActivity.getResources().getColor(R.color.colorPrimary));
-                ivDateArrow.setImageResource(R.mipmap.home_down_arrow_red);
+                ivTypeArrow.setImageResource(R.mipmap.home_down_arrow_red);
                 setTypeAdapter();
+                break;
+            case POSITION_OTHER:
+//                tvSiftTitle.setTextColor(mActivity.getResources().getColor(R.color.colorPrimary));
+                ivSiftArrow.setImageResource(R.mipmap.home_down_arrow_red);
+                setSiftAdapter();
                 break;
         }
 
@@ -319,13 +370,16 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     private void rotateArrowUp(int position) {
         switch (position) {
             case POSITION_CATEGORY:
-                rotateArrowUpAnimation(ivCategoryArrow);
+                rotateArrowUpAnimation(ivCityArrow);
                 break;
             case POSITION_SORT:
-                rotateArrowUpAnimation(ivPlaceArrow);
+                rotateArrowUpAnimation(ivNearArrow);
                 break;
             case POSITION_FILTER:
-                rotateArrowUpAnimation(ivDateArrow);
+                rotateArrowUpAnimation(ivTypeArrow);
+                break;
+            case POSITION_OTHER:
+                rotateArrowUpAnimation(ivSiftArrow);
                 break;
         }
     }
@@ -334,13 +388,16 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     private void rotateArrowDown(int position) {
         switch (position) {
             case POSITION_CATEGORY:
-                rotateArrowDownAnimation(ivCategoryArrow);
+                rotateArrowDownAnimation(ivCityArrow);
                 break;
             case POSITION_SORT:
-                rotateArrowDownAnimation(ivPlaceArrow);
+                rotateArrowDownAnimation(ivNearArrow);
                 break;
             case POSITION_FILTER:
-                rotateArrowDownAnimation(ivDateArrow);
+                rotateArrowDownAnimation(ivTypeArrow);
+                break;
+            case POSITION_OTHER:
+                rotateArrowDownAnimation(ivSiftArrow);
                 break;
         }
     }
@@ -390,7 +447,7 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
     }
 
     // 设置筛选数据
-    public void setFilterData(Activity activity, InfoFilterData filterData) {
+    public void setFilterData(Activity activity, BusiFilterData filterData) {
         this.mActivity = activity;
         this.filterData = filterData;
     }
@@ -415,37 +472,49 @@ public class HomeFragmentInfoFilterView extends LinearLayout implements View.OnC
         void onFilterClick(int position);
     }
 
-    // 分类Item点击
-    private OnItemCategoryClickListener onItemCategoryClickListener;
+    // 城市Item点击
+    private OnItemCityClickListener onItemCityClickListener;
 
-    public void setOnItemCategoryClickListener(OnItemCategoryClickListener onItemCategoryClickListener) {
-        this.onItemCategoryClickListener = onItemCategoryClickListener;
+    public void setOnItemCityClickListener(OnItemCityClickListener onItemCityClickListener) {
+        this.onItemCityClickListener = onItemCityClickListener;
     }
 
-    public interface OnItemCategoryClickListener {
-        void onItemCategoryClick(String type);
+    public interface OnItemCityClickListener {
+        void onItemCityClick(String city);
     }
 
-    // 地方Item点击
-    private OnItemPlaceClickListener onItemPlaceClickListener;
+    // 最近Item点击
+    private OnItemNearClickListener onItemNearClickListener;
 
-    public void setOnItemPlaceClickListener(OnItemPlaceClickListener onItemPlaceClickListener) {
-        this.onItemPlaceClickListener = onItemPlaceClickListener;
+    public void setOnItemNearClickListener(OnItemNearClickListener onItemNearClickListener) {
+        this.onItemNearClickListener = onItemNearClickListener;
     }
 
-    public interface OnItemPlaceClickListener {
-        void onItemPlaceClick(String city);
+    public interface OnItemNearClickListener {
+        void onItemNearClick(int near);
     }
 
-    // 时间Item点击
-    private OnItemDateClickListener onItemDateClickListener;
+    // 类型Item点击
+    private OnItemTypeClickListener onItemTypeClickListener;
 
-    public void setOnItemDateClickListener(OnItemDateClickListener onItemDateClickListener) {
-        this.onItemDateClickListener = onItemDateClickListener;
+    public void setOnItemTypeClickListener(OnItemTypeClickListener onItemTypeClickListener) {
+        this.onItemTypeClickListener = onItemTypeClickListener;
     }
 
-    public interface OnItemDateClickListener {
-        void onItemDateClick(int date);
+    public interface OnItemTypeClickListener {
+        void onItemTypeClick(String type);
     }
+
+    // 筛选Item点击
+    private OnItemSiftClickListener onItemSiftClickListener;
+
+    public void setOnItemSiftClickListener(OnItemSiftClickListener onItemSiftClickListener) {
+        this.onItemSiftClickListener = onItemSiftClickListener;
+    }
+
+    public interface OnItemSiftClickListener {
+        void onItemSiftClick(int price);
+    }
+
 
 }

@@ -34,13 +34,31 @@ public class InfoCategoryChannelAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(holder.itemView, position);
+                }
+            }
+        });
         Glide.with(context).load(datas.get(position).getImageUrl()).into(((MyViewHolder) holder).imageView);
     }
 
     @Override
     public int getItemCount() {
         return datas.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     private class MyViewHolder extends RecyclerView.ViewHolder {

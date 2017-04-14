@@ -28,14 +28,13 @@
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
+            android:name=".activity.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +42,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.HomeFragmentFindEXActivity"
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.HomeFindEXActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DetailExActivity"
@@ -64,16 +67,16 @@
             android:name=".activity.EmailLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeFragmentInfoActivity"
+            android:name=".activity.HomeInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeFragmentTeamActivity"
+            android:name=".activity.HomeTeamActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeFragmentTicketActivity"
+            android:name=".activity.HomeTicketActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeFragmentBusiActivity"
+            android:name=".activity.HomeBusiActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DetailExpoActivity"

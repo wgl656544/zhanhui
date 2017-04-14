@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:padding="@dimen/x10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -15,6 +16,7 @@
             android:id="@+id/iv_home_fragment_ticket_pic"
             android:layout_width="@dimen/x180"
             android:layout_height="@dimen/x180"
+            android:scaleType="fitXY"
             android:src="@drawable/default_pic" />
 
 

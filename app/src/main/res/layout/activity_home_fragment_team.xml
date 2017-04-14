@@ -42,7 +42,7 @@
             android:divider="@null"
             android:dividerHeight="0dp" />
 
-        <com.ex.administrator.zhanhui.view.homeFragmentTeamHeader.HomeFragmrntTeamFilterView
+        <com.ex.administrator.zhanhui.view.homeTeamHeader.HomeTeamFilterView
             android:id="@+id/fv_home_fragment_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

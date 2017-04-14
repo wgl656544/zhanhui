@@ -1,4 +1,4 @@
-package com.ex.administrator.zhanhui.view.homeFragmentTeamHeader;
+package com.ex.administrator.zhanhui.view.homeInfoHeader;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.adapter.filter.FilterLeftAdapter;
 import com.ex.administrator.zhanhui.adapter.filter.FilterOneAdapter;
 import com.ex.administrator.zhanhui.adapter.filter.FilterRightAdapter;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
@@ -30,28 +29,28 @@ import org.xutils.x;
 /**
  * Created by sunfusheng on 17/3/8.
  */
-public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnClickListener {
-    @ViewInject(R.id.tv_home_fragment_team_type_title)
-    private TextView tvTypeTitle;//类型
-    @ViewInject(R.id.iv_home_fragment_team_type_arrow)
-    private ImageView ivTypeArrow;
+public class HomeInfoFilterView extends LinearLayout implements View.OnClickListener {
+    @ViewInject(R.id.tv_home_fragment_category_title)
+    private TextView tvCategoryTitle;//分类
+    @ViewInject(R.id.iv_home_fragment_category_arrow)
+    private ImageView ivCategoryArrow;
 
-    @ViewInject(R.id.tv_home_fragment_team_place_title)
-    private TextView tvPlaceTitle;//产地
-    @ViewInject(R.id.iv_home_fragment_team_place_arrow)
+    @ViewInject(R.id.tv_home_fragment_info_place_title)
+    private TextView tvPlaceTitle;//地方
+    @ViewInject(R.id.iv_home_fragment_info_place_arrow)
     private ImageView ivPlaceArrow;
 
-    @ViewInject(R.id.tv_home_fragment_team_sift_title)
-    private TextView tvSiftTitle;//筛选
-    @ViewInject(R.id.iv_home_fragment_team_sift_arrow)
-    private ImageView ivSiftArrow;
+    @ViewInject(R.id.tv_home_fragment_info_date_title)
+    private TextView tvDateTitle;//时间
+    @ViewInject(R.id.iv_home_fragment_info_date_arrow)
+    private ImageView ivDateArrow;
 
-    @ViewInject(R.id.ll_home_fragment_team_type)
-    private LinearLayout llType;//分类
-    @ViewInject(R.id.ll_home_fragment_team_place)
-    private LinearLayout llPlace;//产地
-    @ViewInject(R.id.ll_home_fragment_team_sift)
-    private LinearLayout llSift;//筛选
+    @ViewInject(R.id.ll_home_fragment_info_category)
+    private LinearLayout llCategory;//分类
+    @ViewInject(R.id.ll_home_fragment_info_place)
+    private LinearLayout llPlace;//地方
+    @ViewInject(R.id.ll_home_fragment_info_date)
+    private LinearLayout llDate;//时间
 
     @ViewInject(R.id.lv_left)
     private ListView lvLeft;
@@ -75,35 +74,37 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
 
     private boolean isShowing = false;
     private int panelHeight;
-    private TeamFilterData filterData;
+    private InfoFilterData filterData;
 
-
-    private FilterRightAdapter typeAdapter;
+    private FilterRightAdapter categoryAdapter;
     private FilterOneAdapter placeAdapter;
-    private FilterOneAdapter siftAdapter;
+    private FilterOneAdapter dateAdapter;
+
 
     private FilterTwoEntity leftSelectedCategoryEntity; // 被选择的分类项左侧数据
     private FilterEntity rightSelectedCategoryEntity; // 被选择的分类项右侧数据
     private FilterEntity selectedSortEntity; // 被选择的排序项
-    private FilterEntity selectedTypeEntity; // 被选择的筛选项
-    private FilterEntity selectedPlaceEntity; // 被选择的筛选项
-    private FilterEntity selectedSiftEntity; // 被选择的筛选项
+    private FilterEntity selectedFilterEntity; // 被选择的筛选项
+
+    private FilterEntity selectedCategoryEntity; // 分类被选择的筛选项
+    private FilterEntity selectedPlaceEntity; // 地方被选择的筛选项
+    private FilterEntity selectedDateEntity; // 时间被选择的筛选项
 
 //    private HeaderFilterView headerFilterView = new HeaderFilterView();
 
-    public HomeFragmrntTeamFilterView(Context context, AttributeSet attrs) {
+    public HomeInfoFilterView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public HomeFragmrntTeamFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeInfoFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     private void init(Context context) {
         this.mContext = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.home_fragment_team_filter, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.home_fragment_info_filter, this);
         x.view().inject(this, view);
 
         initView();
@@ -116,9 +117,9 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
     }
 
     private void initListener() {
-        llType.setOnClickListener(this);
+        llCategory.setOnClickListener(this);
         llPlace.setOnClickListener(this);
-        llSift.setOnClickListener(this);
+        llDate.setOnClickListener(this);
         viewMaskBg.setOnClickListener(this);
         llContentListView.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -131,19 +132,19 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_home_fragment_team_type:
+            case R.id.ll_home_fragment_info_category:
                 filterPosition = 0;
                 if (onFilterClickListener != null) {
                     onFilterClickListener.onFilterClick(filterPosition);
                 }
                 break;
-            case R.id.ll_home_fragment_team_place:
+            case R.id.ll_home_fragment_info_place:
                 filterPosition = 1;
                 if (onFilterClickListener != null) {
                     onFilterClickListener.onFilterClick(filterPosition);
                 }
                 break;
-            case R.id.ll_home_fragment_team_sift:
+            case R.id.ll_home_fragment_info_date:
                 filterPosition = 2;
                 if (onFilterClickListener != null) {
                     onFilterClickListener.onFilterClick(filterPosition);
@@ -158,13 +159,16 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
     // 复位筛选的显示状态
     public void resetFilterStatus() {
 //        tvCityTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
-        ivTypeArrow.setImageResource(R.mipmap.home_down_arrow);
+        ivCategoryArrow.setImageResource(R.mipmap.home_down_arrow);
 
 //        tvNearTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
         ivPlaceArrow.setImageResource(R.mipmap.home_down_arrow);
 
 //        tvTypeTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
-        ivSiftArrow.setImageResource(R.mipmap.home_down_arrow);
+        ivDateArrow.setImageResource(R.mipmap.home_down_arrow);
+
+//        tvSiftTitle.setTextColor(mContext.getResources().getColor(R.color.font_black_2));
+//        ivSiftArrow.setImageResource(R.mipmap.home_down_arrow);
     }
 
     // 复位所有的状态
@@ -173,29 +177,30 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
         hide();
     }
 
-    // 设置类型数据
+    // 设置分类数据
     private void setCityAdapter() {
         lvRight.setVisibility(VISIBLE);
 
-        typeAdapter = new FilterRightAdapter(mContext, filterData.getCategory());
-        lvRight.setAdapter(typeAdapter);
-        typeAdapter.setSelectedEntity(selectedTypeEntity);
+        categoryAdapter = new FilterRightAdapter(mContext, filterData.getCategory());
+        lvRight.setAdapter(categoryAdapter);
+        categoryAdapter.setSelectedEntity(selectedCategoryEntity);
         lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedTypeEntity = filterData.getCategory().get(position);
+                selectedCategoryEntity = filterData.getCategory().get(position);
                 String type = filterData.getCategory().get(position).getKey();
-                if (onItemTypeClickListener != null) {
-                    onItemTypeClickListener.onItemTypeClick(type);
+                if (onItemCategoryClickListener != null) {
+                    onItemCategoryClickListener.onItemCategoryClick(type);
                 }
-                tvTypeTitle.setText(filterData.getCategory().get(position).getKey());
-                HeaderHomeFragmentTeamFilterView.setTitle(0, filterData.getCategory().get(position).getKey());
+                tvCategoryTitle.setText(filterData.getCategory().get(position).getKey());
+                //修改假视图文本
+                HeaderHomeInfoFilterView.setTitle(0, filterData.getCategory().get(position).getKey());
                 hide();
             }
         });
     }
 
-    // 设置产地数据
+    // 设置地方数据
     private void setNearAdapter() {
         lvLeft.setVisibility(GONE);
         lvRight.setVisibility(VISIBLE);
@@ -207,52 +212,51 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedPlaceEntity = filterData.getPlace().get(position);
-                String place = filterData.getPlace().get(position).getKey();
+                String city = filterData.getPlace().get(position).getKey();
                 if (onItemPlaceClickListener != null) {
-                    onItemPlaceClickListener.onItemPlaceClick(place);
+                    onItemPlaceClickListener.onItemPlaceClick(city);
                 }
                 tvPlaceTitle.setText(filterData.getPlace().get(position).getKey());
-                HeaderHomeFragmentTeamFilterView.setTitle(1, filterData.getPlace().get(position).getKey());
+                //修改假视图文本
+                HeaderHomeInfoFilterView.setTitle(1, filterData.getPlace().get(position).getKey());
                 hide();
             }
         });
     }
 
-    // 设置筛选数据
+    // 设置时间数据
     private void setTypeAdapter() {
         lvLeft.setVisibility(GONE);
         lvRight.setVisibility(VISIBLE);
 
-        siftAdapter = new FilterOneAdapter(mContext, filterData.getType());
-        lvRight.setAdapter(siftAdapter);
-        siftAdapter.setSelectedEntity(selectedSiftEntity);
+        dateAdapter = new FilterOneAdapter(mContext, filterData.getDate());
+        lvRight.setAdapter(dateAdapter);
+        dateAdapter.setSelectedEntity(selectedDateEntity);
         lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedSiftEntity = filterData.getType().get(position);
-                int price = 0;
-                if (onItemSiftClickListener != null) {
+                selectedDateEntity = filterData.getDate().get(position);
+                int date = 0;
+                if (onItemDateClickListener != null) {
                     switch (position) {
                         case 0:
-                            price = 200;
+                            date = 1;
                             break;
                         case 1:
-                            price = 500;
+                            date = 3;
                             break;
                         case 2:
-                            price = 1000;
+                            date = 6;
                             break;
                         case 3:
-                            price = 5000;
-                            break;
-                        case 4:
-                            price = 5001;
+                            date = 12;
                             break;
                     }
-                    onItemSiftClickListener.onItemSiftClick(price);
+                    onItemDateClickListener.onItemDateClick(date);
                 }
-                tvSiftTitle.setText(filterData.getType().get(position).getKey());
-                HeaderHomeFragmentTeamFilterView.setTitle(2, filterData.getType().get(position).getKey());
+                tvDateTitle.setText(filterData.getDate().get(position).getKey());
+                //修改假视图文本
+                HeaderHomeInfoFilterView.setTitle(2, filterData.getDate().get(position).getKey());
                 hide();
             }
         });
@@ -270,7 +274,7 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
         switch (position) {
             case POSITION_CATEGORY:
 //                tvCityTitle.setTextColor(mActivity.getResources().getColor(R.color.colorPrimary));
-                ivTypeArrow.setImageResource(R.mipmap.home_down_arrow_red);
+                ivCategoryArrow.setImageResource(R.mipmap.home_down_arrow_red);
                 setCityAdapter();
                 break;
             case POSITION_SORT:
@@ -280,7 +284,7 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
                 break;
             case POSITION_FILTER:
 //                tvTypeTitle.setTextColor(mActivity.getResources().getColor(R.color.colorPrimary));
-                ivSiftArrow.setImageResource(R.mipmap.home_down_arrow_red);
+                ivDateArrow.setImageResource(R.mipmap.home_down_arrow_red);
                 setTypeAdapter();
                 break;
         }
@@ -315,13 +319,13 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
     private void rotateArrowUp(int position) {
         switch (position) {
             case POSITION_CATEGORY:
-                rotateArrowUpAnimation(ivTypeArrow);
+                rotateArrowUpAnimation(ivCategoryArrow);
                 break;
             case POSITION_SORT:
                 rotateArrowUpAnimation(ivPlaceArrow);
                 break;
             case POSITION_FILTER:
-                rotateArrowUpAnimation(ivSiftArrow);
+                rotateArrowUpAnimation(ivDateArrow);
                 break;
         }
     }
@@ -330,13 +334,13 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
     private void rotateArrowDown(int position) {
         switch (position) {
             case POSITION_CATEGORY:
-                rotateArrowDownAnimation(ivTypeArrow);
+                rotateArrowDownAnimation(ivCategoryArrow);
                 break;
             case POSITION_SORT:
                 rotateArrowDownAnimation(ivPlaceArrow);
                 break;
             case POSITION_FILTER:
-                rotateArrowDownAnimation(ivSiftArrow);
+                rotateArrowDownAnimation(ivDateArrow);
                 break;
         }
     }
@@ -386,7 +390,7 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
     }
 
     // 设置筛选数据
-    public void setFilterData(Activity activity, TeamFilterData filterData) {
+    public void setFilterData(Activity activity, InfoFilterData filterData) {
         this.mActivity = activity;
         this.filterData = filterData;
     }
@@ -411,18 +415,18 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
         void onFilterClick(int position);
     }
 
-    // 类型Item点击
-    private OnItemTypeClickListener onItemTypeClickListener;
+    // 分类Item点击
+    private OnItemCategoryClickListener onItemCategoryClickListener;
 
-    public void setOnItemCategoryClickListener(OnItemTypeClickListener onItemTypeClickListener) {
-        this.onItemTypeClickListener = onItemTypeClickListener;
+    public void setOnItemCategoryClickListener(OnItemCategoryClickListener onItemCategoryClickListener) {
+        this.onItemCategoryClickListener = onItemCategoryClickListener;
     }
 
-    public interface OnItemTypeClickListener {
-        void onItemTypeClick(String type);
+    public interface OnItemCategoryClickListener {
+        void onItemCategoryClick(String type);
     }
 
-    // 产地Item点击
+    // 地方Item点击
     private OnItemPlaceClickListener onItemPlaceClickListener;
 
     public void setOnItemPlaceClickListener(OnItemPlaceClickListener onItemPlaceClickListener) {
@@ -430,18 +434,18 @@ public class HomeFragmrntTeamFilterView extends LinearLayout implements View.OnC
     }
 
     public interface OnItemPlaceClickListener {
-        void onItemPlaceClick(String place);
+        void onItemPlaceClick(String city);
     }
 
-    // 筛选Item点击
-    private OnItemSiftClickListener onItemSiftClickListener;
+    // 时间Item点击
+    private OnItemDateClickListener onItemDateClickListener;
 
-    public void setOnItemSiftClickListener(OnItemSiftClickListener onItemSiftClickListener) {
-        this.onItemSiftClickListener = onItemSiftClickListener;
+    public void setOnItemDateClickListener(OnItemDateClickListener onItemDateClickListener) {
+        this.onItemDateClickListener = onItemDateClickListener;
     }
 
-    public interface OnItemSiftClickListener {
-        void onItemSiftClick(int price);
+    public interface OnItemDateClickListener {
+        void onItemDateClick(int date);
     }
 
 }

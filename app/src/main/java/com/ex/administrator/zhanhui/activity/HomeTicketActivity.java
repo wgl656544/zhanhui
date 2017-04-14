@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
@@ -22,10 +21,10 @@ import com.ex.administrator.zhanhui.model.GetDataModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
-import com.ex.administrator.zhanhui.view.homeFragmentTicketHeader.HeaderHomeFragmentTicketChannelView;
-import com.ex.administrator.zhanhui.view.homeFragmentTicketHeader.HeaderHomeFragmentTicketFilterView;
-import com.ex.administrator.zhanhui.view.homeFragmentTicketHeader.HomeFragmentTicketFilterView;
-import com.ex.administrator.zhanhui.view.homeFragmentTicketHeader.TicketFilterData;
+import com.ex.administrator.zhanhui.view.homeTicketHeader.HeaderHomeTicketChannelView;
+import com.ex.administrator.zhanhui.view.homeTicketHeader.HeaderHomeTicketFilterView;
+import com.ex.administrator.zhanhui.view.homeTicketHeader.HomeTicketFilterView;
+import com.ex.administrator.zhanhui.view.homeTicketHeader.TicketFilterData;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -42,15 +41,15 @@ import in.srain.cube.views.ptr.header.StoreHouseHeader;
  * Created by Administrator on 2017/2/20 0020.
  */
 
-public class HomeFragmentTicketActivity extends BaseActivity implements
+public class HomeTicketActivity extends BaseActivity implements
         SmoothListView.ISmoothListViewListener, View.OnClickListener,
-        HeaderHomeFragmentTicketChannelView.OnClickListener, PtrHandler {
+        HeaderHomeTicketChannelView.OnClickListener, PtrHandler {
 
     @ViewInject(R.id.sl_home_fagment_ticket)
     private ListView mSmoothListView;
 
     @ViewInject(R.id.fv_home_fragment_ticket)
-    private HomeFragmentTicketFilterView mFilterView;
+    private HomeTicketFilterView mFilterView;
 
     @ViewInject(R.id.rl_home_fragment_ticket_back)
     private RelativeLayout rlBack;
@@ -58,8 +57,8 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
     @ViewInject(R.id.ptr_ticket)
     private PtrFrameLayout ptrTicket;
 
-    private HeaderHomeFragmentTicketFilterView mHeaderFilterView;
-    private HeaderHomeFragmentTicketChannelView mHeaderChannelView;
+    private HeaderHomeTicketFilterView mHeaderFilterView;
+    private HeaderHomeTicketChannelView mHeaderChannelView;
     private TicketFilterData filterData;
     private int filterPosition;//点击第几个筛选
     private int filterViewPosition = 2;//筛选视图的位置
@@ -85,7 +84,6 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
                 ticketTypeDatas = new ArrayList<>();
                 for (int i = 0; i < ticketTypeBean.getData().size(); i++) {
                     ticketTypeDatas.add(new FilterEntity(ticketTypeBean.getData().get(i).getName()));
-                    Log.d("lingyi", ticketTypeBean.getData().get(i).getName());
                 }
             }
             if (msg.what == HandlerConstant.SEARCH_SUCCESS) {//搜索门票
@@ -130,10 +128,10 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
      */
     private void initview() {
         //添加频道头布局
-        mHeaderChannelView = new HeaderHomeFragmentTicketChannelView(this);
+        mHeaderChannelView = new HeaderHomeTicketChannelView(this);
         mHeaderChannelView.getView(mSmoothListView);
         //添加筛选头布局
-        mHeaderFilterView = new HeaderHomeFragmentTicketFilterView(this);
+        mHeaderFilterView = new HeaderHomeTicketFilterView(this);
         mHeaderFilterView.getView(mSmoothListView);
 
         final StoreHouseHeader header = new StoreHouseHeader(this);
@@ -141,6 +139,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
         header.setTextColor(R.color.color_bule_2);
         ptrTicket.setHeaderView(header);
         ptrTicket.addPtrUIHandler(header);
+        ptrTicket.setPtrHandler(this);
     }
 
     /**
@@ -151,7 +150,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
         //返回
         rlBack.setOnClickListener(this);
         //筛选头布局监听器
-        mHeaderFilterView.setOnFilterClickListener(new HeaderHomeFragmentTicketFilterView.OnFilterClickListener() {
+        mHeaderFilterView.setOnFilterClickListener(new HeaderHomeTicketFilterView.OnFilterClickListener() {
             @Override
             public void onFilterClick(int position) {
                 filterPosition = position;
@@ -160,7 +159,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
             }
         });
         //真正的筛选视图监听器
-        mFilterView.setOnFilterClickListener(new HomeFragmentTicketFilterView.OnFilterClickListener() {
+        mFilterView.setOnFilterClickListener(new HomeTicketFilterView.OnFilterClickListener() {
             @Override
             public void onFilterClick(int position) {
                 mFilterView.show(position);
@@ -196,28 +195,28 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
             }
         });
         //设置城市监听器
-        mFilterView.setOnItemCityClickListener(new HomeFragmentTicketFilterView.OnItemCityClickListener() {
+        mFilterView.setOnItemCityClickListener(new HomeTicketFilterView.OnItemCityClickListener() {
             @Override
             public void onItemCityClick(String city) {
 
             }
         });
         //设置最近监听器
-        mFilterView.setOnItemNearClickListener(new HomeFragmentTicketFilterView.OnItemNearClickListener() {
+        mFilterView.setOnItemNearClickListener(new HomeTicketFilterView.OnItemNearClickListener() {
             @Override
             public void onItemNearClick(int near) {
 
             }
         });
         //设置类型监听器
-        mFilterView.setOnItemTypeClickListener(new HomeFragmentTicketFilterView.OnItemTypeClickListener() {
+        mFilterView.setOnItemTypeClickListener(new HomeTicketFilterView.OnItemTypeClickListener() {
             @Override
             public void onItemTypeClick(String type) {
 
             }
         });
         //设置筛选监听器
-        mFilterView.setOnItemSiftClickListener(new HomeFragmentTicketFilterView.OnItemSiftClickListener() {
+        mFilterView.setOnItemSiftClickListener(new HomeTicketFilterView.OnItemSiftClickListener() {
             @Override
             public void onItemSiftClick(int price) {
 
@@ -248,7 +247,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
     }
 
     /**
-     * 展示展会
+     * 展示门票
      */
     private void showExhibitions(List<CommonBean.Data> datas) {
 //        mSmoothListView.setRefreshEnable(true);
@@ -317,7 +316,7 @@ public class HomeFragmentTicketActivity extends BaseActivity implements
             @Override
             public void run() {
                 ptrTicket.refreshComplete();
-                Toast.makeText(HomeFragmentTicketActivity.this, "刷新了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeTicketActivity.this, "刷新了", Toast.LENGTH_SHORT).show();
             }
         }, 1000);
     }

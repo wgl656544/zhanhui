@@ -79,7 +79,6 @@ public class HomePageModel {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
             }
 
             @Override

@@ -1,4 +1,4 @@
-package com.ex.administrator.zhanhui.view.homeFragmentBusiHeader;
+package com.ex.administrator.zhanhui.view.homeBusiHeader;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,7 +17,7 @@ import org.xutils.x;
 /**
  * Created by sunfusheng on 16/4/20.
  */
-public class HeaderHomeFragmentBusiFilterView implements FilterView.OnFilterClickListener {
+public class HeaderHomeBusiFilterView implements FilterView.OnFilterClickListener {
 
     @ViewInject(R.id.fv_filter)
     FilterView fvFilter;
@@ -29,10 +29,10 @@ public class HeaderHomeFragmentBusiFilterView implements FilterView.OnFilterClic
 
     private Context context;
 
-    public HeaderHomeFragmentBusiFilterView() {
+    public HeaderHomeBusiFilterView() {
     }
 
-    public HeaderHomeFragmentBusiFilterView(Activity context) {
+    public HeaderHomeBusiFilterView(Activity context) {
         this.context = context;
     }
 

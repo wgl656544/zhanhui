@@ -11,10 +11,10 @@
         android:padding="@dimen/x20">
 
         <ImageView
-            android:layout_centerVertical="true"
             android:id="@+id/iv_home_fragment_info_back"
             android:layout_width="@dimen/x60"
             android:layout_height="@dimen/x40"
+            android:layout_centerVertical="true"
             android:src="@drawable/back" />
 
         <TextView
@@ -31,24 +31,31 @@
         android:layout_height="@dimen/x1"
         android:background="@color/font_black_5" />
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <com.ex.administrator.zhanhui.SmoothListView.SmoothListView
-            android:id="@+id/sl_home_fagment_infomation"
+        <in.srain.cube.views.ptr.PtrFrameLayout
+            android:id="@+id/ptr_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            />
+            android:layout_height="match_parent">
 
-        <com.ex.administrator.zhanhui.view.homeFragmentInfoHeader.HomeFragmentInfoFilterView
+            <com.ex.administrator.zhanhui.SmoothListView.SmoothListView
+                android:id="@+id/sl_home_fagment_infomation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+
+
+        </in.srain.cube.views.ptr.PtrFrameLayout>
+
+        <com.ex.administrator.zhanhui.view.homeInfoHeader.HomeInfoFilterView
             android:id="@+id/fv_home_fragment_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
-    </FrameLayout>
-
+    </RelativeLayout>
 
 </LinearLayout>

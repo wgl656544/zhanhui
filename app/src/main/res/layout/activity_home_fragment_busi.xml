@@ -56,7 +56,7 @@
             android:divider="@null"
             android:dividerHeight="0dp" />
 
-        <com.ex.administrator.zhanhui.view.homeFragmentBusiHeader.HomeFragmentBusiFilterView
+        <com.ex.administrator.zhanhui.view.homeBusiHeader.HomeBusiFilterView
             android:id="@+id/fv_home_fragment_busi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

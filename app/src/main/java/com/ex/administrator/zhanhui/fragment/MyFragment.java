@@ -13,13 +13,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
-import com.ex.administrator.zhanhui.activity.AllOrderActivity;
 import com.ex.administrator.zhanhui.activity.LoginActivity;
 import com.ex.administrator.zhanhui.activity.PayOrderActivity;
 import com.ex.administrator.zhanhui.activity.PersonalInfoActivity;
 import com.ex.administrator.zhanhui.application.MyApplication;
 import com.ex.administrator.zhanhui.entity.UserBean;
+import com.ex.administrator.zhanhui.util.DataCleanManager;
 import com.ex.administrator.zhanhui.util.SPUtils;
+import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.google.gson.Gson;
 
 import org.xutils.view.annotation.ViewInject;
@@ -102,8 +103,16 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), PayOrderActivity.class));
                 break;
             case R.id.ll_all_order://所有订单
-                startActivity(new Intent(getActivity(), AllOrderActivity.class));
+//                startActivity(new Intent(getActivity(), AllOrderActivity.class));
+                try {
+                    String s = DataCleanManager.getTotalCacheSize(MyApplication.getmMyApplication().getApplicationContext());
+                    ToastUtil.show(getActivity(), "缓存 = " + s);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }
+
 }

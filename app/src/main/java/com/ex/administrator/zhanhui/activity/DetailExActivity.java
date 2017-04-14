@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -137,7 +138,6 @@ public class DetailExActivity extends AppCompatActivity implements View.OnClickL
     //显示展会的详细信息
     private void showExDetail(DetailExBean bean) {
         //显示图片
-//        Picasso.with(this).load(bean.getData().getImageUrl()).into(ivDetailEx);
         Glide.with(this).load(bean.getData().getImageUrl()).error(R.drawable.default_pic).into(ivDetailEx);
         //显示展会名称
         tvDetailExName.setText(bean.getData().getName());

@@ -266,7 +266,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x20" />
+                android:layout_height="@dimen/x30" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -382,16 +382,11 @@
                     android:src="@drawable/arrow_right" />
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:layout_marginStart="@dimen/x25"
-                android:background="@color/font_black_5" />
 
             <Button
                 android:id="@+id/btn_exit_login"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x60"
+                android:layout_height="@dimen/x80"
                 android:layout_margin="@dimen/x30"
                 android:background="@drawable/personal_info_button"
                 android:text="退出当前账号"

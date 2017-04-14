@@ -7,10 +7,12 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:padding="@dimen/x10"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/x200">
 
         <ImageView
+            android:scaleType="fitXY"
             android:id="@+id/iv_team_list_pic"
             android:layout_width="@dimen/x190"
             android:layout_height="@dimen/x160"

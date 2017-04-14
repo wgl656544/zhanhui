@@ -1,5 +1,6 @@
 package com.ex.administrator.zhanhui.activity;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,8 +21,8 @@ import com.bumptech.glide.Glide;
 import com.ex.administrator.zhanhui.R;
 import com.ex.administrator.zhanhui.application.MyApplication;
 import com.ex.administrator.zhanhui.constant.HandlerConstant;
-import com.ex.administrator.zhanhui.entity.UserPhotoBean;
 import com.ex.administrator.zhanhui.entity.UserBean;
+import com.ex.administrator.zhanhui.entity.UserPhotoBean;
 import com.ex.administrator.zhanhui.model.UserModel;
 import com.ex.administrator.zhanhui.util.FileUtil;
 import com.ex.administrator.zhanhui.util.SPUtils;
@@ -148,10 +149,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 startActivity(new Intent(this, ShipAddressActivity.class));
                 break;
             case R.id.btn_exit_login://退出登录
-                SPUtils.remove(this, "userId");
-                MyApplication.isLogin = false;
-                finish();
-                PersonalInfoActivity.activity.finish();
+                exitLogin();
                 break;
         }
     }
@@ -315,5 +313,38 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                         .error(R.drawable.sina).into(ivPhoto);
             }
         }
+    }
+
+    //退出账号
+    private void exitLogin() {
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(MyInfoActivity.this);
+        normalDialog.setTitle("提示");
+        normalDialog.setMessage("确定退出该账号吗？");
+        normalDialog.setPositiveButton("退出",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                        SPUtils.remove(MyInfoActivity.this, "userId");
+                        MyApplication.isLogin = false;
+                        finish();
+                        PersonalInfoActivity.activity.finish();
+                    }
+                });
+        normalDialog.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
     }
 }

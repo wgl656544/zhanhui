@@ -1,18 +1,17 @@
-package com.ex.administrator.zhanhui.view.homeFragmentInfoHeader;
+package com.ex.administrator.zhanhui.view.homeTeamHeader;
 
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/9 0009.
  */
 
-public class InfoFilterData implements Serializable{
+public class TeamFilterData {
     private List<FilterEntity> category;
     private List<FilterEntity> place;
-    private List<FilterEntity> date;
+    private List<FilterEntity> type;
 
     public List<FilterEntity> getCategory() {
         return category;
@@ -30,11 +29,11 @@ public class InfoFilterData implements Serializable{
         this.place = place;
     }
 
-    public List<FilterEntity> getDate() {
-        return date;
+    public List<FilterEntity> getType() {
+        return type;
     }
 
-    public void setDate(List<FilterEntity> date) {
-        this.date = date;
+    public void setType(List<FilterEntity> type) {
+        this.type = type;
     }
 }

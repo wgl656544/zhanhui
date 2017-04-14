@@ -1,4 +1,4 @@
-package com.ex.administrator.zhanhui.view.homeFragmentBusiHeader;
+package com.ex.administrator.zhanhui.view.homeTicketHeader;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -28,21 +28,21 @@ import org.xutils.x;
 /**
  * Created by sunfusheng on 16/4/20.
  */
-public class HomeFragmentBusiFilterView extends LinearLayout implements View.OnClickListener {
+public class HomeTicketFilterView extends LinearLayout implements View.OnClickListener {
     @ViewInject(R.id.tv_city_title)
-    private TextView tvCityTitle;
+    private TextView tvCityTitle;//城市
     @ViewInject(R.id.iv_city_arrow)
     private ImageView ivCityArrow;
     @ViewInject(R.id.tv_near_title)
-    private TextView tvNearTitle;
+    private TextView tvNearTitle;//最近
     @ViewInject(R.id.iv_near_arrow)
     private ImageView ivNearArrow;
     @ViewInject(R.id.tv_type_title)
-    private TextView tvTypeTitle;
+    private TextView tvTypeTitle;//类型
     @ViewInject(R.id.iv_type_arrow)
     private ImageView ivTypeArrow;
     @ViewInject(R.id.tv_sift_title)
-    private TextView tvSiftTitle;
+    private TextView tvSiftTitle;//筛选
     @ViewInject(R.id.iv_sift_arrow)
     private ImageView ivSiftArrow;
     @ViewInject(R.id.ll_city)
@@ -76,27 +76,26 @@ public class HomeFragmentBusiFilterView extends LinearLayout implements View.OnC
 
     private boolean isShowing = false;
     private int panelHeight;
-    private BusiFilterData filterData;
+    private TicketFilterData filterData;
 
     private FilterRightAdapter cityAdapter;
     private FilterOneAdapter nearAdapter;
     private FilterOneAdapter typeAdapter;
     private FilterOneAdapter siftAdapter;
 
-
-    private FilterEntity selectedCityEntity; // 城市被选择的筛选项
-    private FilterEntity selectedNearEntity; // 最近被选择的筛选项
-    private FilterEntity selectedTypeEntity; // 类型被选择的筛选项
-    private FilterEntity selectedSiftEntity; // 筛选被选择的筛选项
+    private FilterEntity SelectedCityEntity; // 被选择的分类项右侧数据
+    private FilterEntity selectedNearEntity; // 被选择的排序项
+    private FilterEntity selectedTypeEntity; // 被选择的筛选项
+    private FilterEntity selectedSiftEntity; // 被选择的筛选项
 
 //    private HeaderFilterView headerFilterView = new HeaderFilterView();
 
-    public HomeFragmentBusiFilterView(Context context, AttributeSet attrs) {
+    public HomeTicketFilterView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public HomeFragmentBusiFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeTicketFilterView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -188,18 +187,18 @@ public class HomeFragmentBusiFilterView extends LinearLayout implements View.OnC
         lvRight.setVisibility(VISIBLE);
         cityAdapter = new FilterRightAdapter(mContext, filterData.getCity());
         lvRight.setAdapter(cityAdapter);
-        cityAdapter.setSelectedEntity(selectedCityEntity);
+        cityAdapter.setSelectedEntity(SelectedCityEntity);
         lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedCityEntity = filterData.getCity().get(position);
+                SelectedCityEntity = filterData.getCity().get(position);
                 String city = filterData.getCity().get(position).getKey();
                 if (onItemCityClickListener != null) {
                     onItemCityClickListener.onItemCityClick(city);
                 }
                 tvCityTitle.setText(filterData.getCity().get(position).getKey());
                 //修改假视图文本
-                HeaderHomeFragmentBusiFilterView.setTitle(0, filterData.getCity().get(position).getKey());
+                HeaderHomeTicketFilterView.setTitle(0, filterData.getCity().get(position).getKey());
                 hide();
             }
         });
@@ -237,7 +236,7 @@ public class HomeFragmentBusiFilterView extends LinearLayout implements View.OnC
                 }
                 tvNearTitle.setText(filterData.getNear().get(position).getKey());
                 //修改假视图文本
-                HeaderHomeFragmentBusiFilterView.setTitle(1, filterData.getNear().get(position).getKey());
+                HeaderHomeTicketFilterView.setTitle(1, filterData.getNear().get(position).getKey());
                 hide();
             }
         });
@@ -261,7 +260,7 @@ public class HomeFragmentBusiFilterView extends LinearLayout implements View.OnC
                 }
                 tvTypeTitle.setText(filterData.getType().get(position).getKey());
                 //修改假视图文本
-                HeaderHomeFragmentBusiFilterView.setTitle(2, filterData.getType().get(position).getKey());
+                HeaderHomeTicketFilterView.setTitle(2, filterData.getType().get(position).getKey());
                 hide();
             }
         });
@@ -302,7 +301,7 @@ public class HomeFragmentBusiFilterView extends LinearLayout implements View.OnC
                 }
                 tvSiftTitle.setText(filterData.getSift().get(position).getKey());
                 //修改假视图文本
-                HeaderHomeFragmentBusiFilterView.setTitle(3, filterData.getSift().get(position).getKey());
+                HeaderHomeTicketFilterView.setTitle(3, filterData.getSift().get(position).getKey());
                 hide();
             }
         });
@@ -447,7 +446,7 @@ public class HomeFragmentBusiFilterView extends LinearLayout implements View.OnC
     }
 
     // 设置筛选数据
-    public void setFilterData(Activity activity, BusiFilterData filterData) {
+    public void setFilterData(Activity activity, TicketFilterData filterData) {
         this.mActivity = activity;
         this.filterData = filterData;
     }

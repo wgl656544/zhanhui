@@ -21,10 +21,10 @@ import com.ex.administrator.zhanhui.model.GetDataModel;
 import com.ex.administrator.zhanhui.model.filter.FilterEntity;
 import com.ex.administrator.zhanhui.util.ToastUtil;
 import com.ex.administrator.zhanhui.view.ModelUtil;
-import com.ex.administrator.zhanhui.view.homeFragmentTeamHeader.HeaderHomeFragmentTeamChannelView;
-import com.ex.administrator.zhanhui.view.homeFragmentTeamHeader.HeaderHomeFragmentTeamFilterView;
-import com.ex.administrator.zhanhui.view.homeFragmentTeamHeader.HomeFragmrntTeamFilterView;
-import com.ex.administrator.zhanhui.view.homeFragmentTeamHeader.TeamFilterData;
+import com.ex.administrator.zhanhui.view.homeTeamHeader.HeaderHomeTeamChannelView;
+import com.ex.administrator.zhanhui.view.homeTeamHeader.HeaderHomeTeamFilterView;
+import com.ex.administrator.zhanhui.view.homeTeamHeader.HomeTeamFilterView;
+import com.ex.administrator.zhanhui.view.homeTeamHeader.TeamFilterData;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -36,19 +36,19 @@ import java.util.List;
  * Created by Administrator on 2017/2/20 0020.
  */
 
-public class HomeFragmentTeamActivity extends BaseActivity implements
+public class HomeTeamActivity extends BaseActivity implements
         SmoothListView.ISmoothListViewListener, View.OnClickListener {
     @ViewInject(R.id.sl_home_fagment_team)
     private SmoothListView mSmoothListView;
 
     @ViewInject(R.id.fv_home_fragment_team)
-    private HomeFragmrntTeamFilterView mFilterView;
+    private HomeTeamFilterView mFilterView;
 
     @ViewInject(R.id.iv_home_fragment_team_back)
     private ImageView ivBack;
 
-    private HeaderHomeFragmentTeamFilterView mHeaderFilterView;
-    private HeaderHomeFragmentTeamChannelView mHeaderChannelView;
+    private HeaderHomeTeamFilterView mHeaderFilterView;
+    private HeaderHomeTeamChannelView mHeaderChannelView;
     private TeamFilterData filterData;
     private int filterPosition;//点击第几个筛选
     private int filterViewPosition = 2;//筛选视图的位置
@@ -107,7 +107,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
             mHeaderChannelView.showChannel(teamTypeDatas);
             setDatas();
             if (searchTeamDatas != null) {
-                showExhibitions(searchTeamDatas);
+                showTeamProduct(searchTeamDatas);
             }
         }
     };
@@ -131,10 +131,10 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
      */
     private void initview() {
         //添加频道头布局
-        mHeaderChannelView = new HeaderHomeFragmentTeamChannelView(this);
+        mHeaderChannelView = new HeaderHomeTeamChannelView(this);
         mHeaderChannelView.getView(mSmoothListView);
         //添加筛选头布局
-        mHeaderFilterView = new HeaderHomeFragmentTeamFilterView(this);
+        mHeaderFilterView = new HeaderHomeTeamFilterView(this);
         mHeaderFilterView.getView(mSmoothListView);
     }
 
@@ -145,7 +145,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
         //返回
         ivBack.setOnClickListener(this);
         //筛选头布局监听器
-        mHeaderFilterView.setOnFilterClickListener(new HeaderHomeFragmentTeamFilterView.OnFilterClickListener() {
+        mHeaderFilterView.setOnFilterClickListener(new HeaderHomeTeamFilterView.OnFilterClickListener() {
             @Override
             public void onFilterClick(int position) {
                 filterPosition = position;
@@ -154,7 +154,7 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
             }
         });
 //        真正的筛选视图监听器
-        mFilterView.setOnFilterClickListener(new HomeFragmrntTeamFilterView.OnFilterClickListener() {
+        mFilterView.setOnFilterClickListener(new HomeTeamFilterView.OnFilterClickListener() {
             @Override
             public void onFilterClick(int position) {
                 mFilterView.show(position);
@@ -190,21 +190,21 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
             }
         });
         //设置类型监听器
-        mFilterView.setOnItemCategoryClickListener(new HomeFragmrntTeamFilterView.OnItemTypeClickListener() {
+        mFilterView.setOnItemCategoryClickListener(new HomeTeamFilterView.OnItemTypeClickListener() {
             @Override
             public void onItemTypeClick(String type) {
                 ToastUtil.show(MyApplication.getmMyApplication().getApplicationContext(), type);
             }
         });
         //设置产地监听器
-        mFilterView.setOnItemPlaceClickListener(new HomeFragmrntTeamFilterView.OnItemPlaceClickListener() {
+        mFilterView.setOnItemPlaceClickListener(new HomeTeamFilterView.OnItemPlaceClickListener() {
             @Override
             public void onItemPlaceClick(String place) {
                 ToastUtil.show(MyApplication.getmMyApplication().getApplicationContext(), place);
             }
         });
         //设置筛选监听器
-        mFilterView.setOnItemSiftClickListener(new HomeFragmrntTeamFilterView.OnItemSiftClickListener() {
+        mFilterView.setOnItemSiftClickListener(new HomeTeamFilterView.OnItemSiftClickListener() {
             @Override
             public void onItemSiftClick(int price) {
                 ToastUtil.show(MyApplication.getmMyApplication().getApplicationContext(), price + "");
@@ -230,9 +230,9 @@ public class HomeFragmentTeamActivity extends BaseActivity implements
     }
 
     /**
-     * 展示展会
+     * 显示团购产品
      */
-    private void showExhibitions(List<CommonBean.Data> datas) {
+    private void showTeamProduct(List<CommonBean.Data> datas) {
         mSmoothListView.setRefreshEnable(true);
         mSmoothListView.setLoadMoreEnable(false);
         mSmoothListView.setSmoothListViewListener(this);
