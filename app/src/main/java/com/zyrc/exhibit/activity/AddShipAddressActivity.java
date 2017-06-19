@@ -186,7 +186,6 @@ public class AddShipAddressActivity extends BaseActivity implements View.OnClick
         }
     }
 
-    //重写返回键
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
