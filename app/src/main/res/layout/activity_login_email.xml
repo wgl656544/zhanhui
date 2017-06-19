@@ -7,14 +7,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_email_login_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
             android:src="@drawable/arrow_left" />
 
         <TextView
@@ -48,9 +51,10 @@
                 android:textSize="17sp" />
 
             <EditText
+                android:id="@+id/et_email_login_username"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginStart="@dimen/x40"
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="手机号、邮箱、用户名" />
@@ -68,7 +72,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"
-            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginStart="@dimen/x20"
             android:background="@color/colorDivision" />
 
         <LinearLayout
@@ -86,9 +90,10 @@
                 android:textSize="17sp" />
 
             <EditText
+                android:id="@+id/et_email_login_pwd"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginStart="@dimen/x40"
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="6-32位字母数字组合"
@@ -97,6 +102,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_email_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/x40"
@@ -106,11 +112,13 @@
         android:textSize="17sp" />
 
     <TextView
+        android:id="@+id/tv_email_update_pwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginStart="@dimen/x40"
         android:text="忘记密码?"
+        android:textColor="@color/color_bule_1"
         android:textSize="15sp" />
 
 

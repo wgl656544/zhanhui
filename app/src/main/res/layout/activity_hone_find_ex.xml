@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_find_ex_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
+
+
+        <ImageView
+            android:id="@+id/iv_findex_back"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_weight="1"
+            android:background="@drawable/search_bg_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <ImageView
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/x30"
+                android:src="@drawable/sousuo" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/x20"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/findexhibition" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_findex_location"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/x20"
+            android:layout_marginStart="@dimen/x30"
+            android:padding="@dimen/x5"
+            android:src="@drawable/location" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <in.srain.cube.views.ptr.PtrFrameLayout
+            android:id="@+id/ptr_findex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.zyrc.exhibit.SmoothListView.SmoothListView
+                android:id="@+id/lv_find_exhibition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+        </in.srain.cube.views.ptr.PtrFrameLayout>
+
+        <com.zyrc.exhibit.view.findEXheader.FilterView
+            android:id="@+id/fv_find_exhibition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+</LinearLayout>

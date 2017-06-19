@@ -24,14 +24,15 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/x30">
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="@dimen/x42"
-                        android:layout_height="@dimen/x42"
+                        android:id="@+id/iv_my_msg"
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/x80"
                         android:layout_alignParentEnd="true"
                         android:layout_gravity="center"
+                        android:padding="@dimen/x20"
                         android:src="@drawable/email" />
                 </RelativeLayout>
 
@@ -59,6 +60,7 @@
                         android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/tv_my_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_my_username"
@@ -75,6 +77,7 @@
                     android:layout_marginTop="@dimen/y30">
 
                     <LinearLayout
+                        android:id="@+id/ll_my_exhibi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/x20"
@@ -98,6 +101,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_my_apply"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -107,19 +111,20 @@
                             android:layout_width="@dimen/x48"
                             android:layout_height="@dimen/x48"
                             android:layout_gravity="center"
-                            android:src="@drawable/my_order" />
+                            android:src="@drawable/my_apply" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/x5"
-                            android:text="@string/my_order"
+                            android:text="@string/my_apply"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_my_collect"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -142,6 +147,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_my_browse"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -171,17 +177,44 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x140"
+                android:layout_height="match_parent"
                 android:baselineAligned="false">
 
                 <LinearLayout
-                    android:id="@+id/ll_my_click"
+                    android:id="@+id/ll_all_order"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_my_bg_click"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/x20">
+
+                    <ImageView
+                        android:layout_width="@dimen/x60"
+                        android:layout_height="@dimen/y54"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/x20"
+                        android:src="@drawable/my_order_white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/x5"
+                        android:text="@string/my_order"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_my_pay_not"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@drawable/button_my_bg_click"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/x20">
 
                     <ImageView
                         android:layout_width="@dimen/x60"
@@ -201,38 +234,19 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_my_pay_ok"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:background="@drawable/button_my_bg_click"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/x20">
 
                     <ImageView
                         android:layout_width="@dimen/x60"
                         android:layout_height="@dimen/y54"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x20"
-                        android:src="@drawable/use" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x5"
-                        android:text="可使用"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/x60"
-                        android:layout_height="@dimen/y54"
-                        android:layout_gravity="center"
+                        android:padding="2dp"
                         android:layout_marginTop="@dimen/x20"
                         android:src="@drawable/after_sale" />
 
@@ -241,34 +255,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/x5"
-                        android:text="退款/售后"
+                        android:text="已付款"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_all_order"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/x60"
-                        android:layout_height="@dimen/y54"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x20"
-                        android:src="@drawable/my_order_white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x5"
-                        android:text="@string/my_order"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
             </LinearLayout>
 
             <View
@@ -278,35 +269,7 @@
 
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y90"
-                android:background="@drawable/button_my_bg_click"
-                android:paddingStart="@dimen/x30">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="社区论坛"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <ImageView
-                    android:layout_width="@dimen/x30"
-                    android:layout_height="@dimen/x30"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/x34"
-                    android:src="@drawable/arrow_right" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y1"
-                android:layout_marginStart="@dimen/x30"
-                android:background="@color/colorDivision" />
-
-            <RelativeLayout
+                android:id="@+id/rl_my_call_phone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y90"
                 android:background="@drawable/button_my_bg_click"
@@ -338,6 +301,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/rl_my_sign_in"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y90"
                 android:background="@drawable/button_my_bg_click"
@@ -347,7 +311,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="设置"
+                    android:text="签到记录"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -391,31 +355,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x20"
+                android:layout_height="1px"
                 android:background="@color/colorDivision" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y90"
-                android:background="@drawable/button_my_bg_click"
-                android:paddingStart="@dimen/x30">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="展会安全管理办法"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <ImageView
-                    android:layout_width="@dimen/x30"
-                    android:layout_height="@dimen/x30"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/x34"
-                    android:src="@drawable/arrow_right" />
-            </RelativeLayout>
 
 
         </LinearLayout>

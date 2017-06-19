@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80">
+
+
+        <ImageView
+            style="@style/Widget.AppCompat.ActionButton"
+            android:scaleType="centerInside"
+            android:id="@+id/iv_branch_back"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="分论坛"
+            android:textSize="17sp" />
+    </FrameLayout>
+
+    <com.jude.rollviewpager.RollPagerView
+        android:visibility="gone"
+        android:id="@+id/rpv_branch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y220"
+        app:rollviewpager_play_delay="3500" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorDivision">
+
+        <Button
+            android:id="@+id/btn_branch_introduced"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="@dimen/x140"
+            android:layout_height="@dimen/x70"
+            android:layout_margin="@dimen/x20"
+            android:background="@drawable/button_enanled_1"
+            android:text="介绍"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btn_branch_agenda"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="@dimen/x140"
+            android:layout_height="@dimen/x70"
+            android:layout_margin="@dimen/x20"
+            android:background="@drawable/button_enanled_1"
+            android:text="议程"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btn_branch_honor"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="@dimen/x140"
+            android:layout_height="@dimen/x70"
+            android:layout_margin="@dimen/x20"
+            android:background="@drawable/button_enanled_1"
+            android:text="嘉宾"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_branch_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+</LinearLayout>

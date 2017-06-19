@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/iv_detail_ex_ticket"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x105"
+            android:layout_height="@dimen/x155"
             android:scaleType="fitXY"
             android:src="@drawable/default_pic" />
 
@@ -53,9 +53,8 @@
                 android:id="@+id/btn_detail_ex_ticket"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/y50"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="right"
-                android:background="@drawable/buy"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/button_bg_orange"
                 android:gravity="center"
                 android:text="立即购买"
                 android:textColor="@color/white" />

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_confence"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:visibility="gone"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:background="@color/colorDivision">
+
+
+        <ImageView
+            android:id="@+id/iv_detail_ex_back"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="主论坛"
+            android:textSize="17sp" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <com.jude.rollviewpager.RollPagerView
+                android:id="@+id/rpv_detail_ex"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y250"
+                app:rollviewpager_play_delay="3500" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_confence_channel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x20"
+                android:background="@color/colorDivision" />
+
+            <LinearLayout
+                android:id="@+id/ll_confence_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/x20">
+
+                <ImageView
+                    android:id="@+id/iv_detail_ex"
+                    android:layout_width="@dimen/x300"
+                    android:layout_height="@dimen/y250"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_launcher" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_detail_ex_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="第三届博鳌"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_ex_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开始结束时间" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_ex_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y20"
+                        android:text="博鳌"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_ex_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="具体地址" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_ex_busi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y20"
+                        android:text="商务:400400400" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_detail_more_honor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y20"
+                android:background="@color/colorDivision" />
+
+            <RelativeLayout
+                android:id="@+id/rl_detail_more_honor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_marginTop="@dimen/x15"
+                    android:text="@string/guest"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_detail_more_honor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/more"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/x20"
+                        android:layout_marginStart="@dimen/x20"
+                        android:src="@drawable/more" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_confence_guest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/view_detail_more_sub"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y20"
+                android:background="#f0f0f0" />
+
+            <RelativeLayout
+                android:id="@+id/rl_detail_more_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_marginTop="@dimen/x15"
+                    android:text="@string/sub_forum"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_detail_more_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/more"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/x20"
+                        android:layout_marginStart="@dimen/x20"
+                        android:src="@drawable/more" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_confence_branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/view_detail_more_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y20"
+                android:background="#f0f0f0" />
+
+            <RelativeLayout
+                android:id="@+id/rl_detail_more_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_marginTop="@dimen/x15"
+                    android:text="@string/ticket_business"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_detail_more_ticket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/more"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/x20"
+                        android:layout_marginStart="@dimen/x20"
+                        android:src="@drawable/more" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_confence_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/view_detail_more_blog"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y20"
+                android:background="#f0f0f0" />
+
+            <RelativeLayout
+                android:id="@+id/rl_detail_more_blog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/x20"
+                    android:layout_marginTop="@dimen/x15"
+                    android:text="@string/message_introduce"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_detail_more_blog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/more"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/x20"
+                        android:layout_marginStart="@dimen/x20"
+                        android:src="@drawable/more" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_confence_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_confence_apply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:background="@color/colorOrange"
+            android:text="我要报名"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_confence_position"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+            android:background="@color/colorOrange"
+            android:text="展位预定"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

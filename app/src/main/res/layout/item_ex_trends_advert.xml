@@ -16,6 +16,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/iv_trend_1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y200"
                 android:layout_gravity="center"
@@ -30,23 +31,24 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_marginBottom="@dimen/x10"
+                android:id="@+id/iv_trend_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/x10"
                 android:layout_marginStart="@dimen/x10"
+                android:layout_weight="1"
                 android:scaleType="centerCrop"
                 android:src="@drawable/default_pic" />
 
             <ImageView
-                android:layout_marginTop="@dimen/x10"
-                android:id="@+id/imageView3"
+                android:id="@+id/iv_trend_3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/x10"
+                android:layout_marginTop="@dimen/x10"
+                android:layout_weight="1"
                 android:scaleType="centerCrop"
                 android:src="@drawable/default_pic" />
         </LinearLayout>

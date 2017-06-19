@@ -14,11 +14,13 @@
         <ImageView
             android:id="@+id/iv_detail_ex_honor"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x105"
+            android:layout_height="@dimen/x180"
             android:scaleType="fitXY"
             android:src="@drawable/default_pic" />
 
         <TextView
+            android:maxLines="1"
+            android:ellipsize="end"
             android:id="@+id/tv_detail_ex_honor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,6 +31,8 @@
             android:textSize="17sp" />
 
         <TextView
+            android:maxLines="1"
+            android:ellipsize="end"
             android:id="@+id/tv_detail_ex_honor_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

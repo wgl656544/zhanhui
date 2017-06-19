@@ -19,35 +19,38 @@
             android:layout_height="@dimen/y85"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@drawable/bg_black"
+            android:background="@drawable/btn_ex_trend"
             android:text="@string/zhanhui"
-            android:textColor="@color/color_button"
+            android:textColor="@drawable/btn_ex_trend_text_1"
             android:textSize="16sp" />
 
         <Button
+            android:textColor="@drawable/btn_ex_trend_text_2"
             android:id="@+id/btn_ex_trends_info"
             android:layout_width="0dp"
             android:layout_height="@dimen/y85"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/btn_ex_trend"
             android:text="@string/information"
             android:textSize="16sp" />
 
         <Button
+            android:textColor="@drawable/btn_ex_trend_text_3"
             android:id="@+id/btn_ex_trends_ticket"
             android:layout_width="0dp"
             android:layout_height="@dimen/y85"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/btn_ex_trend"
             android:text="@string/ticket"
             android:textSize="16sp" />
 
         <Button
+            android:textColor="@drawable/btn_ex_trend_text_4"
             android:id="@+id/btn_ex_trends_groupbuy"
             android:layout_width="0dp"
             android:layout_height="@dimen/y85"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/btn_ex_trend"
             android:text="@string/groupbuy"
             android:textSize="16sp" />
     </LinearLayout>

@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/iv_detail_ex_sub"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x150"
+            android:layout_height="@dimen/x180"
             android:scaleType="fitXY"
             android:src="@drawable/default_pic" />
 

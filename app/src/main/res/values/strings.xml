@@ -6,11 +6,15 @@
     <string name="smoothlistview_footer_hint_normal">查看更多</string>
     <string name="smoothlistview_footer_hint_ready">松开载入更多</string>
 
+    <!-- WXPayEntryActivity -->
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+
 
     <string name="app_name">云展会</string>
     <string name="home">首页</string>
     <string name="exhibition">展会动态</string>
-    <string name="hainan">发现海南</string>
+    <string name="hainan">发现</string>
     <string name="my">我的</string>
     <string name="zhanhui">展会</string>
     <string name="information">资讯</string>
@@ -22,7 +26,7 @@
     <string name="sanya">三亚</string>
     <string name="boao">博鳌</string>
     <string name="scan">扫一扫</string>
-    <string name="personalCenter">我的个人中心</string>
+    <string name="personalCenter">个人中心</string>
     <string name="myex">我的展会</string>
     <string name="changgeLau">切换语言</string>
     <string name="more">更多</string>
@@ -37,6 +41,7 @@
 
     <string name="exhibitionforum">展会场所</string>
     <string name="exguest">展会嘉宾</string>
+    <string name="ex_position">展会场馆</string>
     <string name="guest">嘉宾</string>
     <string name="buyticket">展会购票</string>
     <string name="exbusiness">展会商务</string>
@@ -44,6 +49,8 @@
     <string name="exnews">展会新闻</string>
     <string name="exhibitor">参展商</string>
     <string name="exticket">展会门票</string>
+    <string name="ex_team">展会团购</string>
+    <string name="ex_plan">议程安排</string>
     <string name="activity">活动安排</string>
     <string name="newslive">新闻直播间</string>
 
@@ -60,9 +67,12 @@
 
 
     <string name="my_order">我的订单</string>
+    <string name="my_apply">我的报名</string>
     <string name="my_collect">我的收藏</string>
     <string name="my_browse">我的浏览</string>
 
     <string name="hint">未注册的手机号码验证后自动创建账户</string>
+    <string name="qrcode_hint">快捷会场签到或入驻</string>
+    <string name="agent_addr">地址：%1$s</string>
 
 </resources>

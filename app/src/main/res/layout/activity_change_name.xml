@@ -6,15 +6,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
 
         <ImageView
+            android:scaleType="centerInside"
+            style="@style/Widget.AppCompat.ActionButton"
             android:id="@+id/iv_change_name_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
             android:src="@drawable/back" />
 
         <TextView

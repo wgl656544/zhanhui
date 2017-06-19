@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x5">
+
+        <ImageView
+            android:id="@+id/iv_all_order_pic"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/x200"
+            android:src="@drawable/default_pic" />
+
+        <TextView
+            android:id="@+id/tv_all_order_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginTop="@dimen/x50"
+            android:layout_toRightOf="@+id/iv_all_order_pic"
+            android:text="海博会门票" />
+
+        <TextView
+            android:id="@+id/tv_all_order_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_all_order_name"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_toRightOf="@+id/iv_all_order_pic"
+            android:text="价格" />
+
+        <TextView
+            android:id="@+id/tv_all_order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_all_order_total"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_toRightOf="@+id/iv_all_order_pic"
+            android:text="事件" />
+
+        <Button
+            android:id="@+id/btn_all_order_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_all_order_pic"
+            android:layout_alignParentEnd="true"
+            android:text="立即支付" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorDivision" />
+
+</LinearLayout>

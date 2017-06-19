@@ -3,7 +3,7 @@
     android:id="@+id/ll_search_ticket_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/ripple_item_clicked"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -21,15 +21,16 @@
 
 
         <TextView
+            android:layout_alignBottom="@+id/iv_home_fragment_ticket_pic"
             android:id="@+id/tv_home_fragment_ticket_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_home_fragment_ticket_reg"
             android:layout_alignParentEnd="true"
             android:text="￥2800/人"
             android:textColor="@color/colorOrange" />
 
         <TextView
+            android:maxLines="1"
             android:id="@+id/tv_home_fragment_ticket_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,15 +50,6 @@
             android:layout_toEndOf="@+id/iv_home_fragment_ticket_pic"
             android:text="博鳌" />
 
-        <TextView
-            android:id="@+id/tv_home_fragment_ticket_reg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_home_fragment_ticket_city"
-            android:layout_marginStart="@dimen/x20"
-            android:layout_marginTop="@dimen/x20"
-            android:layout_toEndOf="@+id/iv_home_fragment_ticket_pic"
-            android:text="注册票" />
 
         <TextView
             android:id="@+id/tv_home_fragment_ticket_date"

@@ -7,15 +7,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_my_order_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
             android:src="@drawable/back" />
 
         <TextView

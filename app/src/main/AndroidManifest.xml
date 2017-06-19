@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ex.administrator.zhanhui">
+    package="com.zyrc.exhibit">
 
+    <!--获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
+    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,6 +12,12 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 蓝牙分享所需的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     //定位包、导航包需要的额外权限（注：基础权限也需要）
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -26,14 +35,24 @@
 
 
     <application
-        android:name=".application.MyApplication"
+        android:name="com.zyrc.exhibit.app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+        <!--高德地图-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="8679d22b4ab86e3544fe58c836f241ca" />
+        <service android:name="com.amap.api.location.APSService"></service>
+
         <activity
-            android:name=".activity.WelcomeActivity"
+            android:name="com.zyrc.exhibit.activity.WelcomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,54 +60,99 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--ShareSdk-->
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <!-- QQ和QQ空间分享 QQ登录的回调必须要配置的 -->
+            <intent-filter>
+                <data android:scheme="tencent1106060237" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- 新浪微博客户端分享回调必须配置 -->
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--微信分享回调 -->
         <activity
-            android:name=".activity.HomeFindEXActivity"
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--支付宝-->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <!--微信支付页面-->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DetailExActivity"
+            android:name="com.zyrc.exhibit.activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DetailExTicketActivity"
+            android:name="com.zyrc.exhibit.activity.HomeFindEXActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.zyrc.exhibit.activity.ConfenceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DetailExNewsActivity"
+            android:name="com.zyrc.exhibit.activity.DetailExTicketActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DetailExHonorActivity"
+            android:name="com.zyrc.exhibit.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.EmailLoginActivity"
+            android:name="com.zyrc.exhibit.activity.DetailExNewsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeInfoActivity"
+            android:name="com.zyrc.exhibit.activity.DetailExHonorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeTeamActivity"
+            android:name="com.zyrc.exhibit.activity.EmailLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeTicketActivity"
+            android:name="com.zyrc.exhibit.activity.HomeInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HomeBusiActivity"
+            android:name="com.zyrc.exhibit.activity.HomeTeamActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DetailExpoActivity"
+            android:name="com.zyrc.exhibit.activity.HomeTicketActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PersonalInfoActivity"
+            android:name="com.zyrc.exhibit.activity.HomeBusiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MyInfoActivity"
+            android:name="com.zyrc.exhibit.activity.TradeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChangeNameActivity"
+            android:name="com.zyrc.exhibit.activity.PersonalInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MyInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.ChangeNameActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
@@ -96,30 +160,94 @@
             android:theme="@style/CityPicker.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.ShipAddressActivity"
+            android:name="com.zyrc.exhibit.activity.ShipAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AddShipAddressActivity"
+            android:name="com.zyrc.exhibit.activity.AddShipAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".zxing.activity.CaptureActivity"
+            android:name="com.zyrc.exhibit.zxing.activity.CaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity
-            android:name=".zxing.activity.ResultActivity"
+            android:name="com.zyrc.exhibit.zxing.activity.ResultActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity
-            android:name=".activity.AllOrderActivity"
+            android:name="com.zyrc.exhibit.activity.AllOrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DetailBuyActivity"
+            android:name="com.zyrc.exhibit.activity.DetailBuyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WriteOrderActivity"
+            android:name="com.zyrc.exhibit.activity.WriteOrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.PayOrderActivity"
+            android:name="com.zyrc.exhibit.activity.PayOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.BranchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged|adjustResize" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.ApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MyQrcodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MyExhibiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MyApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.UpDatePwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.VerifyMobileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MyMsgActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.DetailExTeamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.DetailExPlanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MyCollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.MyBrowseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.PositionReserveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.TicketReserveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.SignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.IntroduceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.DetailExPositionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zyrc.exhibit.activity.ChoiceCityActivity"
             android:screenOrientation="portrait" />
     </application>
 

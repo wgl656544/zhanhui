@@ -6,15 +6,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_detail_buy_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
             android:src="@drawable/back" />
 
         <ImageView
@@ -24,7 +27,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/x20"
-            android:src="@drawable/collect" />
+            android:src="@drawable/chanel_collect" />
 
         <ImageView
             android:id="@+id/iv_detail_buy_share"
@@ -44,9 +47,15 @@
         android:background="@color/colorDivision_2" />
 
     <WebView
+        android:id="@+id/web_detail_buy"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorDivision" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -55,19 +64,19 @@
         android:padding="@dimen/x20">
 
         <TextView
+            android:id="@+id/tv_buy_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="￥99"
             android:textColor="@color/colorOrange"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btn_detail_buy"
             android:layout_width="@dimen/x200"
             android:layout_height="@dimen/x80"
             android:layout_alignParentEnd="true"
-            android:background="@color/colorOrange"
+            android:background="@drawable/button_bg_orange"
             android:text="立即购买"
             android:textColor="@color/white"
             android:textSize="15sp" />

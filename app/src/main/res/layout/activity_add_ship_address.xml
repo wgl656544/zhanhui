@@ -7,15 +7,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
 
         <ImageView
+            style="@style/Widget.AppCompat.ActionButton"
             android:id="@+id/iv_add_ship_address_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
             android:src="@drawable/back" />
 
         <TextView
@@ -77,14 +80,14 @@
             android:textSize="17sp" />
 
         <TextView
-            android:ellipsize="end"
-            android:maxEms="12"
-            android:maxLines="1"
             android:id="@+id/tv_add_ship_address_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/x40"
             android:layout_toEndOf="@+id/tv_add_ship_address"
+            android:ellipsize="end"
+            android:maxEms="12"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -147,13 +150,13 @@
             android:textSize="17sp" />
 
         <EditText
-            android:inputType="number"
             android:id="@+id/et_add_ship_address_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/x40"
             android:layout_weight="1"
             android:background="@null"
+            android:inputType="number"
             android:maxLength="11"
             android:textSize="16sp" />
     </LinearLayout>
@@ -198,7 +201,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/x20"
-        android:background="@color/colorOrange"
+        android:background="@drawable/button_bg_orange"
         android:text="确定"
         android:textColor="@color/white"
         android:textSize="17sp" />

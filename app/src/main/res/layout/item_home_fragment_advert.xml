@@ -6,20 +6,23 @@
 
     <TextView
         android:id="@+id/tv_filpperView"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:text="测试测试测试"
-        android:layout_gravity="center"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingStart="@dimen/x10"
+        android:textColor="@color/black" />
 
     <ImageView
         android:id="@+id/iv_filpperView"
-        android:layout_marginEnd="@dimen/x20"
-        android:layout_gravity="center"
         android:layout_width="@dimen/x90"
         android:layout_height="@dimen/x90"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/x20"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_pic" />
 
 </LinearLayout>

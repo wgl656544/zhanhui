@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_apply_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x80"
+        android:background="@color/white">
+
+
+        <ImageView
+            android:id="@+id/iv_apply_back"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="在线报名"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_apply_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_apply_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x40"
+        android:text="报名信息"
+        android:textColor="@color/colorOrange"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/tv_apply_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_apply_content"
+        android:layout_marginStart="@dimen/x80"
+        android:layout_marginTop="25dp"
+        android:text="类型："
+        android:textSize="15sp" />
+
+    <RadioGroup
+        android:id="@+id/rg_apply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_apply_type"
+        android:layout_alignStart="@+id/et_apply_company"
+        android:layout_alignTop="@+id/tv_apply_type"
+        android:layout_toEndOf="@+id/tv_apply_company_or_name"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_apply_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:checked="true"
+            android:paddingStart="@dimen/x10"
+            android:text="个人"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rb_apply_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/x20"
+            android:paddingStart="@dimen/x10"
+            android:text="企业"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+
+    <TextView
+        android:id="@+id/tv_apply_company_or_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/et_apply_company"
+        android:layout_alignStart="@+id/tv_apply_type"
+        android:layout_alignTop="@+id/et_apply_company"
+        android:gravity="center"
+        android:text="用户名："
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_apply_company"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x60"
+        android:layout_alignStart="@+id/et_apply_phone"
+        android:layout_below="@+id/rg_apply"
+        android:layout_marginEnd="@dimen/x40"
+        android:layout_marginTop="@dimen/x40"
+        android:layout_toEndOf="@+id/tv_apply_phone"
+        android:background="@drawable/bg_et_apply"
+        android:maxLines="1"
+        android:paddingStart="@dimen/x20"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:id="@+id/tv_apply_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/et_apply_email"
+        android:layout_alignStart="@+id/tv_apply_company_or_name"
+        android:layout_alignTop="@+id/et_apply_phone"
+        android:gravity="center"
+        android:text="联系手机："
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_apply_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x60"
+        android:layout_alignStart="@+id/et_apply_email"
+        android:layout_below="@+id/et_apply_company"
+        android:layout_marginEnd="@dimen/x40"
+        android:layout_marginTop="@dimen/x40"
+        android:layout_toEndOf="@+id/tv_apply_phone"
+        android:background="@drawable/bg_et_apply"
+        android:inputType="number"
+        android:maxLines="1"
+        android:paddingStart="@dimen/x20"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_apply_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/et_apply_email"
+        android:layout_alignStart="@+id/tv_apply_phone"
+        android:layout_below="@+id/tv_apply_phone"
+        android:layout_marginTop="@dimen/x40"
+        android:gravity="center"
+        android:text="邮件："
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_apply_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x60"
+        android:layout_alignStart="@+id/btn_apply_commit"
+        android:layout_below="@+id/et_apply_phone"
+        android:layout_marginEnd="@dimen/x40"
+        android:layout_marginTop="@dimen/x40"
+        android:layout_toEndOf="@+id/tv_apply_phone"
+        android:background="@drawable/bg_et_apply"
+        android:maxLines="1"
+        android:paddingStart="@dimen/x20"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_apply_contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/et_apply_contact_name"
+        android:layout_alignStart="@+id/tv_apply_email"
+        android:layout_alignTop="@+id/et_apply_contact_name"
+        android:gravity="center"
+        android:text="联系人："
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/et_apply_contact_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x60"
+        android:layout_alignStart="@+id/btn_apply_commit"
+        android:layout_below="@+id/et_apply_email"
+        android:layout_marginEnd="@dimen/x40"
+        android:layout_marginTop="@dimen/x40"
+        android:layout_toEndOf="@+id/tv_apply_phone"
+        android:background="@drawable/bg_et_apply"
+        android:maxLines="1"
+        android:paddingStart="@dimen/x20"
+        android:textColor="@color/text_color"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_apply_duty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/et_apply_duty"
+        android:layout_alignStart="@+id/tv_apply_contact_name"
+        android:layout_alignTop="@+id/et_apply_duty"
+        android:gravity="center"
+        android:text="职务："
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_apply_duty"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x60"
+        android:layout_alignStart="@+id/btn_apply_commit"
+        android:layout_below="@+id/et_apply_contact_name"
+        android:layout_marginEnd="@dimen/x40"
+        android:layout_marginTop="@dimen/x40"
+        android:layout_toEndOf="@+id/tv_apply_phone"
+        android:background="@drawable/bg_et_apply"
+        android:maxLines="1"
+        android:paddingStart="@dimen/x20"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btn_apply_commit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/x100"
+        android:background="@drawable/button_bg_orange"
+        android:text="提交"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

@@ -3,10 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <ImageView
-        android:scaleType="centerCrop"
-        android:src="@drawable/default_pic"
+        android:id="@+id/iv_find_hainan_advert"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y200" />
+        android:layout_height="@dimen/y200"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_pic" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_find_hainan_channel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

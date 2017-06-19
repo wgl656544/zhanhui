@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_ticket_reserve_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x80"
+        android:background="@color/white">
+
+
+        <ImageView
+            android:id="@+id/iv_ticket_reserve_back"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="门票预定"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_ticket_reserve_title">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:id="@+id/tv_ticket_reserve_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/x40"
+                android:text="预定信息"
+                android:textColor="@color/colorOrange"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_ticket_reserve_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ticket_reserve_content"
+                android:layout_marginStart="@dimen/x80"
+                android:layout_marginTop="25dp"
+                android:text="类型："
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:id="@+id/rg_ticket_reserve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tv_ticket_reserve_type"
+                android:layout_alignStart="@+id/et_ticket_reserve_company"
+                android:layout_alignTop="@+id/tv_ticket_reserve_type"
+                android:layout_toEndOf="@+id/tv_ticket_reserve_company_or_name"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_ticket_reserve_personal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="true"
+                    android:paddingStart="@dimen/x10"
+                    android:text="个人"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_ticket_reserve_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/x20"
+                    android:paddingStart="@dimen/x10"
+                    android:text="企业"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/tv_ticket_reserve_company_or_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/et_ticket_reserve_company"
+                android:layout_alignStart="@+id/tv_ticket_reserve_type"
+                android:layout_alignTop="@+id/et_ticket_reserve_company"
+                android:gravity="center"
+                android:text="用户名："
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_ticket_reserve_company"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x60"
+                android:layout_alignStart="@+id/et_ticket_reserve_phone"
+                android:layout_below="@+id/rg_ticket_reserve"
+                android:layout_marginEnd="@dimen/x40"
+                android:layout_marginTop="@dimen/x40"
+                android:layout_toEndOf="@+id/tv_ticket_reserve_phone"
+                android:background="@drawable/bg_et_apply"
+                android:maxLines="1"
+                android:paddingStart="@dimen/x20"
+                android:textColor="@color/text_color"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tv_ticket_reserve_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/et_ticket_reserve_email"
+                android:layout_alignStart="@+id/tv_ticket_reserve_company_or_name"
+                android:layout_alignTop="@+id/et_ticket_reserve_phone"
+                android:gravity="center"
+                android:text="联系手机："
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_ticket_reserve_phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x60"
+                android:layout_alignStart="@+id/et_ticket_reserve_email"
+                android:layout_below="@+id/et_ticket_reserve_company"
+                android:layout_marginEnd="@dimen/x40"
+                android:layout_marginTop="@dimen/x40"
+                android:layout_toEndOf="@+id/tv_ticket_reserve_phone"
+                android:background="@drawable/bg_et_apply"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingStart="@dimen/x20"
+                android:textColor="@color/text_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_ticket_reserve_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/et_ticket_reserve_email"
+                android:layout_alignStart="@+id/tv_ticket_reserve_phone"
+                android:layout_below="@+id/tv_ticket_reserve_phone"
+                android:layout_marginTop="@dimen/x40"
+                android:gravity="center"
+                android:text="邮件："
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_ticket_reserve_email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x60"
+                android:layout_alignStart="@+id/btn_ticket_reserve_commit"
+                android:layout_below="@+id/et_ticket_reserve_phone"
+                android:layout_marginEnd="@dimen/x40"
+                android:layout_marginTop="@dimen/x40"
+                android:layout_toEndOf="@+id/tv_ticket_reserve_phone"
+                android:background="@drawable/bg_et_apply"
+                android:maxLines="1"
+                android:paddingStart="@dimen/x20"
+                android:textColor="@color/text_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_ticket_reserve_contact_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/et_ticket_reserve_contact_name"
+                android:layout_alignStart="@+id/tv_ticket_reserve_email"
+                android:layout_alignTop="@+id/et_ticket_reserve_contact_name"
+                android:gravity="center"
+                android:text="联系人："
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/et_ticket_reserve_contact_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x60"
+                android:layout_alignStart="@+id/btn_ticket_reserve_commit"
+                android:layout_below="@+id/et_ticket_reserve_email"
+                android:layout_marginEnd="@dimen/x40"
+                android:layout_marginTop="@dimen/x40"
+                android:layout_toEndOf="@+id/tv_ticket_reserve_phone"
+                android:background="@drawable/bg_et_apply"
+                android:maxLines="1"
+                android:paddingStart="@dimen/x20"
+                android:textColor="@color/text_color"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_ticket_reserve_duty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/et_ticket_reserve_duty"
+                android:layout_alignStart="@+id/tv_ticket_reserve_contact_name"
+                android:layout_alignTop="@+id/et_ticket_reserve_duty"
+                android:gravity="center"
+                android:text="职务："
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_ticket_reserve_duty"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x60"
+                android:layout_alignStart="@+id/btn_ticket_reserve_commit"
+                android:layout_below="@+id/et_ticket_reserve_contact_name"
+                android:layout_marginEnd="@dimen/x40"
+                android:layout_marginTop="@dimen/x40"
+                android:layout_toEndOf="@+id/tv_ticket_reserve_phone"
+                android:background="@drawable/bg_et_apply"
+                android:maxLines="1"
+                android:paddingStart="@dimen/x20"
+                android:textColor="@color/text_color"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_ticket_reserve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_ticket_reserve_duty"
+                android:layout_marginTop="@dimen/x50" />
+
+            <Button
+                android:id="@+id/btn_ticket_reserve_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_ticket_reserve"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/x50"
+                android:layout_marginTop="@dimen/x50"
+                android:background="@drawable/button_bg_orange"
+                android:text="提交"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

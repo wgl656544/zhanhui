@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/iv_detail_ex_honor_list"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x175"
+            android:layout_height="@dimen/x195"
             android:scaleType="fitXY"
             android:src="@drawable/default_pic" />
 

@@ -2,12 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#00000000"
-    android:padding="@dimen/x1">
+    android:background="@drawable/bg_shadow"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_margin="@dimen/x10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -15,12 +13,11 @@
 
         <LinearLayout
             android:id="@+id/ll_add_scan"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/x10"
             android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/x20"
-            >
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="@dimen/x60"
@@ -28,27 +25,27 @@
                 android:src="@drawable/saoyisao" />
 
             <TextView
-                android:layout_marginStart="@dimen/x20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="@dimen/x20"
                 android:layout_weight="1"
                 android:text="@string/scan" />
         </LinearLayout>
 
         <View
-            android:layout_width="@dimen/x220"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/x1"
-            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginStart="@dimen/x90"
             android:background="#e0e0e0" />
 
         <LinearLayout
             android:id="@+id/ll_add_myex"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/x10"
             android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/x20">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="@dimen/x60"
@@ -56,27 +53,27 @@
                 android:src="@drawable/wodezhanhui" />
 
             <TextView
-                android:layout_marginStart="@dimen/x20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="@dimen/x20"
                 android:layout_weight="1"
                 android:text="@string/myex" />
         </LinearLayout>
 
         <View
-            android:layout_width="@dimen/x220"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/x1"
-            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginStart="@dimen/x90"
             android:background="#e0e0e0" />
 
         <LinearLayout
             android:id="@+id/ll_add_personal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/x10"
             android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/x20">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="@dimen/x60"
@@ -84,40 +81,41 @@
                 android:src="@drawable/gernzhongxin" />
 
             <TextView
-                android:layout_marginStart="@dimen/x20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="@dimen/x20"
                 android:layout_weight="1"
                 android:text="@string/personalCenter" />
         </LinearLayout>
 
         <View
-            android:layout_width="@dimen/x220"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/x1"
-            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginStart="@dimen/x90"
             android:background="#e0e0e0" />
 
         <LinearLayout
-            android:id="@+id/ll_add_change"
-            android:layout_width="match_parent"
+            android:id="@+id/ll_add_qrcode"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/x10"
             android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/x20">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="@dimen/x60"
                 android:layout_height="@dimen/x60"
-                android:src="@drawable/qiehuan" />
+                android:padding="@dimen/x10"
+                android:src="@drawable/qrcode" />
 
             <TextView
-                android:layout_marginStart="@dimen/x20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="@dimen/x20"
                 android:layout_weight="1"
-                android:text="@string/changgeLau" />
+                android:text="我的二维码" />
         </LinearLayout>
     </LinearLayout>
 

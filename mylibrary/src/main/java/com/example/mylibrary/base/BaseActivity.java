@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -11,6 +12,7 @@ import android.widget.FrameLayout;
 
 import com.example.mylibrary.R;
 import com.example.mylibrary.utils.CustomWaitDialog;
+import com.example.mylibrary.utils.KeyboardUtils;
 import com.example.mylibrary.widget.Topbar;
 
 public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClickListener {
@@ -28,10 +30,11 @@ public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClic
     public BaseActivity() {
     }
 
-    public void setOnRightClick(OnRightButtonClicked onRightClick){
+    public void setOnRightClick(OnRightButtonClicked onRightClick) {
         this.onRightButtonClicked = onRightClick;
     }
-    public interface OnRightButtonClicked{
+
+    public interface OnRightButtonClicked {
         void onRightClick();
     }
 
@@ -44,7 +47,8 @@ public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClic
         initView();
         initHeaderLayout();
         initLoadingView();
-        
+        hideTitleBar();
+
 //        //设置为沉浸式
 //        StatusBarCompat.transparent(this);
 //        StatusUtils.StatusBarLightMode(this);
@@ -57,21 +61,22 @@ public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClic
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     protected void initView() {
-        containerLayout = (FrameLayout) findViewById(R.id.fl_base_container );
-        loadingView =  (FrameLayout) findViewById(R.id.fl_base_loading);
-        errorView = (FrameLayout) findViewById(R.id.fl_base_error );
+        containerLayout = (FrameLayout) findViewById(R.id.fl_base_container);
+        loadingView = (FrameLayout) findViewById(R.id.fl_base_loading);
+        errorView = (FrameLayout) findViewById(R.id.fl_base_error);
     }
-    public void setTitle(String title){
-        mTopbar.setTvTitle(title,16, ContextCompat.getColor(this,R.color.black));
+
+    public void setTitle(String title) {
+        mTopbar.setTvTitle(title, 16, ContextCompat.getColor(this, R.color.black));
     }
+
     //设置右边的字体
-    public void setRightStr(String rightStr){
+    public void setRightStr(String rightStr) {
         mTopbar.setRightIsVisible(true);
-        mTopbar.setTvRightText(rightStr,16,R.color.black);
+        mTopbar.setTvRightText(rightStr, 16, R.color.black);
     }
 
     private void initHeaderLayout() {
@@ -82,46 +87,51 @@ public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClic
 
     private void initLoadingView() {
     }
+
     /**
      * 进度加载动画
      */
-    public void startLoading(){
-        if(customWaitDialog == null){
+    public void startLoading() {
+        if (customWaitDialog == null) {
             customWaitDialog = new CustomWaitDialog(this);
         }
         customWaitDialog.show();
     }
+
     /**
      * 进度加载动画
      */
-    public void startLoading(String msg){
-        if(customWaitDialog == null){
+    public void startLoading(String msg) {
+        if (customWaitDialog == null) {
             customWaitDialog = new CustomWaitDialog(this);
         }
         customWaitDialog.show(msg);
     }
+
     /**
      * 关闭加载动画
      */
-    public void stopLoading(){
-        if(customWaitDialog != null){
+    public void stopLoading() {
+        if (customWaitDialog != null) {
             customWaitDialog.dismiss();
             customWaitDialog = null;
         }
     }
-    public void hideTitleBar(){
+
+    public void hideTitleBar() {
         mTopbar.setVisibility(View.GONE);
     }
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
 //        super.setContentView(layoutResID);
-        getLayoutInflater().inflate(layoutResID,containerLayout,true);
+        getLayoutInflater().inflate(layoutResID, containerLayout, true);
         initAcitivy();
     }
 
     @Override
     protected void onDestroy() {
-        if(customWaitDialog != null){
+        if (customWaitDialog != null) {
             customWaitDialog = null;
         }
         super.onDestroy();
@@ -139,36 +149,41 @@ public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClic
 
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
-        this.containerLayout.addView(view,params);
+        this.containerLayout.addView(view, params);
         initAcitivy();
 
     }
+
     /**
      * 添加loadingView
      */
-    public void setLoadingView(@LayoutRes int loadingViewResId){
-        View view = getLayoutInflater().inflate(loadingViewResId,loadingView,true);
+    public void setLoadingView(@LayoutRes int loadingViewResId) {
+        View view = getLayoutInflater().inflate(loadingViewResId, loadingView, true);
     }
-    public void setLoadingView(View view){
+
+    public void setLoadingView(View view) {
         this.loadingView.addView(view);
     }
+
     /**
      * 添加errorView
      */
-    public void setErrorView(@LayoutRes int errorViewResId){
+    public void setErrorView(@LayoutRes int errorViewResId) {
         errorView.removeAllViews();
-        View view = getLayoutInflater().inflate(errorViewResId,errorView,true);
+        View view = getLayoutInflater().inflate(errorViewResId, errorView, true);
     }
-    public void setErrorView(View view){
+
+    public void setErrorView(View view) {
         this.errorView.removeAllViews();
         this.errorView.addView(view);
     }
+
     /**
      * 通过状态显示加载页面
      */
-    public void setShowView(ViewType viewType){
+    public void setShowView(ViewType viewType) {
         hideAllView();
-        switch (viewType){
+        switch (viewType) {
             case CONTAINER_LAYOUT:
                 containerLayout.setVisibility(View.VISIBLE);
                 break;
@@ -189,12 +204,12 @@ public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClic
 
     @Override
     public void leftClick() {
-       this.finish();
+        this.finish();
     }
 
     @Override
     public void rightClick() {
-        if(onRightButtonClicked != null)
+        if (onRightButtonClicked != null)
             onRightButtonClicked.onRightClick();
     }
 
@@ -204,20 +219,34 @@ public class BaseActivity extends AppCompatActivity implements Topbar.TopbarClic
      *
      * @return
      */
-    long lastClick ;
-    public  boolean fastClick() {
+    long lastClick;
+
+    public boolean fastClick() {
 
         if (System.currentTimeMillis() - lastClick <= 1000) {
             return true;
-        }else
+        } else
             lastClick = System.currentTimeMillis();
-            return false;
+        return false;
     }
 
-    public  enum ViewType {
+    public enum ViewType {
         CONTAINER_LAYOUT,
         LOADING_LAYOUT,
         ERROR_LAYOUT
     }
 
+    //全局隐藏键盘
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                View view = getCurrentFocus();
+                KeyboardUtils.hideKeyboard(ev, view, BaseActivity.this);//调用方法判断是否需要隐藏键盘
+                break;
+            default:
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 }

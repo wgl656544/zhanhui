@@ -4,18 +4,59 @@ android {
     compileSdkVersion 24
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.ex.administrator.zhanhui"
+        applicationId "com.zyrc.exhibit"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 10
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "8f917b76006b6bd67bdbbf32", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+    }
+    signingConfigs {
+        release  {
+            storeFile file("exhibitKey.jks")
+            storePassword "zyrc2017"
+            keyAlias "exhibitKey"
+            keyPassword "zyrc2017"
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    dexOptions {
+        jumboMode = true
+    }
+
+    productFlavors {
+        qh360 {}
+        baidu {}
+        yingyongbao {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
     }
 }
 
@@ -25,18 +66,30 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile files('libs/xutils-3.3.2.jar')
-    compile 'com.jude:rollviewpager:1.4.6'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:1.4.5'
-    compile 'com.alibaba:fastjson:1.1.55.android'
-    compile 'com.zaaach:citypicker:1.1'
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile files('libs/core-3.2.1.jar')
     compile project(':mylibrary')
-    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile files('libs/core-3.2.1.jar')
+    compile files('libs/xutils-3.3.2.jar')
+    compile 'cn.jiguang.sdk:jcore:1.1.2'//极光推送--
+    compile 'cn.jiguang.sdk:jpush:3.0.5'//极光推送--
+    compile 'com.zaaach:citypicker:1.1'//城市选择--
+    compile 'com.jude:rollviewpager:1.4.6'//轮播图片
+    compile 'in.srain.cube:ultra-ptr:1.0.11'//下拉刷新
+    compile 'de.hdodenhof:circleimageview:2.1.0'//圆形图片--
+    compile 'com.alibaba:fastjson:1.1.55.android'//json解析--
+    compile 'com.github.bumptech.glide:glide:3.7.0'//图片加载库--
+    compile ('com.github.gzu-liyujiang.AndroidPicker:WheelPicker:1.4.5'){
+        exclude group: 'com.android.support'
+    }//滚轮选择
+    //    compile 'com.amap.api:location:latest.integration'//    定位功能
+    compile 'com.amap.api:3dmap:latest.integration'//3D地图so及jar
+    compile 'com.amap.api:search:latest.integration'//搜索功能
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'//微信支付包
+    compile 'com.android.support:design:24.3.1'
+    compile files('libs/Msc.jar')//shareSDK
+    compile files('libs/Sunflower.jar')
+    compile files('libs/MobCommons-2017.0412.1554.jar')
+    compile files('libs/alipaySdk-20170407.jar')//支付宝支付
+    compile 'q.rorbin:badgeview:1.1.0'//消息个数红点
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.17'//强大的RecyclerView adapter
+
 }

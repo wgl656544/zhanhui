@@ -5,29 +5,32 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorDivision"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/colorDivision">
 
         <ImageView
             android:id="@+id/iv_detail_ex_ticket_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
             android:src="@drawable/back" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:gravity="center"
             android:text="@string/exticket"
             android:textColor="@color/colorOrange"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lv_detail_ex_ticket"

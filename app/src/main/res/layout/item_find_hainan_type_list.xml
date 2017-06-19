@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <View
+        android:background="@color/colorDivision"
+        android:layout_marginTop="@dimen/y70"
+        android:layout_width="@dimen/x180"
+        android:layout_height="1px"/>
+    <TextView
+        android:id="@+id/tv_find_hainan_type"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/y80"
+        android:gravity="center"
+        android:background="@drawable/bg_orange"
+        android:text="旅游"
+        android:textSize="16sp" />
+</FrameLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_my_apply_create_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="报名时间：xx-xx-xx" />
+
+        <TextView
+            android:id="@+id/tv_my_apply_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="未确定"
+            android:textColor="@color/colorOrange" />
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/iv_my_apply"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/x200"
+            android:layout_below="@+id/tv_my_apply_create_date"
+            android:layout_marginTop="@dimen/x20"
+            android:src="@drawable/default_pic" />
+
+        <TextView
+            android:layout_marginStart="@dimen/x50"
+            android:id="@+id/tv_my_apply_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_my_apply"
+            android:layout_toEndOf="@+id/iv_my_apply"
+            android:text="第三届博鳌亚洲论坛" />
+
+        <TextView
+            android:id="@+id/tv_my_apply_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_my_apply_place"
+            android:layout_alignStart="@+id/tv_my_apply_name"
+            android:layout_marginBottom="25dp"
+            android:text="2017.5.10 - 2017.5.30" />
+
+        <TextView
+            android:id="@+id/tv_my_apply_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_my_apply"
+            android:layout_alignStart="@+id/tv_my_apply_start_date"
+            android:text="博鳌" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorDivision" />
+
+</LinearLayout>

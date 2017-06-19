@@ -16,6 +16,7 @@
     <color name="color_brown_deep">#B0863C</color>
     <color name="color_bule_1">#496187</color>
     <color name="color_bule_2">#A8D9F5</color>
+    <color name="text_color">#999999</color>
 
     <color name="font_black_0">#212121</color>
     <color name="font_black_1">#424242</color>
@@ -25,6 +26,9 @@
     <color name="font_black_5">#bdbdbd</color>
     <color name="font_black_6">#e0e0e0</color>
     <color name="half_transparent">#8f000000</color>
+
+    <!--发现海南页面，item按钮颜色-->
+    <drawable name="orange_text">@color/colorOrange</drawable>
 
 
 </resources>

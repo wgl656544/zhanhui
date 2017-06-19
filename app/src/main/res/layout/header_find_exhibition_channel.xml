@@ -81,27 +81,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_find_ex_other"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/x60"
-                android:layout_height="@dimen/x60"
-                android:layout_gravity="center"
-                android:src="@drawable/other" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/x20"
-                android:text="@string/other"
-                android:textSize="16sp" />
-        </LinearLayout>
     </LinearLayout>
 
     <View

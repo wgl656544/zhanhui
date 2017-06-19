@@ -3,6 +3,7 @@ package com.example.mylibrary.common;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.mylibrary.R;

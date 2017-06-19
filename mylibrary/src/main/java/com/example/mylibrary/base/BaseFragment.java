@@ -98,7 +98,7 @@ public abstract class BaseFragment extends Fragment {
 
             Window wd = mCustomLoading.getWindow();
             WindowManager.LayoutParams lp = wd.getAttributes();
-            lp.alpha = 0.5f;
+            lp.alpha = 0.8f;
             wd.setAttributes(lp);
         }
         mCustomLoading.show();

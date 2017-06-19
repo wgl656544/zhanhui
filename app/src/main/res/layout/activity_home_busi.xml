@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
+
+
+        <ImageView
+            android:id="@+id/iv_home_busi_back"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="招商"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <in.srain.cube.views.ptr.PtrFrameLayout
+            android:id="@+id/ptr_busi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.zyrc.exhibit.SmoothListView.SmoothListView
+                android:id="@+id/sl_home_fragment_busi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+        </in.srain.cube.views.ptr.PtrFrameLayout>
+
+        <com.zyrc.exhibit.view.homeBusiHeader.HomeBusiFilterView
+            android:id="@+id/fv_home_fragment_busi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+</LinearLayout>

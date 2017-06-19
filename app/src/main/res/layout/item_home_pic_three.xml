@@ -12,7 +12,7 @@
         android:scaleType="fitXY"
         android:id="@+id/iv_home_item_three"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x130"
+        android:layout_height="@dimen/x150"
         android:src="@drawable/default_pic" />
     </RelativeLayout>
 

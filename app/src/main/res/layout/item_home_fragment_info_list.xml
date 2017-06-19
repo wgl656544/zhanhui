@@ -29,9 +29,8 @@
             android:text="第三届博鳌"
             android:textColor="@color/black"
             android:textSize="16sp" />
-
         <TextView
-            android:id="@+id/tv_info_list_date"
+            android:id="@+id/tv_info_list_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_info_list_title"
@@ -42,13 +41,17 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_info_list_num"
+            android:id="@+id/tv_info_list_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/iv_info_list_pic"
-            android:layout_alignParentEnd="true"
-            android:text="500人看过"
+            android:layout_below="@id/tv_info_list_name"
+            android:layout_marginStart="@dimen/x10"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_toEndOf="@+id/iv_info_list_pic"
+            android:text="2017.01.02"
             android:textSize="14sp" />
+
+
     </RelativeLayout>
 
     <View

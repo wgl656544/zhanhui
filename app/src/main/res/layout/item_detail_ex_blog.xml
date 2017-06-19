@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/x10">
+        android:layout_marginBottom="@dimen/x20"
+        android:layout_marginEnd="@dimen/x10"
+        android:layout_marginStart="@dimen/x10"
+        android:layout_marginTop="@dimen/x20">
 
         <ImageView
             android:id="@+id/iv_detail_ex_blog"
-            android:layout_width="@dimen/x220"
-            android:layout_height="@dimen/x140"
+            android:layout_width="@dimen/x260"
+            android:layout_height="@dimen/x180"
             android:scaleType="fitXY"
             android:src="@drawable/default_pic" />
 
@@ -34,6 +39,8 @@
             android:layout_marginStart="@dimen/x10"
             android:layout_marginTop="@dimen/x5"
             android:layout_toEndOf="@+id/iv_detail_ex_blog"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="领导致辞、专家讲话"
             android:textSize="14sp" />
 
@@ -47,9 +54,12 @@
             android:layout_toEndOf="@+id/iv_detail_ex_blog"
             android:text="20017.3.10"
             android:textSize="14sp" />
-
-
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginStart="@dimen/x10"
+        android:background="@color/font_black_5" />
 
-</RelativeLayout>
+</LinearLayout>

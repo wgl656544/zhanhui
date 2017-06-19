@@ -7,15 +7,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_login_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
+            android:scaleType="centerInside"
             android:src="@drawable/arrow_left" />
 
         <TextView
@@ -70,13 +73,13 @@
                 android:visibility="gone" />
 
             <Button
-                android:textColor="@color/black"
                 android:id="@+id/btn_login_acquire_code"
                 android:layout_width="@dimen/x180"
                 android:layout_height="@dimen/y50"
                 android:layout_gravity="center"
                 android:background="@drawable/button_enanled"
                 android:text="获取验证码"
+                android:textColor="@color/black"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -148,12 +151,12 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/x1"
+            android:layout_height="1px"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/x20"
             android:layout_marginStart="@dimen/x40"
             android:layout_weight="1"
-            android:background="@color/black" />
+            android:background="@color/font_black_5" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -163,12 +166,12 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/x1"
+            android:layout_height="1px"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/x40"
             android:layout_marginStart="@dimen/x20"
             android:layout_weight="1"
-            android:background="@color/black" />
+            android:background="@color/font_black_5" />
     </LinearLayout>
 
     <LinearLayout
@@ -179,10 +182,11 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/iv_login_wx"
                 android:layout_width="@dimen/x80"
                 android:layout_height="@dimen/x80"
                 android:layout_gravity="center"
@@ -202,9 +206,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
+                android:id="@+id/iv_login_qq"
                 android:layout_width="@dimen/x80"
                 android:layout_height="@dimen/x80"
                 android:layout_gravity="center"
@@ -223,10 +229,12 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
+                android:id="@+id/iv_login_sina"
                 android:layout_width="@dimen/x80"
                 android:layout_height="@dimen/x80"
                 android:layout_gravity="center"

@@ -5,33 +5,18 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x80"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/x80">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/x35"
-            android:text="海南"
-            android:textColor="@color/colorOrange"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:layout_width="@dimen/x24"
-            android:layout_height="@dimen/x30"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/x15"
-            android:src="@drawable/down_orange" />
 
         <LinearLayout
+            android:layout_centerInParent="true"
             android:layout_width="@dimen/x460"
             android:layout_height="@dimen/x60"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/x10"
-            android:background="@drawable/sousuokuang_gray"
+            android:background="@drawable/search_bg_gray"
             android:focusable="true"
             android:focusableInTouchMode="true">
 
@@ -53,15 +38,15 @@
                 android:hint="搜展会" />
 
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
         android:background="@color/colorDivision" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_find_fragment"
+    <in.srain.cube.views.ptr.PtrFrameLayout
+        android:id="@+id/ptr_find_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -69,7 +54,7 @@
             android:id="@+id/rl_find_hainan"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </in.srain.cube.views.ptr.PtrFrameLayout>
 
 
 </LinearLayout>

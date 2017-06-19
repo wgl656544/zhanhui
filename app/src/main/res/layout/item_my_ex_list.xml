@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/x10">
+
+
+    <ImageView
+        android:id="@+id/iv_my_ex"
+        android:layout_width="@dimen/x300"
+        android:layout_height="@dimen/x200"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_pic" />
+
+    <TextView
+        android:id="@+id/tv_my_ex_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/x10"
+        android:layout_marginTop="@dimen/x40"
+        android:layout_toEndOf="@+id/iv_my_ex"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_my_ex_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_my_ex_title"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:layout_toEndOf="@+id/iv_my_ex"
+        android:textSize="15sp" />
+    <View
+        android:layout_marginTop="@dimen/x10"
+        android:layout_below="@+id/iv_my_ex"
+        android:background="@color/font_black_5"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+</RelativeLayout>

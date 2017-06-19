@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mylibrary.R;
+import com.example.mylibrary.common.CustomLoading;
 
 
 /**
@@ -25,6 +27,7 @@ public class CustomWaitDialog {
     private Dialog waitDialog;
     private Animation mAnimation;
     private TextView msg;
+    private AnimationDrawable animationDrawable;
     public CustomWaitDialog(Context mContext) {
         this.mContext = mContext;
         waitDialog = new Dialog(mContext, R.style.dialog);
@@ -41,7 +44,7 @@ public class CustomWaitDialog {
         Window window = waitDialog.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
 
-        lp.dimAmount = 0.8f;
+        lp.dimAmount = 0.0f;
         window.setAttributes(lp);
         window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
@@ -50,7 +53,9 @@ public class CustomWaitDialog {
         msg = (TextView)waitDialog.findViewById(R.id.message);
 
         image = (ImageView) waitDialog.findViewById(R.id.spinnerImageView);
-        mAnimation = AnimationUtils.loadAnimation(mContext, R.anim.loading);
+//        mAnimation = AnimationUtils.loadAnimation(mContext, R.anim.loading);
+//        image.setImageResource(R.drawable.frame_loading);
+        animationDrawable = (AnimationDrawable) image.getDrawable();
     }
 
     public void show(String msg) {
@@ -64,8 +69,9 @@ public class CustomWaitDialog {
     }
 
     private void startDialog(){
-        image.startAnimation(mAnimation);
+//        image.startAnimation(mAnimation);
         waitDialog.show();
+        animationDrawable.start();
     }
 
     public void dismiss() {

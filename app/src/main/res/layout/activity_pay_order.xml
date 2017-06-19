@@ -7,15 +7,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/x20">
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
 
         <ImageView
+            style="@style/Widget.AppCompat.ActionButton"
+            android:scaleType="centerInside"
             android:id="@+id/iv_pay_order_back"
-            android:layout_width="@dimen/x60"
-            android:layout_height="@dimen/x40"
+            android:layout_width="@dimen/x80"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/x20"
+            android:paddingTop="@dimen/x20"
             android:src="@drawable/back" />
 
         <TextView
@@ -38,8 +41,8 @@
         android:padding="@dimen/x20">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50"
             android:layout_gravity="center"
             android:src="@drawable/wx_pay" />
 
@@ -55,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:text="微信支付"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,8 +68,8 @@
 
         <ImageView
             android:id="@+id/iv_pay_order_wx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
             android:layout_gravity="center"
             android:src="@drawable/seletor_wxpay_or_zfbpay" />
     </LinearLayout>
@@ -82,8 +85,8 @@
         android:padding="@dimen/x20">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50"
             android:layout_gravity="center"
             android:src="@drawable/zfb_pay" />
 
@@ -99,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="支付宝支付"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,8 +112,8 @@
 
         <ImageView
             android:id="@+id/iv_pay_order_zfb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
             android:layout_gravity="center"
             android:src="@drawable/seletor_wxpay_or_zfbpay" />
     </LinearLayout>
