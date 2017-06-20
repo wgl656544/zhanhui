@@ -85,8 +85,8 @@ public class SearchBlogAdapter extends BaseAdapter {
         }
         viewHolder.llItem.setVisibility(View.VISIBLE);
         Glide.with(context).load(bean.getImageUrl()).into(viewHolder.imageView);
-        viewHolder.tvName.setText(bean.getName());
         viewHolder.tvTitle.setText(bean.getTitle());
+        viewHolder.tvName.setText(bean.getName());
         viewHolder.tvDate.setText(bean.getStartDate());
         return convertView;
     }

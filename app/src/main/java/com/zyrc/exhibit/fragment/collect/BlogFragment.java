@@ -1,5 +1,6 @@
 package com.zyrc.exhibit.fragment.collect;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.zyrc.exhibit.R;
+import com.zyrc.exhibit.activity.WebViewActivity;
 import com.zyrc.exhibit.adapter.CollectAdapter;
 import com.zyrc.exhibit.app.MyApplication;
 import com.zyrc.exhibit.constant.HandlerConstant;
@@ -98,10 +100,11 @@ public class BlogFragment extends Fragment {
         rlBlog.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
         rlBlog.setAdapter(adapter);
+        final List<CommonBean.Data> finalDatas = datas;
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                startActivity(new Intent(getActivity(), WebViewActivity.class).putExtra(HandlerConstant.DETAIL_BLOG, finalDatas.get(position)));
             }
         });
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {

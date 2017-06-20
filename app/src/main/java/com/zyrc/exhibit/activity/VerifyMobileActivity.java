@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mylibrary.base.BaseActivity;
@@ -42,6 +43,8 @@ public class VerifyMobileActivity extends BaseActivity implements View.OnClickLi
     private Button btnAcquire;//获取验证码
     @ViewInject(R.id.btn_verify_save)
     private Button btnSave;//提交
+    @ViewInject(R.id.iv_verify_back)
+    private ImageView ivBack;
 
     private int time = 60;//倒数开始
     private boolean result = true;//60s倒数是否开始
@@ -52,7 +55,6 @@ public class VerifyMobileActivity extends BaseActivity implements View.OnClickLi
     private String openid = "";
     private String type = "";
 
-    private String TAG;
 
     private Handler handler = new Handler() {
         @Override
@@ -86,7 +88,6 @@ public class VerifyMobileActivity extends BaseActivity implements View.OnClickLi
         type = getIntent().getStringExtra("socialType");
         openid = getIntent().getStringExtra("openid");
         mActivity = this;
-        TAG = getLocalClassName();
         setListeners();
     }
 
@@ -94,6 +95,7 @@ public class VerifyMobileActivity extends BaseActivity implements View.OnClickLi
     private void setListeners() {
         btnAcquire.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+        ivBack.setOnClickListener(this);
     }
 
     //点击事件
@@ -109,6 +111,9 @@ public class VerifyMobileActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     typeLogin();//第三方登录绑定手机
                 }
+                break;
+            case R.id.iv_verify_back:
+                finish();
                 break;
         }
     }

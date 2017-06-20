@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mylibrary.base.BaseFragment;
@@ -113,17 +114,6 @@ public class FindFragment extends BaseFragment implements PtrHandler {
         mPtrFrameLayout.setPtrHandler(this);
     }
 
-    private void sortData(List<CommonBean.Data> datas) {
-        for (int i = 0; i < datas.size(); i++) {
-            if (i == 0 || i == 1) {
-                datas.get(i).setItemType(CommonBean.Data.HENG);
-            } else {
-                datas.get(i).setItemType(CommonBean.Data.SHU);
-            }
-        }
-        adapter.notifyDataSetChanged();
-    }
-
     private void show(final List<CommonBean.Data> datas) {
         for (int i = 0; i < datas.size(); i++) {
             if (i == 0 || i == 1) {
@@ -134,8 +124,12 @@ public class FindFragment extends BaseFragment implements PtrHandler {
         }
         mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new HaiNanAdapter(datas);
+        adapter.setHeaderAndEmpty(true);
         rlHeader.getView(adapter, mRecycleView);
         mRecycleView.setAdapter(adapter);
+        if (datas.size() == 0) {
+            adapter.setEmptyView(R.layout.item_no_data_layout, (ViewGroup) mRecycleView.getParent());
+        }
         rlHeader.setOnItemClickListener(new FindHainanHeader.OnItemClickListener() {
             @Override
             public void onItemClick(String typeName) {
@@ -150,6 +144,23 @@ public class FindFragment extends BaseFragment implements PtrHandler {
                 startActivity(new Intent(getActivity(), WebViewActivity.class).putExtra(HandlerConstant.DETAIL_BLOG, datas.get(position)));
             }
         });
+    }
+
+    //页面数据刷新
+    private void sortData(List<CommonBean.Data> datas) {
+        if (datas.size() != 0) {
+            for (int i = 0; i < datas.size(); i++) {
+                if (i == 0 || i == 1) {
+                    datas.get(i).setItemType(CommonBean.Data.HENG);
+                } else {
+                    datas.get(i).setItemType(CommonBean.Data.SHU);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        } else {
+            adapter.notifyDataSetChanged();
+            adapter.setEmptyView(R.layout.item_no_data_layout, (ViewGroup) mRecycleView.getParent());
+        }
     }
 
     //下拉刷新

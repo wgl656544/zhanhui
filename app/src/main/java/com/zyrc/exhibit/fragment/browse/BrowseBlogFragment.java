@@ -97,7 +97,6 @@ public class BrowseBlogFragment extends Fragment {
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
         rlBlog.setAdapter(adapter);
         if(datas.size() == 0){
-//            adapter.setNewData(null);
             adapter.setEmptyView(R.layout.item_no_data_layout, (ViewGroup) rlBlog.getParent());
         }
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

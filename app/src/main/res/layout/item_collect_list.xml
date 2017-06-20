@@ -29,6 +29,8 @@
             android:textSize="16sp" />
 
         <TextView
+            android:maxLines="1"
+            android:ellipsize="end"
             android:id="@+id/tv_collect_list_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

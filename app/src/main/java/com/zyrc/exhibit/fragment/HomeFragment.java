@@ -14,12 +14,14 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -131,6 +133,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private View viewTeam;//团购分割线
     @ViewInject(R.id.rl_title_team)
     private RelativeLayout rlTitleTeam;//团购标题
+    @ViewInject(R.id.sl_home)
+    private ScrollView mScrollView;
 
     private PopupWindow mPopuWindow;//"更多"弹出窗口
     private Model model;
@@ -150,6 +154,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private DetailBlogAdapter infoAdapter;//首页资讯业务适配器
     private static final int ZXING_SCAN_SUCCESS = 1006;//二维码
     private static final int REQUEST_CODE_PICK_CITY = 100;//城市
+    private float mLastX;//滑动距离
 
     private Context mContext = MyApplication.getmMyApplication().getApplicationContext();
     private final String branch = "branch";//分论坛

@@ -2,6 +2,7 @@ package com.zyrc.exhibit.adapter;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +24,13 @@ public class CollectAdapter extends BaseQuickAdapter<CommonBean.Data, BaseViewHo
 
     @Override
     protected void convert(BaseViewHolder helper, CommonBean.Data item) {
-        helper.setText(R.id.tv_collect_list_name,item.getName());
+        if(TextUtils.isEmpty(item.getTitle())){
+            helper.setText(R.id.tv_collect_list_name,item.getName())
+                    .setText(R.id.tv_collect_list_city,item.getDescription());
+        } else {
+            helper.setText(R.id.tv_collect_list_name,item.getTitle())
+                    .setText(R.id.tv_collect_list_city,item.getDescription());
+        }
         Glide.with(mContext)
                 .load(item.getImageUrl())
                 .error(R.drawable.error)

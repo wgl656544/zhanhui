@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.mylibrary.base.BaseFragment;
@@ -189,6 +190,7 @@ public class TrendsFragment extends BaseFragment implements PtrHandler {
         }
         mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ExTrendAdapter(datas);
+        adapter.setHeaderAndEmpty(true);
         channelHeader.getView(adapter, mRecycleView);
         advertHeader.getView(adapter, mRecycleView);
         buttonChannelHeader.getView(adapter, mRecycleView);
@@ -214,14 +216,20 @@ public class TrendsFragment extends BaseFragment implements PtrHandler {
     }
 
     private void sortData(List<CommonBean.Data> datas) {
-        for (int i = 0; i < datas.size(); i++) {
-            if (i == 0 || i == 1) {
-                datas.get(i).setItemType(CommonBean.Data.HENG);
-            } else {
-                datas.get(i).setItemType(CommonBean.Data.SHU);
+        if(datas.size() != 0){
+            for (int i = 0; i < datas.size(); i++) {
+                if (i == 0 || i == 1) {
+                    datas.get(i).setItemType(CommonBean.Data.HENG);
+                } else {
+                    datas.get(i).setItemType(CommonBean.Data.SHU);
+                }
             }
+            adapter.notifyDataSetChanged();
+        } else {
+            adapter.notifyDataSetChanged();
+            adapter.setEmptyView(R.layout.item_no_data_layout, (ViewGroup) mRecycleView.getParent());
         }
-        adapter.notifyDataSetChanged();
+
     }
 
     //下拉刷新

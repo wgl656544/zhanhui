@@ -45,8 +45,8 @@ public class DetailBlogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
             });
             Glide.with(context).load(datas.get(position).getImageUrl()).into(((MyViewHolder) holder).imageView);
-            ((MyViewHolder) holder).tvTitle.setText(datas.get(position).getName());
-            ((MyViewHolder) holder).tvContent.setText(datas.get(position).getTitle());
+            ((MyViewHolder) holder).tvTitle.setText(datas.get(position).getTitle());
+            ((MyViewHolder) holder).tvContent.setText(datas.get(position).getName());
             ((MyViewHolder) holder).tvDate.setText(datas.get(position).getStartDate());
         }
     }

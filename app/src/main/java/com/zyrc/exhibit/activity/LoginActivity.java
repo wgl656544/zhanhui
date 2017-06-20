@@ -116,7 +116,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 model.postData(handler, UrlConstant.HTTP_URL_FIND_USERINFO, HandlerConstant.LOGIN_SUCCESS, param);
                             }
                             startLoading("登录中...");
-                            ToastUtil.show(LoginActivity.this, "已经绑定");
+                            ToastUtil.show(LoginActivity.this, "已登录");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -289,11 +289,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void onError(Platform platform, int i, Throwable throwable) {
+        stopLoading();
         ToastUtil.show(LoginActivity.this, "登录失败");
     }
 
     @Override
     public void onCancel(Platform platform, int i) {
+        stopLoading();
         ToastUtil.show(LoginActivity.this, "取消登录");
     }
 
@@ -306,9 +308,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 openid = platform.getDb().getUserId();
                 ToastUtil.show(LoginActivity.this, "授权成功");
                 param = new HashMap<>();
-                param.put("socialType", "webchat");
+                param.put("socialType", type);
                 param.put("openid", openid);
-                model = new Model();
+                if (model == null) {
+                    model = new Model();
+                }
                 model.postData(handler, UrlConstant.HTTP_URL_BIND_CHECK, HandlerConstant.SEARCH_SUCCESS, param);
                 break;
         }

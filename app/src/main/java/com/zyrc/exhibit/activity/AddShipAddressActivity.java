@@ -179,7 +179,7 @@ public class AddShipAddressActivity extends BaseActivity implements View.OnClick
                 !etPhone.getText().toString().equals("") &&
                 !etStreet.getText().toString().equals("") &&
                 !tvCity.getText().toString().equals("")) {
-            if(flag){
+            if (flag) {
                 params.put("tagType", "1");
             }
             model.userAddress(handler, params);
