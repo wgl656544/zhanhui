@@ -95,6 +95,7 @@ public class BrowseBlogFragment extends Fragment {
     private void showBlog(List<CommonBean.Data> datas) {
         rlBlog.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
+        adapter.setType("view");
         rlBlog.setAdapter(adapter);
         if(datas.size() == 0){
             adapter.setEmptyView(R.layout.item_no_data_layout, (ViewGroup) rlBlog.getParent());

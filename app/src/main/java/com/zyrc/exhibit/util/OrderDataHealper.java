@@ -88,7 +88,7 @@ public class OrderDataHealper {
         List<Object> dataList = new ArrayList<>();
         //遍历每张大订单
         for (OrderBean.Data data : datas) {
-            if (data.getStatus() > 2) {
+            if (data.getStatus() >= 2) {
                 OrderHeader header = new OrderHeader();
                 header.setOrderNo(data.getOrderNo());//获取订单号
                 header.setStatus(data.getStatus());//获取订单状态

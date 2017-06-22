@@ -92,6 +92,7 @@ public class BrowseProductFragment extends Fragment {
     private void showProduct(final List<CommonBean.Data> datas) {
         rlProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
+        adapter.setType("view");
         rlProduct.setAdapter(adapter);
         if(datas.size() == 0){
 //            adapter.setNewData(null);

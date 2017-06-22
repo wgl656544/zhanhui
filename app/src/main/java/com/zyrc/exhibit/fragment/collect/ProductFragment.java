@@ -88,6 +88,7 @@ public class ProductFragment extends Fragment {
     private void showProduct(final List<CommonBean.Data> datas) {
         rlProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
+        adapter.setType("wish");
         rlProduct.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

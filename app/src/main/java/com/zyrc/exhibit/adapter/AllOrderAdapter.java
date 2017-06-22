@@ -59,8 +59,8 @@ public class AllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             OrderHeader header = (OrderHeader) data.get(position);
             ((MyViewHolderHeader) holder).tvOrderNo.setText("订单号：" + header.getOrderNo() + "");
             ((MyViewHolderHeader) holder).tvOrderShopname.setVisibility(View.GONE);
-            if (header.getStatus() > 2) {
-                ((MyViewHolderHeader) holder).tvOrderState.setText("已完成");
+            if (header.getStatus() >= 2) {
+                ((MyViewHolderHeader) holder).tvOrderState.setText("已付款");
             } else {
                 ((MyViewHolderHeader) holder).tvOrderState.setText("待付款");
             }
@@ -72,7 +72,7 @@ public class AllOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((MyViewHolderContent) holder).tvNum.setText("共" + content.getQty() + "张");
         } else if (holder instanceof MyViewHolderFooter) {
             final OrderFoot foot = (OrderFoot) data.get(position);
-            if (foot.getStatus() > 2) {
+            if (foot.getStatus() >= 2) {
                 ((MyViewHolderFooter) holder).btnSub.setVisibility(View.GONE);
             }
             ((MyViewHolderFooter) holder).tvAmount.setText("￥：" + foot.getAmount() + "");

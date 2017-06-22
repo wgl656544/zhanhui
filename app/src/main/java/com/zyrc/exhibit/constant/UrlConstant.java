@@ -96,8 +96,8 @@ public class UrlConstant {
     public static final String HTTP_URL_SEARCH_APPLY = "/exhibInviteBusi/pageQuery";
     //根据关键字查询展会
     public static final String HTTP_URL_SEARCH_EXHIBI_BY_KEY = "/apicommon/searchExhibByKey";
-    //支付
-    public static final String HTTP_URL_PAY = "/payCommon/payUserOrder";
+    //微信
+    public static final String HTTP_URL_WX_PAY = "/wxPay/createPayInfo";
     //支付宝
     public static final String HTTP_URL_ZFB_PAY = "/aliPay/createPayInfo";
     //记录用户当前所在城市
@@ -122,7 +122,7 @@ public class UrlConstant {
     public static final String HTTP_URL_FIND_HAINAN_TYPE = "/apicommon/blogCategory";
     //发现查询
     public static final String HTTP_URL_SEARCH_FIND = "/apicommon/searchBlog";
-    //点击收藏
+    //记录日志
     public static final String HTTP_URL_ADD_COLLECT = "/userEvent/save";
     //查询所有收藏
     public static final String HTTP_URL_SEARCH_COLLECT = "/userEvent/userWish";
@@ -138,6 +138,7 @@ public class UrlConstant {
     public static final String API_GET_MY_EXHIBIT = "/exhibUserTicket/pageQuery";
     //上下轮播动态
     public static final String API_GET_BANNER = "/apicommon/searchDync";
-
+    //版本更新
+    public static final String APT_UPDATE_VERSION = "/manageVersion/find";
 
 }

@@ -33,8 +33,6 @@ public class HandlerConstant {
     public static final int INFO_HAINAN_ALL_CITY_SUCCESS = 301;
     //团购分类
     public static final int GET_ALL_EX = 400;
-    //门票类型
-    public static final int TICKET_TYPE_SUCCESS = 500;
     //详细展会信息
     public static final int DETAIL_EX_SUCCESS = 600;
     //详细页面广告

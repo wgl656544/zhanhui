@@ -45,8 +45,8 @@ public class MyApplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
             ApplyBean.Data item = data.get(position);
-            if (item.getCorp() != null) {
-                Glide.with(context).load(item.getCorp().getImageUrl()).
+            if (item.getExhibit() != null) {
+                Glide.with(context).load(item.getExhibit().getImageUrl()).
                         error(R.drawable.error).
                         into(((MyViewHolder) holder).ivPic);
                 if (status == 0) {
@@ -54,10 +54,10 @@ public class MyApplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 } else {
                     ((MyViewHolder) holder).tvStatus.setText("已确定");
                 }
-                ((MyViewHolder) holder).tvName.setText(item.getCorp().getName());
-                ((MyViewHolder) holder).tvStartDate.setText("开始时间");
-//                ((MyViewHolder) holder).tvPlace.setText(item.getCorp().getAddress().getCity());
-                ((MyViewHolder) holder).tvCreateDate.setText("报名时间：" + item.getCorp().getCreatedDate() + "");
+                ((MyViewHolder) holder).tvName.setText(item.getExhibit().getName());
+                ((MyViewHolder) holder).tvStartDate.setText("开始时间：" + item.getExhibit().getStartDate() + "");
+                ((MyViewHolder) holder).tvPlace.setText(item.getExhibit().getAddress().getCity());
+                ((MyViewHolder) holder).tvCreateDate.setText("报名时间：" + item.getExhibit().getCorp().getCreatedDate() + "");
             }
         }
     }

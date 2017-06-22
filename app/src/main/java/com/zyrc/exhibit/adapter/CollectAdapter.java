@@ -18,12 +18,23 @@ import java.util.List;
  */
 
 public class CollectAdapter extends BaseQuickAdapter<CommonBean.Data, BaseViewHolder>{
+    private static final String WISH = "wish";
+    private static final String VIEW = "view";
+    private String type = "wish";
     public CollectAdapter(@LayoutRes int layoutResId, @Nullable List<CommonBean.Data> data) {
         super(layoutResId, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, CommonBean.Data item) {
+        switch (type){
+            case WISH:
+                helper.addOnClickListener(R.id.btn_collect_list);
+                break;
+            case VIEW:
+                helper.setVisible(R.id.btn_collect_list,false);
+                break;
+        }
         if(TextUtils.isEmpty(item.getTitle())){
             helper.setText(R.id.tv_collect_list_name,item.getName())
                     .setText(R.id.tv_collect_list_city,item.getDescription());
@@ -35,6 +46,9 @@ public class CollectAdapter extends BaseQuickAdapter<CommonBean.Data, BaseViewHo
                 .load(item.getImageUrl())
                 .error(R.drawable.error)
                 .into((ImageView) helper.getView(R.id.iv_collect_list));
-        helper.addOnClickListener(R.id.btn_collect_list);
+    }
+
+    public void setType(String type){
+        this.type = type;
     }
 }

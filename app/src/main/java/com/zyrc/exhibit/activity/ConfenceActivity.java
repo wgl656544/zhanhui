@@ -27,6 +27,7 @@ import com.zyrc.exhibit.adapter.detailex.DetailBlogAdapter;
 import com.zyrc.exhibit.adapter.detailex.DetailHonorAdapter;
 import com.zyrc.exhibit.adapter.detailex.DetailSubAdapter;
 import com.zyrc.exhibit.adapter.detailex.DetailTicketAdapter;
+import com.zyrc.exhibit.app.MyApplication;
 import com.zyrc.exhibit.constant.HandlerConstant;
 import com.zyrc.exhibit.constant.UrlConstant;
 import com.zyrc.exhibit.entity.ChannelBean;
@@ -34,6 +35,7 @@ import com.zyrc.exhibit.entity.CommonBean;
 import com.zyrc.exhibit.entity.CommonListBean;
 import com.zyrc.exhibit.entity.DetailExBean;
 import com.zyrc.exhibit.model.GetDtaListModel;
+import com.zyrc.exhibit.model.Model;
 import com.zyrc.exhibit.view.FullyGridLayoutManager;
 import com.zyrc.exhibit.view.FullyLinearLayoutManager;
 
@@ -41,7 +43,9 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 会议详细页面
@@ -110,9 +114,15 @@ public class ConfenceActivity extends BaseActivity implements View.OnClickListen
     private LinearLayout llMap;//跳转到地图
 
 
+    private String userId = "userId";//参数id
+    private String eventType = "eventType";//参数类型
+    private String entityName = "entityName";//产品类型
+    private String entityId1 = "entityId";//产品id
     private int entityId;
     private Activity mActivity;
     private GetDtaListModel model = new GetDtaListModel();
+    private Model mModel;
+    private Map<String,String> param;
     private DetailExBean detailExBean;//展会详细信息实体类
     private List<ChannelBean.Data> channelBean;//频道按钮
     private CommonListBean detailExAdvertBean;//展会详细页面广告
@@ -173,14 +183,16 @@ public class ConfenceActivity extends BaseActivity implements View.OnClickListen
         entityId = getIntent().getIntExtra("entityId", 1);
         setListeners();
         initData();
+        //保存足迹
+        save(UrlConstant.HTTP_URL_ADD_COLLECT, 0, "view");
     }
 
     //请求数据
     private void initData() {
         startLoading("加载中...");
         model.getDetailEx(handler, entityId);
-        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_ADVERT, "?exhibId=" + entityId + "&name=ex-home-top", HandlerConstant.DETAIL_EX_ADVERT_SUCCESS);
-        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_INFO, "exhibId=" + entityId, HandlerConstant.DETAIL_EX_INFO_SUCCESS);
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_ADVERT, "?exhibId=" + entityId + "&name=ex-home-top", HandlerConstant.DETAIL_EX_ADVERT_SUCCESS);//广告
+        model.getDataList(handler, UrlConstant.HTTP_URL_DETAIL_EX_INFO, "exhibId=" + entityId, HandlerConstant.DETAIL_EX_INFO_SUCCESS);//模块
         model.getChannel(handler, "?exhibId=" + entityId);//频道
     }
 
@@ -324,6 +336,25 @@ public class ConfenceActivity extends BaseActivity implements View.OnClickListen
             rlMoreBlog.setVisibility(View.GONE);
             viewMoreBlog.setVisibility(View.GONE);
         }
+    }
+
+    /**
+     * 足迹记录，收藏，取消收藏
+     */
+    private void save(String url, int requestCode, String type) {
+        if (mModel == null) {
+            mModel = new Model();
+        }
+        if (param == null) {
+            param = new HashMap<>();
+        }
+        if (MyApplication.isLogin) {
+            param.put(userId, MyApplication.userId);
+        }
+        param.put(eventType, type);
+        param.put(entityName, "exhibit");
+        param.put(entityId1, String.valueOf(entityId));
+        mModel.postData(handler, url, requestCode, param);
     }
 
 

@@ -10,8 +10,10 @@
         android:layout_height="@dimen/y80">
 
         <LinearLayout
-            android:layout_width="@dimen/x460"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/x60"
+            android:layout_marginStart="@dimen/x35"
+            android:layout_marginEnd="@dimen/x35"
             android:layout_centerInParent="true"
             android:background="@drawable/search_bg_gray"
             android:focusable="true"

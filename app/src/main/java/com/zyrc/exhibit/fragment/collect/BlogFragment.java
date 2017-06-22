@@ -99,6 +99,7 @@ public class BlogFragment extends Fragment {
         }
         rlBlog.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
+        adapter.setType("wish");
         rlBlog.setAdapter(adapter);
         final List<CommonBean.Data> finalDatas = datas;
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

@@ -12,10 +12,11 @@
 
         <LinearLayout
             android:layout_centerInParent="true"
-            android:layout_width="@dimen/x460"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/x60"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/x10"
+            android:layout_marginStart="@dimen/x35"
+            android:layout_marginEnd="@dimen/x35"
             android:background="@drawable/search_bg_gray"
             android:focusable="true"
             android:focusableInTouchMode="true">

@@ -170,10 +170,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 case R.id.ll_my_pay_ok://已付款
                     startActivity(new Intent(getActivity(), AllOrderActivity.class).putExtra("index", 2));
                     break;
-                case R.id.ll_my_collect:
+                case R.id.ll_my_collect://我的收藏
                     startActivity(new Intent(getActivity(), MyCollectActivity.class));
                     break;
-                case R.id.ll_my_browse:
+                case R.id.ll_my_browse://我的浏览
                     startActivity(new Intent(getActivity(), MyBrowseActivity.class));
                     break;
                 case R.id.rl_my_call_phone:

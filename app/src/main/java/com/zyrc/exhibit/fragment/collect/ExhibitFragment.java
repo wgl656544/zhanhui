@@ -88,6 +88,7 @@ public class ExhibitFragment extends Fragment {
     private void showExhibit(List<CommonBean.Data> datas) {
         rlExhibit.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
+        adapter.setType("wish");
         rlExhibit.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

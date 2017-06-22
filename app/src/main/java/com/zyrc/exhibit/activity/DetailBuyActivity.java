@@ -114,6 +114,8 @@ public class   DetailBuyActivity extends BaseActivity implements View.OnClickLis
         initview();
         //检查收藏
         isCollect(UrlConstant.HTTP_URL_IS_COLLECT, HandlerConstant.IS_COLLECT);
+        //保存足迹
+        save(UrlConstant.HTTP_URL_ADD_COLLECT, 0, "view");
     }
 
     //初始化控件
@@ -179,9 +181,9 @@ public class   DetailBuyActivity extends BaseActivity implements View.OnClickLis
             case R.id.iv_detail_buy_collect:
                 if (MyApplication.isLogin) {
                     if (isCollect) {//已经收藏(即再次点击取消收藏)
-                        collect(UrlConstant.HTTP_URL_CANCEL_COLLECT, HandlerConstant.COLLECT_CANCEL);
+                        save(UrlConstant.HTTP_URL_CANCEL_COLLECT, HandlerConstant.COLLECT_CANCEL,"wish");
                     } else {//没有收藏(即点击收藏)
-                        collect(UrlConstant.HTTP_URL_ADD_COLLECT, HandlerConstant.COLLECT_SUCCESS);
+                        save(UrlConstant.HTTP_URL_ADD_COLLECT, HandlerConstant.COLLECT_SUCCESS,"wish");
                     }
                 } else {
                     startActivity(new Intent(this, LoginActivity.class));
@@ -191,22 +193,22 @@ public class   DetailBuyActivity extends BaseActivity implements View.OnClickLis
     }
 
     /**
-     * 进行收藏，已经收藏就取消收藏
+     * 足迹记录，收藏，取消收藏
      */
-    private void collect(String url, int requestCode) {
-        if (MyApplication.isLogin) {
-            if (model == null) {
-                model = new Model();
-            }
-            if (param == null) {
-                param = new HashMap<>();
-            }
-            param.put(userId, MyApplication.userId);
-            param.put(eventType, "wish");
-            param.put(entityName, data.getEntityName());
-            param.put(entityId, String.valueOf(data.getEntityId()));
-            model.postData(handler, url, requestCode, param);
+    private void save(String url, int requestCode, String type) {
+        if (model == null) {
+            model = new Model();
         }
+        if (param == null) {
+            param = new HashMap<>();
+        }
+        if (MyApplication.isLogin) {
+            param.put(userId, MyApplication.userId);
+        }
+        param.put(eventType, type);
+        param.put(entityName, data.getEntityName());
+        param.put(entityId, String.valueOf(data.getEntityId()));
+        model.postData(handler, url, requestCode, param);
     }
 
     /**

@@ -92,6 +92,7 @@ public class BrowseExhibitFragment extends Fragment {
     private void showExhibit(List<CommonBean.Data> datas) {
         rlExhibit.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CollectAdapter(R.layout.item_collect_list, datas);
+        adapter.setType("view");
         rlExhibit.setAdapter(adapter);
         if(datas.size() == 0){
 //            adapter.setNewData(null);

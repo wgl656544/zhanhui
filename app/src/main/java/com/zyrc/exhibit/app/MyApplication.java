@@ -1,8 +1,10 @@
 package com.zyrc.exhibit.app;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.multidex.MultiDex;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -39,6 +41,12 @@ public class MyApplication extends Application implements AMapLocationListener {
 
     public MyApplication() {
         mMyApplication = this;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     @Override
