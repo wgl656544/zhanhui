@@ -300,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * 下载文件。
+     * 下载文件
      */
     private void downFile(final String url) {
         //下载安装包的进度条
