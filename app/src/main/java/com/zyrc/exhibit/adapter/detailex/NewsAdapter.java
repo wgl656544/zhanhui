@@ -53,6 +53,7 @@ public class NewsAdapter extends BaseAdapter {
             holder.imageView = (ImageView) convertView.findViewById(R.id.iv_detail_ex_news_list);
             holder.tvName = (TextView) convertView.findViewById(R.id.tv_detail_ex_news_list_name);
             holder.tvTitle = (TextView) convertView.findViewById(R.id.tv_detail_ex_news_list_title);
+            holder.tvDate = (TextView) convertView.findViewById(R.id.tv_detail_ex_news_list_date);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -62,7 +63,7 @@ public class NewsAdapter extends BaseAdapter {
         Glide.with(context).load(item.getImageUrl()).fitCenter().into(holder.imageView);
         holder.tvName.setText(datas.get(position).getName());
         holder.tvTitle.setText(datas.get(position).getTitle());
-
+        holder.tvDate.setText(datas.get(position).getStartDate());
         return convertView;
     }
 
@@ -70,6 +71,7 @@ public class NewsAdapter extends BaseAdapter {
         private ImageView imageView;
         private TextView tvName;
         private TextView tvTitle;
+        private TextView tvDate;
     }
 
 }

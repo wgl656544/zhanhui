@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 会议详细页面
+ * 详细的展会页面
  * Created by Administrator on 2017/2/20 0020.
  */
 

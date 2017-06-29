@@ -230,13 +230,13 @@ public class   DetailBuyActivity extends BaseActivity implements View.OnClickLis
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
         // title标题，印象笔记、邮箱、信息、微信、人人网、QQ和QQ空间使用
-        oks.setTitle("这是一个分享标题");
+        oks.setTitle(data.getName());
         // titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
         oks.setTitleUrl(url);
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是要分享的内容啊！");
+        oks.setText(data.getDescription());
         //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
-        oks.setImageUrl("http://139.129.202.208/M00/00/02/ChlK2lkDBvKAfZIBAAAXTMPlumI782.png");
+        oks.setImageUrl(data.getImageUrl());
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用
